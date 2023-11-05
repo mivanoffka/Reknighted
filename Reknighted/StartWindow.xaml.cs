@@ -18,11 +18,16 @@ namespace Reknighted
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartWindow : Window
     {
-        public MainWindow()
+        public StartWindow()
         {
             InitializeComponent();
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
