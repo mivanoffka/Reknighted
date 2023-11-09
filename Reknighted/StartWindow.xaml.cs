@@ -29,5 +29,17 @@ namespace Reknighted
         {
             this.Close();
         }
+
+        private void newGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameWindow gameWindow = new GameWindow();
+            DragAndDrop.Window = gameWindow;
+            gameWindow.Show();
+
+            SelectionWindow selectionWindow = new SelectionWindow();
+            selectionWindow.Show();
+
+            this.Close();
+        }
     }
 }

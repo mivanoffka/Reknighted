@@ -5,6 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="question_mark.png" />
+    <None Remove="герб сосниопа.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="question_mark.png" />
+    <Resource Include="герб сосниопа.png" />
+  </ItemGroup>
 
 </Project>
