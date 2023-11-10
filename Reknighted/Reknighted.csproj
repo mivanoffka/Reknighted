@@ -18,4 +18,10 @@
     <Resource Include="герб сосниопа.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Images\question_mark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

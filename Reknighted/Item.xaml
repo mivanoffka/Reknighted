@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Reknighted"
-             mc:Ignorable="d" Width="30" Height="30" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="UserControl_MouseDown" MouseUp="UserControl_MouseUp" MouseMove="UserControl_MouseMove">
+             mc:Ignorable="d" Width="46" Height="46" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="UserControl_MouseDown" MouseUp="UserControl_MouseUp" MouseMove="UserControl_MouseMove">
     <Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="46" Margin="-8,-8,0,0">
             <Image.OpacityMask>
-                <ImageBrush Stretch="Fill" TileMode="None" ImageSource="/герб сосниопа.png"/>
+                <ImageBrush Stretch="Uniform" TileMode="None" ImageSource="/герб сосниопа.png"/>
             </Image.OpacityMask>
         </Image>
         <Ellipse x:Name="indicator" Height="9" VerticalAlignment="Top" Fill="#FFD07B7B" Stroke="#FF9C3333" HorizontalAlignment="Left" Width="9" Margin="20,20,0,0" Visibility="Hidden"/>
