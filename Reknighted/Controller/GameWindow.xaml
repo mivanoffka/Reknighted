@@ -22,7 +22,6 @@
             </TabItem>
             <TabItem x:Name="mapTabButton" HorizontalAlignment="Center" Height="20" Header="Карта" VerticalAlignment="Center" Width="54" Background="#FFCC7676">
                 <Grid Background="White">
-                    <local:Map HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

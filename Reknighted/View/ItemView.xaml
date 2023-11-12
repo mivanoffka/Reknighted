@@ -8,7 +8,7 @@
     <Grid>
         <Image x:Name="image" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="46" Margin="-8,-8,0,0">
             <Image.OpacityMask>
-                <ImageBrush Stretch="Uniform" TileMode="None" ImageSource="/герб сосниопа.png"/>
+                <ImageBrush Stretch="Uniform" TileMode="None" ImageSource="/question_mark.png"/>
             </Image.OpacityMask>
         </Image>
         <Ellipse x:Name="indicator" Height="9" VerticalAlignment="Top" Fill="#FFD07B7B" Stroke="#FF9C3333" HorizontalAlignment="Left" Width="9" Margin="20,20,0,0" Visibility="Hidden"/>

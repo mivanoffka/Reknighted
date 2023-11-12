@@ -10,12 +10,10 @@
 
   <ItemGroup>
     <None Remove="question_mark.png" />
-    <None Remove="герб сосниопа.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="question_mark.png" />
-    <Resource Include="герб сосниопа.png" />
   </ItemGroup>
 
   <ItemGroup>
