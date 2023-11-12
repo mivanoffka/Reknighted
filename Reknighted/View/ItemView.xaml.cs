@@ -1,4 +1,4 @@
-﻿using Reknighted.InfoTypes;
+﻿using Reknighted.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +17,31 @@ using System.Windows.Shapes;
 namespace Reknighted
 {
 
-    public partial class Item : UserControl
+    public partial class ItemView : UserControl
     {   
         private bool _isClicked = false;
         private Point _position = new Point(0, 0);
-        private ItemInfo _itemInfo;
+        private ItemModel _itemInfo;
+
+        public ItemModel ItemModel
+        {
+            get { return _itemInfo; }
+        }
+
+        private Cell? _cell = null;
+
+        public Cell? Cell
+        {
+            get
+            {
+                return _cell;
+            }
+        }
+
 
         public Point Position { get { return _position; } set { _position = value; this.Margin = new Thickness(_position.X, _position.Y, 0, 0); } }
 
-        public Item(ItemInfo itemInfo)
+        public ItemView(ItemModel itemInfo)
         {
             InitializeComponent();
             DragAndDrop.Items.Add(this);
@@ -36,7 +52,7 @@ namespace Reknighted
             this.image.Source = itemInfo.Image.Source;
         }
 
-        ~Item()
+        ~ItemView()
         {
             DragAndDrop.Items.Remove(this);
         }
@@ -53,6 +69,35 @@ namespace Reknighted
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {   
+
+        }
+
+        public void PlaceToCell(Cell cell)
+        {
+            if (cell.ContentItem == null)
+            {   
+                if (_cell != null)
+                {
+                    _cell.ContentItem = null;
+                }
+                _cell = cell;
+                cell.ContentItem = this;
+            }
+
+            Place();
+
+        }
+
+        private void Place()
+        {
+            if (this._cell != null)
+            {
+                var winPos = DragAndDrop.Window.PointToScreen(new Point(0, 0));
+                var cellPos = _cell.PointToScreen(new Point(0, 0));
+
+                this.Position = new Point(cellPos.X - winPos.X - 6, cellPos.Y - winPos.Y - 28);
+            }
+
 
         }
     }

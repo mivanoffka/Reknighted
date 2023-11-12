@@ -1,0 +1,104 @@
+﻿using Reknighted.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Reknighted
+{
+    public partial class PlayerView : UserControl
+    {
+        PlayerModel? _playerModel;
+
+        public PlayerModel? PlayerModel
+        {
+            set
+            {
+                _playerModel = value;
+            }
+            get
+            {
+                return _playerModel;
+            }
+        }
+
+        List<Cell> _inventoryCells = new List<Cell>();
+
+
+
+        public PlayerView()
+        {   
+            InitializeComponent();
+            CreateAndPlace();
+        }
+
+
+        private void CreateAndPlace()
+        {
+            int startX = 15; int startY = 15;
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    Cell cell = new Cell();
+                    cell.Position = new Point(startX + j * cell.Width - 0.25 * cell.Width, startY + i * cell.Height - 0.25 * cell.Height);
+
+                    _inventoryCells.Add(cell);
+                    inventoryGrid.Children.Add(cell);
+                }
+
+            }
+
+            startX = 15; startY = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                Cell cell = new Cell();
+                cell.Position = new Point(startX + i * cell.Width - 0.25 * cell.Width, startY);
+
+                equipmentGrid.Children.Add(cell);
+            }
+        }
+
+        public void UpdateContent()
+        {
+            if (_playerModel != null)
+            {
+                for (int i = 0; i <  _playerModel.Items.Count; i++)
+                {
+                    ItemModel? itemModel = _playerModel.Items[i];
+                    if (itemModel != null)
+                    {
+                        ItemView itemView = new ItemView(itemModel);
+                        if (this.Parent != null)
+                        {   
+                            try
+                            {
+                                Grid grid = (Grid)this.Parent;
+                                grid.Children.Add(itemView);
+
+                                itemView.PlaceToCell(_inventoryCells[i]);
+
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }           
+        }
+    }
+}

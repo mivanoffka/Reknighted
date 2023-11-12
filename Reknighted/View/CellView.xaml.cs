@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Reknighted
 {
 
@@ -20,6 +22,14 @@ namespace Reknighted
     {
         private Point _position = new Point(0, 0);
         private bool _isPointed = false;
+        private ItemView? _contentItem = null;
+        
+        public ItemView? ContentItem
+        {
+            get { return _contentItem; }
+            set { _contentItem = value; }
+        }
+
 
         public Point Position
         {
@@ -68,16 +78,6 @@ namespace Reknighted
             DragAndDrop.Cells.Add(this);
             Position = position;
             InitializeComponent();
-        }
-
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void Grid_MouseMove(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }

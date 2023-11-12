@@ -1,5 +1,5 @@
 ﻿using Reknighted.Images;
-using Reknighted.InfoTypes;
+using Reknighted.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,38 @@ using System.Windows.Shapes;
 namespace Reknighted
 {   
     public partial class GameWindow : Window
-    {   
+    {
+        double defaultWindowHeight = 0;
+        double defaultGridHeight = 0;
+        double defaultTabHeight = 0;
+
+        bool _tradeMode = false;
+
+        public bool TradeMode
+        {
+            get
+            {
+                return _tradeMode;
+            }
+
+            set
+            {
+                _tradeMode = value;
+
+                if (value)
+                {
+                    gameTabs.SelectedIndex = 0;
+                    knightTabButton.Header = "Торговля";
+                }
+                else
+                {
+                    knightTabButton.Header = "Рыцарь";
+                    gameTabs.SelectedIndex = gameTabs.SelectedIndex;
+                }
+
+            }
+        }
+
 
         public GameWindow()
         {
@@ -28,28 +59,17 @@ namespace Reknighted
             this.MouseMove += DragAndDrop.MouseMoveHandler;
             this.MouseUp += DragAndDrop.MouseUpHandler;
 
-            int startX = 0; int startY = 60;
+            defaultWindowHeight = this.Height;
+            defaultGridHeight = this.grid.Height;
+            defaultTabHeight = this.gameTabs.Height;
+        }
 
-            //for (int i = 0; i < 4; i++)
-            //{   
-            //    for (int j = 0; j < 6; j++)
-            //    {
-            //        Cell cell = new Cell();
-            //        cell.Position = new Point(startX + i * cell.Width, startY + j * cell.Height);
-            //        knightGrid.Children.Add(cell);
-            //    }
-            //}
-
-            startX = 0; startY = 0;
-
-
-            for (int i = 0; i < 60; i++)
-            {   
-                Item item = new Item(ItemInfo.DefaultItem);
-                item.Position = new Point(-20, -20);
-                knightGrid.Children.Add(item);
-            }
-
+        public void LoadPlayer()
+        {
+            this.playerView.PlayerModel = new PlayerModel();
+            this.playerView.PlayerModel.Items[0] = new ItemModel(Collections.Items.Apple);
+            this.playerView.PlayerModel.Items[1] = new ItemModel(Collections.Items.Sword);
+            this.playerView.UpdateContent();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,9 +79,10 @@ namespace Reknighted
             list.Add(locationTabButton);
             list.Add(knightTabButton);
 
+            TabControl tabControl = (TabControl)sender;
+
             foreach (TabItem item in list)
             {
-                TabControl tabControl = (TabControl)sender;
 
                 if (item == tabControl.SelectedItem)
                 {
@@ -74,7 +95,36 @@ namespace Reknighted
 
             }
 
-            
+
+            if (gameTabs.SelectedIndex == 0)
+            {
+                if (TradeMode)
+                {
+                    this.Height = defaultWindowHeight * 1.58;
+                    this.grid.Height = defaultGridHeight * 1.65;
+                    this.gameTabs.Height = defaultTabHeight * 1.65;
+                }
+                else
+                {
+                    this.Height = defaultWindowHeight;
+                    this.grid.Height = defaultGridHeight;
+                    this.gameTabs.Height = defaultTabHeight;
+                }
+            }
+            else
+            {
+                this.Height = defaultWindowHeight;
+                this.grid.Height = defaultGridHeight;
+                this.gameTabs.Height = defaultTabHeight;
+            }
+
+
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TradeMode = !TradeMode;
         }
     }
 }

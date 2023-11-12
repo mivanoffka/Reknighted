@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Reknighted"
         mc:Ignorable="d"
         Title="ReKnigthed by Drystal Systems Inc." Height="368" Width="515">
-    <Grid Background="#FFD0D0D0" HorizontalAlignment="Left" Width="500" Height="330" VerticalAlignment="Top">
+    <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" Width="500" Height="330" VerticalAlignment="Top">
         <TabControl x:Name="gameTabs" Margin="10,10,15,11" SelectionChanged="TabControl_SelectionChanged">
             <TabControl.FocusVisualStyle>
                 <Style/>
@@ -14,14 +14,17 @@
             <TabItem x:Name="knightTabButton" Header="Рыцарь" Background="#FFCC7676">
                 <Grid x:Name="knightGrid" Background="White" OpacityMask="Black" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Label x:Name="infoLabel" Content="Label" HorizontalAlignment="Left" Margin="359,-26,0,0" VerticalAlignment="Top"/>
-                    <local:Character x:Name="characterTab" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <local:PlayerView x:Name="playerView" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="locationTabButton" Header="Локация" Background="#FFCC7676">
-                <Grid Background="White"/>
+                <Grid Background="White">
+                    <Button Content="Тест режима торговли" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Height="24" Click="Button_Click" Width="143"/>
+                </Grid>
             </TabItem>
             <TabItem x:Name="mapTabButton" HorizontalAlignment="Center" Height="20" Header="Карта" VerticalAlignment="Center" Width="54" Background="#FFCC7676">
                 <Grid Background="White">
+                    <local:WorldMap HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

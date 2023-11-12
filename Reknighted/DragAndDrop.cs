@@ -17,11 +17,11 @@ namespace Reknighted
         public static Point? MousePreviousPosition = null;
         public static Point? MouseCurrentPosition = null;
 
-        private static List<Item>  _items = new List<Item>();
+        private static List<ItemView>  _items = new List<ItemView>();
         private static List<Cell> _cells = new List<Cell>();
         private static Cell? _selectedCell = null;
         private static Window? _window = null;
-        private static Item? _item = null;
+        private static ItemView? _item = null;
         private static bool _isDragging = false;
         private static System.Windows.Controls.Label? _infoLabel = null;
 
@@ -33,7 +33,7 @@ namespace Reknighted
             set { _window = value; }
         }
 
-        public static Item? Item
+        public static ItemView? Item
         {
             get { return _item; }
             set { _item = value; }
@@ -44,7 +44,7 @@ namespace Reknighted
             get { return _cells; }
         }   
 
-        public static List<Item> Items { get { return _items; } }
+        public static List<ItemView> Items { get { return _items; } }
         public static void MouseMoveHandler(object sender, MouseEventArgs e)
         {   
             MousePreviousPosition = MouseCurrentPosition;
@@ -115,10 +115,53 @@ namespace Reknighted
                     {
                         if (_selectedCell != null)
                         {
-                            var winPos = _window.PointToScreen(new Point(0, 0));
-                            var cellPos = _selectedCell.PointToScreen(new Point(0, 0));
 
-                            Item.Position = new Point(cellPos.X - winPos.X - 6, cellPos.Y - winPos.Y - 28);
+                            int prev_index = -1;
+                            if (Item.Cell != null)
+                                prev_index = Cells.IndexOf(Item.Cell);
+
+                            Item.PlaceToCell(_selectedCell);
+
+                            int cur_index = -1;
+                            if (Item.Cell != null)
+                                cur_index = Cells.IndexOf(Item.Cell);
+
+                            MessageBox.Show("Prev: " + prev_index + "; Cur: " + cur_index);
+
+                            if (prev_index >= 27 )
+                            {
+                                prev_index -= 27;
+                                gameWindow.playerView.PlayerModel.EquippedItems[prev_index] = null;
+                            }
+                            else
+                            {
+                                gameWindow.playerView.PlayerModel.Items[prev_index] = null;
+                            }
+
+                            if (cur_index >= 27)
+                            {
+                                cur_index -= 27;
+                                gameWindow.playerView.PlayerModel.EquippedItems[cur_index] = Item.ItemModel;
+                            }
+                            else
+                            {
+                                gameWindow.playerView.PlayerModel.Items[cur_index] = Item.ItemModel;
+                            }
+
+                            foreach (var item in Items)
+                            {
+                                Grid grid = (Grid)item.Parent;
+                                grid.Children.Remove(item);
+                            }
+
+                            foreach (var cell in Cells)
+                            {
+                                cell.ContentItem = null;
+                            }
+
+                            Items.Clear();
+                            gameWindow.playerView.UpdateContent();
+
                         }
 
                         Item.Opacity = 1;
@@ -127,10 +170,9 @@ namespace Reknighted
                 }
             }
 
+        }   
 
-
-
-        }
+        
     }   
 
 }

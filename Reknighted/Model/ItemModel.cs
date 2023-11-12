@@ -8,24 +8,25 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Security.Policy;
 
-namespace Reknighted.InfoTypes
+namespace Reknighted.Model
 {
-    public class ItemInfo
+    public class ItemModel
     {
         private string _name;
         private string _description;
         private int _basePrice;
         private Image _image;
 
-        public static ItemInfo DefaultItem = new ItemInfo("Неизвестный предмет", "Он пока ещё мало изучен, потому что от него получали больше звездюлей, чем информации.", -1);
+        public static ItemModel DefaultItem = new ItemModel("Неизвестный предмет", "Он пока ещё мало изучен, потому что от него получали больше звездюлей, чем информации.", -1);
 
         public string Name { get { return _name; } }
         public string Description { get { return _description;} }
         public int BasePrice { get { return _basePrice; } }
         public Image Image { get { return _image; } }
 
-        public ItemInfo(string name, string description, int basePrice, string imageSource = "")
+        public ItemModel(string name, string description, int basePrice, string imageSource = "")
         {
             _name = name;
             _description = description;
@@ -47,10 +48,18 @@ namespace Reknighted.InfoTypes
 
         }
 
+        public ItemModel(ItemModel itemModel) 
+        {
+            _name = itemModel.Name;
+            _description= itemModel.Description;
+            _basePrice = itemModel.BasePrice;
+            _image = itemModel.Image;
+        }
+
         public string Information()
         {
             string result = string.Empty;
-            result += " [ " + Name + " ] ";
+            result += "[ " + Name + " ] ";
 
             string editedDescription = "\n\n";
 

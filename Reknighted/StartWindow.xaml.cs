@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Reknighted.Collections;
 
 namespace Reknighted
 {
@@ -23,6 +24,7 @@ namespace Reknighted
         public StartWindow()
         {
             InitializeComponent();
+            Items.Initialize();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -35,9 +37,10 @@ namespace Reknighted
             GameWindow gameWindow = new GameWindow();
             DragAndDrop.Window = gameWindow;
             gameWindow.Show();
+            gameWindow.LoadPlayer();
 
-            SelectionWindow selectionWindow = new SelectionWindow();
-            selectionWindow.Show();
+            //SelectionWindow selectionWindow = new SelectionWindow();
+            //selectionWindow.Show();
 
             this.Close();
         }
