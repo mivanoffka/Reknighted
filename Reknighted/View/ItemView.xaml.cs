@@ -95,7 +95,8 @@ namespace Reknighted
                 var winPos = DragAndDrop.Window.PointToScreen(new Point(0, 0));
                 var cellPos = _cell.PointToScreen(new Point(0, 0));
 
-                this.Position = new Point(cellPos.X - winPos.X - 6, cellPos.Y - winPos.Y - 28);
+                // -6, -28
+                this.Position = new Point(cellPos.X - winPos.X - 0.13 * DragAndDrop.delta.Value.X, cellPos.Y - winPos.Y - 0.62*DragAndDrop.delta.Value.X);
             }
 
 

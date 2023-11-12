@@ -42,11 +42,25 @@ namespace Reknighted
         public static List<Cell> Cells
         {
             get { return _cells; }
-        }   
+        }
+
+        public static Point? delta = null;
 
         public static List<ItemView> Items { get { return _items; } }
         public static void MouseMoveHandler(object sender, MouseEventArgs e)
         {   
+            if (delta == null)
+            {
+                if (_cells[0] != null && _cells[1] != null)
+                {
+                    Point point_0 = _cells[0].PointToScreen(new Point(0, 0));
+                    Point point_1 = _cells[1].PointToScreen(new Point(0, 0));
+                    delta = new Point(Math.Abs(point_0.X - point_1.X), 0);
+
+                    MessageBox.Show(delta.Value.X.ToString());
+                }
+            }
+
             MousePreviousPosition = MouseCurrentPosition;
             MouseCurrentPosition = e.GetPosition(_window);
 
@@ -126,7 +140,7 @@ namespace Reknighted
                             if (Item.Cell != null)
                                 cur_index = Cells.IndexOf(Item.Cell);
 
-                            MessageBox.Show("Prev: " + prev_index + "; Cur: " + cur_index);
+                            //MessageBox.Show("Prev: " + prev_index + "; Cur: " + cur_index);
 
                             if (prev_index >= 27 )
                             {
