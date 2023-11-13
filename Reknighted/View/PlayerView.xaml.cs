@@ -32,7 +32,8 @@ namespace Reknighted
             }
         }
 
-        List<Cell> _inventoryCells = new List<Cell>();
+        //List<Cell> _inventoryCells = new List<Cell>();
+        List<Cell> _equipmentCells = new List<Cell>();
 
 
 
@@ -54,7 +55,7 @@ namespace Reknighted
                     Cell cell = new Cell();
                     cell.Position = new Point(startX + j * cell.Width - 0.25 * cell.Width, startY + i * cell.Height - 0.25 * cell.Height);
 
-                    _inventoryCells.Add(cell);
+                    Game.InventoryCells.Add(cell);
                     inventoryGrid.Children.Add(cell);
                 }
 
@@ -67,17 +68,31 @@ namespace Reknighted
                 Cell cell = new Cell();
                 cell.Position = new Point(startX + i * cell.Width - 0.25 * cell.Width, startY);
 
+
+                Game.EquipmentCells.Add(cell);
                 equipmentGrid.Children.Add(cell);
             }
         }
 
         public void UpdateContent()
         {
+
+            Game.CalculateCoeff();
+
             if (_playerModel != null)
             {
-                for (int i = 0; i <  _playerModel.Items.Count; i++)
+                for (int i = 0; i < _playerModel.Items.Count + _playerModel.EquippedItems.Count(); i++)
                 {
-                    ItemModel? itemModel = _playerModel.Items[i];
+                    ItemModel? itemModel;
+                    if (i < 27)
+                    {
+                        itemModel = _playerModel.Items[i];
+                    }
+                    else
+                    {
+                        itemModel = _playerModel.EquippedItems[i-27];
+                    }
+
                     if (itemModel != null)
                     {
                         ItemView itemView = new ItemView(itemModel);
@@ -88,17 +103,26 @@ namespace Reknighted
                                 Grid grid = (Grid)this.Parent;
                                 grid.Children.Add(itemView);
 
-                                itemView.PlaceToCell(_inventoryCells[i]);
+                                if (i < 27)
+                                {
+                                    itemView.PlaceToCell(Game.InventoryCells[i]);
+                                }
+
+                                else
+                                {
+                                    itemView.PlaceToCell(Game.EquipmentCells[i-27]);
+                                }
 
                             }
-                            catch
+                            catch (Exception exception) 
                             {
-
+                                
+                                MessageBox.Show(exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                 }
-            }           
+            } 
         }
     }
 }

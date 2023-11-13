@@ -12,14 +12,14 @@ using System.Security.Policy;
 
 namespace Reknighted.Model
 {
-    public class ItemModel
+    public abstract class ItemModel
     {
-        private string _name;
-        private string _description;
-        private int _basePrice;
-        private Image _image;
+        protected string _name;
+        protected string _description;
+        protected int _basePrice;
+        protected Image _image;
 
-        public static ItemModel DefaultItem = new ItemModel("Неизвестный предмет", "Он пока ещё мало изучен, потому что от него получали больше звездюлей, чем информации.", -1);
+        //public static ItemModel DefaultItem = new ItemModel("Неизвестный предмет", "Он пока ещё мало изучен, потому что от него получали больше звездюлей, чем информации.", -1);
 
         public string Name { get { return _name; } }
         public string Description { get { return _description;} }
@@ -35,7 +35,7 @@ namespace Reknighted.Model
 
             if (imageSource == "")
             {
-                imageSource = Images.Images.QuestionMark;
+                imageSource = Images.Sources.QuestionMark;
             }
             _image = new Image();
 
@@ -56,7 +56,12 @@ namespace Reknighted.Model
             _image = itemModel.Image;
         }
 
-        public string Information()
+        public ItemModel()
+        {
+
+        }
+
+        public virtual string Information()
         {
             string result = string.Empty;
             result += "[ " + Name + " ] ";
@@ -81,6 +86,7 @@ namespace Reknighted.Model
             }
 
             result += editedDescription;
+            result += "\n\nЦена: " + _basePrice;
 
             return result;
         }

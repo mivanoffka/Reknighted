@@ -12,18 +12,29 @@ using System.Windows.Input;
 namespace Reknighted
 {
 
-    public class DragAndDrop
+    public class Game
     {
         public static Point? MousePreviousPosition = null;
         public static Point? MouseCurrentPosition = null;
 
         private static List<ItemView>  _items = new List<ItemView>();
+
+
         private static List<Cell> _cells = new List<Cell>();
         private static Cell? _selectedCell = null;
+        private static List<Cell> _inventoryCells = new List<Cell>();
+        private static List<Cell> _equipmentCells = new List<Cell>();
+
+        public static List<Cell> InventoryCells { get { return _inventoryCells; } }
+        public static List<Cell> EquipmentCells { get { return _equipmentCells; } }
+
+
         private static Window? _window = null;
         private static ItemView? _item = null;
         private static bool _isDragging = false;
         private static System.Windows.Controls.Label? _infoLabel = null;
+
+        public static double Scale = -1;
 
         public static System.Windows.Controls.Label? InfoLabel { get { return _infoLabel; } set { _infoLabel = value; } }
 
@@ -49,18 +60,6 @@ namespace Reknighted
         public static List<ItemView> Items { get { return _items; } }
         public static void MouseMoveHandler(object sender, MouseEventArgs e)
         {   
-            if (delta == null)
-            {
-                if (_cells[0] != null && _cells[1] != null)
-                {
-                    Point point_0 = _cells[0].PointToScreen(new Point(0, 0));
-                    Point point_1 = _cells[1].PointToScreen(new Point(0, 0));
-                    delta = new Point(Math.Abs(point_0.X - point_1.X), 0);
-
-                    MessageBox.Show(delta.Value.X.ToString());
-                }
-            }
-
             MousePreviousPosition = MouseCurrentPosition;
             MouseCurrentPosition = e.GetPosition(_window);
 
@@ -186,7 +185,24 @@ namespace Reknighted
 
         }   
 
-        
+        public static void CalculateCoeff()
+        {   
+            if (Scale == -1)
+            {
+                if (_cells[0] != null && _cells[1] != null)
+                {
+                    Point point_0 = _cells[0].PointToScreen(new Point(0, 0));
+                    Point point_1 = _cells[1].PointToScreen(new Point(0, 0));
+                    double d = Math.Abs(point_0.X - point_1.X);
+
+                    Scale = d / 45;
+
+                    delta = new Point(0, 0);
+                }
+            }
+
+
+        }
     }   
 
 }

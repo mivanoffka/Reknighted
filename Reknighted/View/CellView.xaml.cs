@@ -75,7 +75,7 @@ namespace Reknighted
 
         public Cell(Point position)
         {
-            DragAndDrop.Cells.Add(this);
+            Game.Cells.Add(this);
             Position = position;
             InitializeComponent();
         }

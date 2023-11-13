@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Reknighted.Images
 {
-    public class Images
+    public class Sources
     {
         public static string QuestionMark = "Images\\question_mark.png";
         public static string Apple = "Images\\apple.png";
         public static string Sword = "Images\\sword.png";
+        public static string Helmet = "Images\\helmet.png";
     }
 }

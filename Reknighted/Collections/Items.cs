@@ -10,8 +10,10 @@ namespace Reknighted.Collections
 {
     class Items
     {
-        public static ItemModel Apple = new ItemModel("Яблоко", "Падает от яблони не сильно далеко.", 50, Images.Images.Apple);
-        public static ItemModel Sword = new ItemModel("Меч", "Им можно кого-то убить. Наверное...", 300, Images.Images.Sword);
+        public static FoodModel Apple = new FoodModel("Яблоко", "Падает от яблони не сильно далеко.", 50, 20, Images.Sources.Apple);
+        public static WeaponModel Sword = new WeaponModel("Меч", "Им можно кого-то убить. Наверное...", 300, 15, Images.Sources.Sword);
+        public static ArmorModel Helmet = new ArmorModel("Шлем", "Защищает голову, но не разум", 250, 10, Images.Sources.Helmet);
+
 
         public static void Initialize()
         {

@@ -44,7 +44,7 @@ namespace Reknighted
         public ItemView(ItemModel itemInfo)
         {
             InitializeComponent();
-            DragAndDrop.Items.Add(this);
+            Game.Items.Add(this);
 
 
             this._itemInfo = itemInfo;
@@ -54,12 +54,12 @@ namespace Reknighted
 
         ~ItemView()
         {
-            DragAndDrop.Items.Remove(this);
+            Game.Items.Remove(this);
         }
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragAndDrop.Item = this;
+            Game.Item = this;
             this.Opacity = 0.5;
         }
 
@@ -92,11 +92,11 @@ namespace Reknighted
         {
             if (this._cell != null)
             {
-                var winPos = DragAndDrop.Window.PointToScreen(new Point(0, 0));
+                var winPos = Game.Window.PointToScreen(new Point(0, 0));
                 var cellPos = _cell.PointToScreen(new Point(0, 0));
 
                 // -6, -28
-                this.Position = new Point(cellPos.X - winPos.X - 0.13 * DragAndDrop.delta.Value.X, cellPos.Y - winPos.Y - 0.62*DragAndDrop.delta.Value.X);
+                this.Position = new Point((cellPos.X - winPos.X) / Game.Scale - 6, (cellPos.Y - winPos.Y) / Game.Scale - 28);
             }
 
 

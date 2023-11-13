@@ -53,11 +53,11 @@ namespace Reknighted
         public GameWindow()
         {
             InitializeComponent();
-            DragAndDrop.InfoLabel = this.infoLabel;
+            Game.InfoLabel = this.infoLabel;
 
 
-            this.MouseMove += DragAndDrop.MouseMoveHandler;
-            this.MouseUp += DragAndDrop.MouseUpHandler;
+            this.MouseMove += Game.MouseMoveHandler;
+            this.MouseUp += Game.MouseUpHandler;
 
             defaultWindowHeight = this.Height;
             defaultGridHeight = this.grid.Height;
@@ -67,8 +67,9 @@ namespace Reknighted
         public void LoadPlayer()
         {
             this.playerView.PlayerModel = new PlayerModel();
-            this.playerView.PlayerModel.Items[0] = new ItemModel(Collections.Items.Apple);
-            this.playerView.PlayerModel.Items[1] = new ItemModel(Collections.Items.Sword);
+            this.playerView.PlayerModel.Items[0] = new FoodModel(Collections.Items.Apple);
+            this.playerView.PlayerModel.Items[1] = new WeaponModel(Collections.Items.Sword);
+            this.playerView.PlayerModel.Items[2] = new ArmorModel(Collections.Items.Helmet);
             this.playerView.UpdateContent();
         }
 

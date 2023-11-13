@@ -35,7 +35,7 @@ namespace Reknighted
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
             GameWindow gameWindow = new GameWindow();
-            DragAndDrop.Window = gameWindow;
+            Game.Window = gameWindow;
             gameWindow.Show();
             gameWindow.LoadPlayer();
 
