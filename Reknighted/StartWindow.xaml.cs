@@ -34,13 +34,8 @@ namespace Reknighted
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
-            Game.Window = gameWindow;
-            gameWindow.Show();
-            gameWindow.LoadPlayer();
-
-            //SelectionWindow selectionWindow = new SelectionWindow();
-            //selectionWindow.Show();
+            SelectionWindow selectionWindow = new SelectionWindow();
+            selectionWindow.Show();
 
             this.Close();
         }

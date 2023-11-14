@@ -125,57 +125,53 @@ namespace Reknighted
                 if (gameWindow.gameTabs.SelectedIndex == 0)
                 {
                     if (Item != null)
-                    {
+                    {   
+                        
+
                         if (_selectedCell != null)
-                        {
-
-                            int prev_index = -1;
-                            if (Item.Cell != null)
-                                prev_index = Cells.IndexOf(Item.Cell);
-
-                            Item.PlaceToCell(_selectedCell);
-
-                            int cur_index = -1;
-                            if (Item.Cell != null)
-                                cur_index = Cells.IndexOf(Item.Cell);
-
-                            //MessageBox.Show("Prev: " + prev_index + "; Cur: " + cur_index);
-
-                            if (prev_index >= 27 )
+                        {   
+                            try
                             {
-                                prev_index -= 27;
-                                gameWindow.playerView.PlayerModel.EquippedItems[prev_index] = null;
-                            }
-                            else
-                            {
-                                gameWindow.playerView.PlayerModel.Items[prev_index] = null;
-                            }
+                                int prev_index = -1;
+                                if (Item.Cell != null)
+                                    prev_index = Cells.IndexOf(Item.Cell);
 
-                            if (cur_index >= 27)
-                            {
-                                cur_index -= 27;
-                                gameWindow.playerView.PlayerModel.EquippedItems[cur_index] = Item.ItemModel;
-                            }
-                            else
-                            {
-                                gameWindow.playerView.PlayerModel.Items[cur_index] = Item.ItemModel;
-                            }
+                                Item.PlaceToCell(_selectedCell);
 
-                            foreach (var item in Items)
-                            {
-                                Grid grid = (Grid)item.Parent;
-                                grid.Children.Remove(item);
-                            }
+                                int cur_index = -1;
+                                if (Item.Cell != null)
+                                    cur_index = Cells.IndexOf(Item.Cell);
 
-                            foreach (var cell in Cells)
-                            {
-                                cell.ContentItem = null;
-                            }
+                                //MessageBox.Show("Prev: " + prev_index + "; Cur: " + cur_index);
 
-                            Items.Clear();
-                            gameWindow.playerView.UpdateContent();
+                                if (prev_index >= 27)
+                                {
+                                    prev_index -= 27;
+                                    gameWindow.playerView.PlayerModel.EquippedItems[prev_index] = null;
+                                }
+                                else
+                                {
+                                    gameWindow.playerView.PlayerModel.Items[prev_index] = null;
+                                }
+
+                                if (cur_index >= 27)
+                                {
+                                    cur_index -= 27;
+                                    gameWindow.playerView.PlayerModel.EquippedItems[cur_index] = Item.ItemModel;
+                                }
+                                else
+                                {
+                                    gameWindow.playerView.PlayerModel.Items[cur_index] = Item.ItemModel;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                //MessageBox.Show(EquipmentCells.Count.ToString());
+                            }
 
                         }
+
+                        ResetAndUpdate();
 
                         Item.Opacity = 1;
                         Item = null;
@@ -184,6 +180,36 @@ namespace Reknighted
             }
 
         }   
+
+        public static void ResetAndUpdate()
+        {   
+            try
+            {
+                foreach (var item in Items)
+                {
+                    Grid grid = (Grid)item.Parent;
+                    grid.Children.Remove(item);
+                }
+
+                foreach (var cell in Cells)
+                {
+                    cell.ContentItem = null;
+                }
+
+                Items.Clear();
+
+                GameWindow? gameWindow = (GameWindow?)_window;
+                gameWindow.playerView.UpdateContent();
+
+                InfoLabel.Content = "Деньги: " + gameWindow.playerView.PlayerModel.Balance;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
 
         public static void CalculateCoeff()
         {   

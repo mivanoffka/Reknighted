@@ -14,7 +14,7 @@
                 <RadioButton x:Name="diamondsButton" Content="Бубны ♦" HorizontalAlignment="Left" Margin="308,173,0,0" VerticalAlignment="Top" Foreground="#FFBD1717"/>
                 <RadioButton x:Name="clubsButton" Content="Трефы ♣" HorizontalAlignment="Left" Margin="72,169,0,0" VerticalAlignment="Top" Foreground="Black"/>
                 <RadioButton x:Name="spadesButton" Content="Пики ♠" HorizontalAlignment="Left" Margin="302,78,0,0" VerticalAlignment="Top" Foreground="Black"/>
-                <RadioButton x:Name="heartsButton" Content="Червы ♥" HorizontalAlignment="Left" Margin="52,56,0,0" VerticalAlignment="Top" Foreground="#FFBD1717"/>
+                <RadioButton x:Name="heartsButton" Content="Червы ♥" HorizontalAlignment="Left" Margin="52,56,0,0" VerticalAlignment="Top" Foreground="#FFBD1717" IsChecked="True"/>
             </Grid>
         </GroupBox>
     </Grid>

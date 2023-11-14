@@ -24,9 +24,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="548,40,0,0" TextWrapping="Wrap" Text="♣" VerticalAlignment="Top" Foreground="White" FontSize="64" Height="85" Width="44" FontFamily="Times New Roman"/>
         <TextBlock HorizontalAlignment="Left" Margin="540,27,0,0" TextWrapping="Wrap" Text="Трефы" VerticalAlignment="Top" Foreground="White" FontSize="18" Height="24" Width="55"/>
         <TextBlock HorizontalAlignment="Left" Margin="509,105,0,0" TextWrapping="Wrap" Text="Герб династии Трефов – клевер, символ удачи. Легенды гласят, что первую Даму Трефов звали Фортуной." VerticalAlignment="Top" Foreground="White" Width="117" TextAlignment="Center" Height="112"/>
-        <Button x:Name="heartsButton" Content="" HorizontalAlignment="Left" Margin="24,21,0,0" VerticalAlignment="Top" Background="#FFD45858" BorderBrush="#FFD45858" Width="138" Height="208" Opacity="0.1"/>
-        <Button x:Name="diamondsButton" Content="" HorizontalAlignment="Left" Margin="340,21,0,0" VerticalAlignment="Top" Background="#FFD45858" BorderBrush="#FFD45858" Width="138" Height="208" Opacity="0.1"/>
-        <Button x:Name="heartsButton_Copy" Content="" HorizontalAlignment="Left" Margin="182,21,0,0" VerticalAlignment="Top" Background="#FF383838" Width="138" Height="208" Opacity="0.05"/>
-        <Button x:Name="clubsButton" Content="" HorizontalAlignment="Left" Margin="498,21,0,0" VerticalAlignment="Top" Background="#FF383838" BorderBrush="#FFD45858" Width="138" Height="208" Opacity="0.05"/>
+        <Button x:Name="heartsButton" Content="" HorizontalAlignment="Left" Margin="24,21,0,0" VerticalAlignment="Top" Background="#FFD45858" BorderBrush="#FFD45858" Width="138" Height="208" Opacity="0.1" Click="ButtonClickPlaceHolder"/>
+        <Button x:Name="diamondsButton" Content="" HorizontalAlignment="Left" Margin="340,21,0,0" VerticalAlignment="Top" Background="#FFD45858" BorderBrush="#FFD45858" Width="138" Height="208" Opacity="0.1" Click="ButtonClickPlaceHolder"/>
+        <Button x:Name="heartsButton_Copy" Content="" HorizontalAlignment="Left" Margin="182,21,0,0" VerticalAlignment="Top" Background="#FF383838" Width="138" Height="208" Opacity="0.05" Click="ButtonClickPlaceHolder"/>
+        <Button x:Name="clubsButton" Content="" HorizontalAlignment="Left" Margin="498,21,0,0" VerticalAlignment="Top" Background="#FF383838" BorderBrush="#FFD45858" Width="138" Height="208" Opacity="0.05" Click="ButtonClickPlaceHolder"/>
     </Grid>
 </Window>

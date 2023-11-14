@@ -84,7 +84,7 @@ namespace Reknighted.Model
         #region ITradeable
 
         private List<ItemModel?> _items = new List<ItemModel?>();
-        private int _balance = 0;
+        private int _balance = 100;
 
         public List<ItemModel?> Items
         {
@@ -94,7 +94,23 @@ namespace Reknighted.Model
             }
         }
 
-        public int Balance { get; set; }
+        public int Balance
+        { 
+            get
+            {
+                return _balance;
+            }
+
+            set
+            {
+                if (value < 0) {
+                    value = 0;
+                }
+
+                _balance = value;
+                Game.ResetAndUpdate();
+            }
+        }
 
         #endregion
 

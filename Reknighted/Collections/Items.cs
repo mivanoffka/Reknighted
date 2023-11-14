@@ -13,7 +13,7 @@ namespace Reknighted.Collections
         public static FoodModel Apple = new FoodModel("Яблоко", "Падает от яблони не сильно далеко.", 50, 20, Images.Sources.Apple);
         public static WeaponModel Sword = new WeaponModel("Меч", "Им можно кого-то убить. Наверное...", 300, 15, Images.Sources.Sword);
         public static ArmorModel Helmet = new ArmorModel("Шлем", "Защищает голову, но не разум", 250, 10, Images.Sources.Helmet);
-
+        public static ArmorModel HornsHelmet = new ArmorModel("Шлем с рожками", "Возможно, от этих рожек есть какая-то польза кроме утяжеления доспеха. Но это не точно.", 450, 25, Images.Sources.HornsHelmet);
 
         public static void Initialize()
         {

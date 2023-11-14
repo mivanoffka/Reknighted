@@ -12,5 +12,6 @@ namespace Reknighted.Images
         public static string Apple = "Images\\apple.png";
         public static string Sword = "Images\\sword.png";
         public static string Helmet = "Images\\helmet.png";
+        public static string HornsHelmet = "Images\\helmet_but_cooler.png";
     }
 }

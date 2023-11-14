@@ -23,5 +23,15 @@ namespace Reknighted
         {
             InitializeComponent();
         }
+
+        private void ButtonClickPlaceHolder(object sender, RoutedEventArgs e)
+        {
+            GameWindow gameWindow = new GameWindow();
+            Game.Window = gameWindow;
+            gameWindow.Show();
+            gameWindow.LoadPlayer();
+
+            this.Close();
+        }
     }
 }

@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace Reknighted.Model
 {
-    internal class WeaponModel : ItemModel
+    internal class FoodModel : ItemModel
     {
-        private int _damage;
+        private int _satiety;
 
-        public int Damage
+        public int Satiety
         {
             get
             {
-                return _damage;
+                return _satiety;
             }
         }
 
-        public WeaponModel(string name, string description, int cost, int damage, string imageSource) : base(name, description, cost, imageSource)
+        public FoodModel(string name, string description, int cost, int satiety, string imageSource) : base(name, description, cost, imageSource)
         {
-            this._damage = damage;
+            this._satiety = satiety;
         }
 
-        public WeaponModel(WeaponModel weaponModel)
+        public FoodModel(FoodModel foodModel)
         {   
-            this._name = weaponModel.Name;
-            this._description = weaponModel.Description;
-            this._basePrice = weaponModel.BasePrice;
-            this._damage = weaponModel.Damage;
-            this._image = weaponModel.Image;
+            this._name = foodModel.Name;
+            this._description = foodModel.Description;
+            this._basePrice = foodModel.BasePrice;
+            this._satiety = foodModel.Satiety;
+            this._image = foodModel.Image;
 
         }
 
@@ -59,7 +59,7 @@ namespace Reknighted.Model
 
             result += editedDescription;
 
-            result += "\n\nУрон: " + _damage;
+            result += "\n\nСытность: " + _satiety;
             result += "\nЦена: " + _basePrice;
 
             return result;

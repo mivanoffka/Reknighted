@@ -23,6 +23,9 @@
     <None Update="Images\helmet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\helmet_but_cooler.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\question_mark.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
