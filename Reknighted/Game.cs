@@ -34,6 +34,10 @@ namespace Reknighted
         private static bool _isDragging = false;
         private static System.Windows.Controls.Label? _infoLabel = null;
 
+
+        public static System.Windows.Controls.Label? damageLabel = null;
+        public static System.Windows.Controls.Label? protectionLabel = null;
+
         public static double Scale = -1;
 
         public static System.Windows.Controls.Label? InfoLabel { get { return _infoLabel; } set { _infoLabel = value; } }
@@ -148,6 +152,9 @@ namespace Reknighted
                                 {
                                     prev_index -= 27;
                                     gameWindow.playerView.PlayerModel.EquippedItems[prev_index] = null;
+
+
+                                    gameWindow.playerView.PlayerModel.UpdateStats();
                                 }
                                 else
                                 {
@@ -158,6 +165,8 @@ namespace Reknighted
                                 {
                                     cur_index -= 27;
                                     gameWindow.playerView.PlayerModel.EquippedItems[cur_index] = Item.ItemModel;
+
+                                    gameWindow.playerView.PlayerModel.UpdateStats();
                                 }
                                 else
                                 {

@@ -41,6 +41,9 @@ namespace Reknighted
         {   
             InitializeComponent();
             CreateAndPlace();
+
+            Game.damageLabel = this.damageLabel;
+            Game.protectionLabel = this.armorLabel;
         }
 
 

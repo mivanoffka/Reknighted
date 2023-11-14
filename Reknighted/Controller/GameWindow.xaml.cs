@@ -1,21 +1,12 @@
-﻿using Reknighted.Images;
-using Reknighted.Model;
+﻿using Reknighted.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Reknighted
-{   
+{
     public partial class GameWindow : Window
     {
         double defaultWindowHeight = 0;
@@ -98,20 +89,12 @@ namespace Reknighted
             }
 
 
-            if (gameTabs.SelectedIndex == 0)
+            if (gameTabs.SelectedIndex == 0 && TradeMode)
             {
-                if (TradeMode)
-                {
-                    this.Height = defaultWindowHeight * 1.58;
-                    this.grid.Height = defaultGridHeight * 1.65;
-                    this.gameTabs.Height = defaultTabHeight * 1.65;
-                }
-                else
-                {
-                    this.Height = defaultWindowHeight;
-                    this.grid.Height = defaultGridHeight;
-                    this.gameTabs.Height = defaultTabHeight;
-                }
+                this.Height = defaultWindowHeight * 1.58;
+                this.grid.Height = defaultGridHeight * 1.65;
+                this.gameTabs.Height = defaultTabHeight * 1.65;
+
             }
             else
             {
@@ -136,7 +119,7 @@ namespace Reknighted
             {
                 Random random = new Random();
                 int v = random.Next(0, 2);
-                
+
                 if (v == 0)
                 {
                     MessageBox.Show("Вы трагически проиграли. Вам грозит позор до следующей битвы. Потом о вас все забудут.", "Поражение", MessageBoxButton.OK, MessageBoxImage.Hand);
@@ -153,8 +136,7 @@ namespace Reknighted
 
                     gameTabs.SelectedIndex = 0;
 
-                    int index = playerView.PlayerModel.Items.IndexOf(null);
-                    playerView.PlayerModel.Items[index] = new ArmorModel(Collections.Items.HornsHelmet);
+                    playerView.PlayerModel.GiveItem(new ArmorModel(Collections.Items.HornsHelmet));
                     playerView.PlayerModel.Balance += 50;
 
                     //Game.ResetAndUpdate();

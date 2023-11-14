@@ -211,6 +211,52 @@ namespace Reknighted.Model
 
         #endregion
 
+        public void GiveItem(ItemModel? newItem)
+        {
+            int index = Items.IndexOf(null);
+            Items[index] = newItem;
+            Game.ResetAndUpdate();
+        }
+
+        public void UpdateStats()
+        {
+            Protection = 10;
+            Damage = 5;
+
+            try
+            {
+                if (Armor != null)
+                {
+                    ArmorModel armorModel = (ArmorModel)Armor;
+                    Protection += armorModel.Protection;
+                }
+
+                if (Weapon != null)
+                {
+                    WeaponModel weaponModel = (WeaponModel)Weapon;
+                    Damage += weaponModel.Damage;
+                }
+
+
+                if (Game.damageLabel != null)
+                {
+                    Game.damageLabel.Content = Damage.ToString();
+                }
+
+
+                if (Game.protectionLabel != null)
+                {
+                    Game.protectionLabel.Content = Protection.ToString();
+                }
+
+            }
+            catch
+            {
+
+            }
+
+        }
+
         static int MaxIventorySize = 27;
 
         public PlayerModel()
