@@ -110,6 +110,8 @@ namespace Reknighted
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TradeMode = !TradeMode;
+            Game.CurrentTrader = Collections.Traders.Peter;
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

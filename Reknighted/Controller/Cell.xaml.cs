@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Reknighted.Model;
 
 namespace Reknighted
 {
@@ -22,9 +22,16 @@ namespace Reknighted
     {
         private Point _position = new Point(0, 0);
         private bool _isPointed = false;
-        private ItemView? _contentItem = null;
+        private ItemModel? _contentItem = null;
+        private bool _isPossessed = true;
+
+        public bool IsPossessed
+        {
+            get => _isPossessed;
+            set => _isPossessed = value;
+        }
         
-        public ItemView? ContentItem
+        public ItemModel? ContentItem
         {
             get { return _contentItem; }
             set { _contentItem = value; }
@@ -75,7 +82,7 @@ namespace Reknighted
 
         public Cell(Point position)
         {
-            Game.Cells.Add(this);
+            Game.AllCells.Add(this);
             Position = position;
             InitializeComponent();
         }

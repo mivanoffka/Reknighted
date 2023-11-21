@@ -15,7 +15,7 @@
             <TabItem x:Name="knightTabButton" Header="Рыцарь" Background="#FFCC7676">
                 <Grid x:Name="knightGrid" Background="White" OpacityMask="Black" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <local:PlayerView x:Name="playerView" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <View:TraderTemplate HorizontalAlignment="Left" Margin="0,279,0,0" VerticalAlignment="Top"/>
+                    <View:TraderTemplate x:Name="traderView" HorizontalAlignment="Left" Margin="0,279,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="balanceLabel" Content="Деньги: 1000 тугр." HorizontalAlignment="Left" Margin="359,-26,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>

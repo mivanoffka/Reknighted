@@ -79,7 +79,6 @@ namespace Reknighted
 
         public void UpdateContent()
         {
-
             Game.CalculateCoeff();
 
             if (_playerModel != null)

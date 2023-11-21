@@ -3,63 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Navigation;
 
 namespace Reknighted.Model
 {
-    public enum Location
-    {
-        Masquarade, Hearts, Clubs, Trefles, Diamonds
-    }
-    
-    public enum Effects
-    {
-
-    }
-
-    public enum TraderType
-    {
-        Universal, Food, Armor, Weapon, Artefact
-    }
-
-    public enum Family
-    {
-        Hearts, Clubs, Trefles, Diamonds
-    }
-
-
-    public interface IFightable
-    {
-        public ItemModel Weapon { get; set; }
-        public ItemModel Armor { get; set; }
-        public ItemModel Artefact { get; set; }
-
-        public int Health { get; set; }
-        public int Damage { get; set; }
-        public int Protection { get; set; }
-
-
-        public List<Effects> Effects { get; set; }
-
-    }
-
-    public interface ITradeable
-    {
-        public List<ItemModel?> Items { get; }
-        public int Balance { get; set; }
-
-    }
-
-    public interface IPlayable
-    {
-        public Location Location { get; set; }
-
-    }
-
-
     public class PlayerModel : IFightable, ITradeable, IPlayable
-    {   
+    {
         public static PlayerModel DefaultPlayerModel = new PlayerModel();
 
         #region IPlayable
@@ -67,7 +15,7 @@ namespace Reknighted.Model
         private Location _location = Location.Masquarade;
 
         public Location Location
-        { 
+        {
             get
             {
                 return _location;
@@ -95,7 +43,7 @@ namespace Reknighted.Model
         }
 
         public int Balance
-        { 
+        {
             get
             {
                 return _balance;
@@ -103,7 +51,8 @@ namespace Reknighted.Model
 
             set
             {
-                if (value < 0) {
+                if (value < 0)
+                {
                     value = 0;
                 }
 
@@ -257,6 +206,16 @@ namespace Reknighted.Model
 
         }
 
+        public void SellItem(ITradeable trader, ItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void BuyItem(ITradeable trader, ItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
         static int MaxIventorySize = 27;
 
         public PlayerModel()
@@ -269,5 +228,4 @@ namespace Reknighted.Model
         }
 
     }
-
 }

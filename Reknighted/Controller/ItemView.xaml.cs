@@ -21,23 +21,12 @@ namespace Reknighted
     {   
         private bool _isClicked = false;
         private Point _position = new Point(0, 0);
-        private ItemModel _itemInfo;
+        private ItemModel _model;
 
-        public ItemModel ItemModel
+        public ItemModel Model
         {
-            get { return _itemInfo; }
+            get { return _model; }
         }
-
-        private Cell? _cell = null;
-
-        public Cell? Cell
-        {
-            get
-            {
-                return _cell;
-            }
-        }
-
 
         public Point Position { get { return _position; } set { _position = value; this.Margin = new Thickness(_position.X, _position.Y, 0, 0); } }
 
@@ -47,8 +36,8 @@ namespace Reknighted
             Game.Items.Add(this);
 
 
-            this._itemInfo = itemInfo;
-            this.ToolTip = this._itemInfo.Information();
+            this._model = itemInfo;
+            this.ToolTip = this._model.Information();
             this.image.Source = itemInfo.Image.Source;
         }
 
@@ -58,9 +47,11 @@ namespace Reknighted
         }
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Game.Item = this;
-            this.Opacity = 0.5;
+        {   
+            if (this.Model.IsPossessed)
+            {
+                Game.Item = this;
+            }
         }
 
         private void UserControl_MouseUp(object sender, MouseButtonEventArgs e)
@@ -72,28 +63,32 @@ namespace Reknighted
 
         }
 
-        public void PlaceToCell(Cell cell)
-        {
-            if (cell.ContentItem == null)
-            {   
-                if (_cell != null)
+        
+
+        public void PlaceToCell(Cell newCell)
+        {   
+            if (this.Model.IsPossessed == newCell.IsPossessed)
+            {
+                if (newCell.ContentItem == null)
                 {
-                    _cell.ContentItem = null;
+                    if (Model.Cell != null)
+                    {
+                        Model.Cell.ContentItem = null;
+                    }
+                    Model.Cell = newCell;
+                    newCell.ContentItem = this.Model;
                 }
-                _cell = cell;
-                cell.ContentItem = this;
             }
 
             Place();
-
         }
 
         private void Place()
         {
-            if (this._cell != null)
+            if (this.Model.Cell != null)
             {
                 var winPos = Game.Window.PointToScreen(new Point(0, 0));
-                var cellPos = _cell.PointToScreen(new Point(0, 0));
+                var cellPos = this.Model.Cell.PointToScreen(new Point(0, 0));
 
                 // -6, -28
                 this.Position = new Point((cellPos.X - winPos.X) / Game.Scale - 6, (cellPos.Y - winPos.Y) / Game.Scale - 28);

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Security.Policy;
+using System.Windows;
 
 namespace Reknighted.Model
 {
@@ -18,13 +19,20 @@ namespace Reknighted.Model
         protected string _description;
         protected int _basePrice;
         protected Image _image;
-
-        //public static ItemModel DefaultItem = new ItemModel("Неизвестный предмет", "Он пока ещё мало изучен, потому что от него получали больше звездюлей, чем информации.", -1);
+        protected bool _isPossessed = true;
+        private Cell? _cell = null;
 
         public string Name { get { return _name; } }
         public string Description { get { return _description;} }
         public int BasePrice { get { return _basePrice; } }
         public Image Image { get { return _image; } }
+
+        public bool IsPossessed
+        {
+            get => _isPossessed;
+            set =>_isPossessed=value;
+        }
+        public Cell? Cell { get => _cell; set => _cell = value; }
 
         public ItemModel(string name, string description, int basePrice, string imageSource = "")
         {
@@ -58,6 +66,36 @@ namespace Reknighted.Model
 
         public ItemModel()
         {
+
+        }
+
+        public void MoveToCell(Cell newCell)
+        {   
+            if (newCell?.ContentItem == this || this.IsPossessed != newCell?.IsPossessed)
+            {
+                return;   
+            }
+
+            try
+            {
+                var oldCell = this._cell;
+                var bufferItem = newCell.ContentItem;
+
+                int oldIndex = Game.InventoryCells.IndexOf(oldCell);
+                Game.PlayerView!.PlayerModel!.Items[oldIndex] = bufferItem;
+                if (bufferItem != null)
+                {
+                    bufferItem.Cell = oldCell;
+                }
+
+                int newIndex = Game.InventoryCells.IndexOf(newCell);
+                Game.PlayerView!.PlayerModel!.Items[newIndex] = this;
+                this.Cell = newCell;
+            }
+            catch (Exception ex)
+            {
+                Game.Error(ex.Message);
+            }
 
         }
 
