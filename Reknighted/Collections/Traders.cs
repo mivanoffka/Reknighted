@@ -23,7 +23,7 @@ namespace Reknighted.Collections
             foreach (ItemModel item in items)
             {
                 item.IsPossessed = false;
-                Peter.Items.Add(item);
+                Peter.AddItem(item);
             }            
         }
     }

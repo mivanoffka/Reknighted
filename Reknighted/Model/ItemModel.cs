@@ -13,18 +13,18 @@ using System.Windows;
 
 namespace Reknighted.Model
 {
-    public abstract class ItemModel
+    public abstract class ItemModel : IDisposable
     {
         protected string _name;
         protected string _description;
-        protected int _basePrice;
+        protected int _price;
         protected Image _image;
         protected bool _isPossessed = true;
         private Cell? _cell = null;
 
         public string Name { get { return _name; } }
         public string Description { get { return _description;} }
-        public int BasePrice { get { return _basePrice; } }
+        public int Price { get { return _price; } }
         public Image Image { get { return _image; } }
 
         public bool IsPossessed
@@ -38,7 +38,7 @@ namespace Reknighted.Model
         {
             _name = name;
             _description = description;
-            _basePrice = basePrice;
+            _price = basePrice;
 
 
             if (imageSource == "")
@@ -60,7 +60,7 @@ namespace Reknighted.Model
         {
             _name = itemModel.Name;
             _description= itemModel.Description;
-            _basePrice = itemModel.BasePrice;
+            _price = itemModel.Price;
             _image = itemModel.Image;
         }
 
@@ -124,10 +124,58 @@ namespace Reknighted.Model
             }
 
             result += editedDescription;
-            result += "\n\nЦена: " + _basePrice;
+            result += "\n\nЦена: " + _price;
 
             return result;
         }
+        
+        public virtual void Use()
+        {
 
+        }
+
+        public virtual void SellTo(ITradeable buyer, bool showWarning = true)
+        {
+            bool isConfirmed = true;
+            if (showWarning)
+            {
+                string caption = this.IsPossessed ? "Продажа" : "Покупка";
+                string text = this.IsPossessed ? "Вы уверены, что хотите продать [ " + this.Name + " ] за " + this.Price + " тугриков?"
+                                               : "Вы уверены, что хотите купить [ " + this.Name + " ] за " + this.Price + " тугриков?";
+
+                var result = MessageBox.Show(text, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                isConfirmed = result == MessageBoxResult.Yes;
+            }
+
+            if (!isConfirmed)
+            {   
+                return;
+            }
+
+            ITradeable? customer = IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
+            ITradeable? seller = IsPossessed ?  Game.PlayerModel : Game.CurrentTrader;
+
+            if (customer != null)
+            {
+                if (customer.Balance >= this.Price)
+                {
+                    seller.RemoveItem(this);
+                    this.IsPossessed = !this.IsPossessed;
+                    customer.AddItem(this); ;
+                    customer.Balance -= this.Price;
+                    seller.Balance += this.Price;
+                }
+                else
+                {
+                    MessageBox.Show("А денежек то у нас и не хватает!" + "\n\n" + customer.Balance + "/" + this.Price, "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+        }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

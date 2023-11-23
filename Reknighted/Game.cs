@@ -22,6 +22,7 @@ namespace Reknighted
         private static List<ItemView>  _items = new List<ItemView>();
 
         public static PlayerView? PlayerView = null;
+        public static PlayerModel? PlayerModel = null;
         private static TraderModel? _currentTrader = null;
 
         public static TraderModel? CurrentTrader
@@ -38,7 +39,7 @@ namespace Reknighted
                 }
             }
         }
-        
+
         private static List<Cell> _allCells = new List<Cell>();
         private static Cell? _selectedCell = null;
         private static List<Cell> _inventoryCells = new List<Cell>();
@@ -176,6 +177,11 @@ namespace Reknighted
 
         public static void ResetAndUpdate()
         {   
+            if (_window == null)
+            {
+                return;
+            }
+
             try
             {
                 foreach (var item in Items)
@@ -191,8 +197,9 @@ namespace Reknighted
 
                 Items.Clear();
 
-                GameWindow? gameWindow = (GameWindow?)_window;
+                GameWindow gameWindow = (GameWindow)_window;
                 gameWindow.playerView.UpdateContent();
+                gameWindow.traderView.UpdateContent();
 
                 InfoLabel.Content = "Деньги: " + gameWindow.playerView.PlayerModel.Balance;
             }

@@ -160,10 +160,22 @@ namespace Reknighted.Model
 
         #endregion
 
-        public void GiveItem(ItemModel? newItem)
+        public void AddItem(ItemModel? newItem)
         {
             int index = Items.IndexOf(null);
             Items[index] = newItem;
+            Game.ResetAndUpdate();
+        }
+
+        public void RemoveItem(ItemModel? item)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i] == item)
+                {
+                    Items[i] = null;
+                }
+            }
             Game.ResetAndUpdate();
         }
 
@@ -206,12 +218,12 @@ namespace Reknighted.Model
 
         }
 
-        public void SellItem(ITradeable trader, ItemModel item)
+        public void SellTo(ITradeable trader, ItemModel item)
         {
             throw new NotImplementedException();
         }
 
-        public void BuyItem(ITradeable trader, ItemModel item)
+        public void BuyFrom(ITradeable trader, ItemModel item)
         {
             throw new NotImplementedException();
         }

@@ -41,21 +41,39 @@ namespace Reknighted
             this.image.Source = itemInfo.Image.Source;
         }
 
-        ~ItemView()
-        {
-            Game.Items.Remove(this);
-        }
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {   
-            if (this.Model.IsPossessed)
+            if (e.RightButton == MouseButtonState.Pressed)
             {
-                Game.Item = this;
+                if (Game.CurrentTrader != null && Game.PlayerView?.PlayerModel != null)
+                {
+                    ITradeable? customer = Model.IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
+                    if (customer != null)
+                    {
+                        this.Model.SellTo(customer);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Use!");
+                    this.Model.Use();
+                }
+
+            }
+            else
+            {
+                if (this.Model.IsPossessed)
+                {
+                    Game.Item = this;
+                }
             }
         }
 
         private void UserControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
+
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)

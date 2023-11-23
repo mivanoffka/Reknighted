@@ -25,11 +25,10 @@ namespace Reknighted.Model
     {
         public List<ItemModel?> Items { get; }
         public int Balance { get; set; }
-        public void GiveItem(ItemModel item);
 
-        public void SellItem(ITradeable trader, ItemModel item);
+        public void AddItem(ItemModel item);
 
-        public void BuyItem(ITradeable trader, ItemModel item);
+        public void RemoveItem(ItemModel item);
 
     }
 

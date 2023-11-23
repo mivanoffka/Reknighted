@@ -57,7 +57,9 @@ namespace Reknighted
 
         public void LoadPlayer()
         {
-            this.playerView.PlayerModel = new PlayerModel();
+            var player = new PlayerModel();
+            this.playerView.PlayerModel = player;
+            Game.PlayerModel = player;
             this.playerView.PlayerModel.Items[0] = new FoodModel(Collections.Items.Apple);
             this.playerView.PlayerModel.Items[1] = new WeaponModel(Collections.Items.Sword);
             this.playerView.PlayerModel.Items[2] = new ArmorModel(Collections.Items.Helmet);
@@ -138,7 +140,7 @@ namespace Reknighted
 
                     gameTabs.SelectedIndex = 0;
 
-                    playerView.PlayerModel.GiveItem(new ArmorModel(Collections.Items.HornsHelmet));
+                    playerView.PlayerModel.AddItem(new ArmorModel(Collections.Items.HornsHelmet));
                     playerView.PlayerModel.Balance += 50;
 
                     //Game.ResetAndUpdate();

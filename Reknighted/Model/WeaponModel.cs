@@ -27,7 +27,7 @@ namespace Reknighted.Model
         {   
             this._name = weaponModel.Name;
             this._description = weaponModel.Description;
-            this._basePrice = weaponModel.BasePrice;
+            this._price = weaponModel.Price;
             this._damage = weaponModel.Damage;
             this._image = weaponModel.Image;
 
@@ -60,7 +60,7 @@ namespace Reknighted.Model
             result += editedDescription;
 
             result += "\n\nУрон: " + _damage;
-            result += "\nЦена: " + _basePrice;
+            result += "\nЦена: " + _price;
 
             return result;
         }

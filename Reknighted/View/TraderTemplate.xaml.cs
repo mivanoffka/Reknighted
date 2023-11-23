@@ -83,6 +83,7 @@ namespace Reknighted.View
                             {
 
                                 MessageBox.Show(exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                throw;
                             }
                         }
                     }

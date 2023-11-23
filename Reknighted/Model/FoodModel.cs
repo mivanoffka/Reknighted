@@ -27,7 +27,7 @@ namespace Reknighted.Model
         {   
             this._name = foodModel.Name;
             this._description = foodModel.Description;
-            this._basePrice = foodModel.BasePrice;
+            this._price = foodModel.Price;
             this._satiety = foodModel.Satiety;
             this._image = foodModel.Image;
 
@@ -60,7 +60,7 @@ namespace Reknighted.Model
             result += editedDescription;
 
             result += "\n\nСытность: " + _satiety;
-            result += "\nЦена: " + _basePrice;
+            result += "\nЦена: " + _price;
 
             return result;
         }
