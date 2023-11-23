@@ -121,6 +121,11 @@ namespace Reknighted
             var result_1 = MessageBox.Show("Вы уверены, что хотите вступить в бой? Это может стоить вам жизни. Ну или хотя бы 50 тугриков.", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result_1 == MessageBoxResult.Yes)
             {
+                if(playerView.PlayerModel.Balance < 50)
+                {
+                    MessageBox.Show("У вас слишком мало денег");
+                    return;
+                }
                 Random random = new Random();
                 int v = random.Next(0, 2);
 
