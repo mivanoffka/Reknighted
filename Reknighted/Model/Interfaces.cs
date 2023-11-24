@@ -13,8 +13,12 @@ namespace Reknighted.Model
         public ItemModel Artefact { get; set; }
 
         public int Health { get; set; }
-        public int Damage { get; set; }
-        public int Protection { get; set; }
+        public int Damage { get; }
+        public int Protection { get; }
+        public double Fortune { get; }
+
+
+
 
 
         public List<Effects> Effects { get; set; }

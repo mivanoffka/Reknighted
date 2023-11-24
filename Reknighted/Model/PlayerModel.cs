@@ -67,7 +67,9 @@ namespace Reknighted.Model
 
 
         private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
-        private int[] _stats = new int[3] { 100, 0, 0 };
+        private int _health = 100;
+        private double _luck = 0.5;
+
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
         private List<Effects> _effects = new List<Effects> { };
 
@@ -107,7 +109,6 @@ namespace Reknighted.Model
                 _equippedItems[2] = value;
             }
         }
-
         public ItemModel?[] EquippedItems
         {
             get
@@ -120,40 +121,57 @@ namespace Reknighted.Model
             }
         }
 
+
+
         public int Health
         {
             get
             {
-                return _stats[0];
+                return _health;
             }
 
             set
             {
-                _stats[0] = value;
+                _health = value;
             }
         }
         public int Damage
         {
             get
             {
-                return _stats[2];
-            }
-
-            set
-            {
-                _stats[2] = value;
+                int value = 5;
+                if (Weapon != null)
+                {
+                    value += ((WeaponModel)Weapon).Damage; 
+                }
+                return value;
             }
         }
         public int Protection
         {
             get
             {
-                return _stats[1];
-            }
+                int value = 5;
 
-            set
+                double mp = 1;
+                if (Artefact != null && ((ArtefactModel)Artefact)?.Buff == Buff.Protection)
+                {
+                    mp = ((ArtefactModel)Artefact).Multiplier;
+                }
+
+                if (Armor != null)
+                {
+                    value += (int)(((ArmorModel)Armor).Protection * mp);
+                }
+                return value;
+            }
+        }
+
+        public double Fortune
+        {
+            get
             {
-                _stats[1] = value;
+                return _luck;
             }
         }
 
@@ -182,24 +200,8 @@ namespace Reknighted.Model
 
         public void UpdateStats()
         {
-            Protection = _defaultStats[1];
-            Damage = _defaultStats[2];
-
             try
             {
-                if (Armor != null)
-                {
-                    ArmorModel armorModel = (ArmorModel)Armor;
-                    Protection += armorModel.Protection;
-                }
-
-                if (Weapon != null)
-                {
-                    WeaponModel weaponModel = (WeaponModel)Weapon;
-                    Damage += weaponModel.Damage;
-                }
-
-
                 if (Game.damageLabel != null)
                 {
                     Game.damageLabel.Content = Damage.ToString();

@@ -28,4 +28,9 @@ namespace Reknighted.Model
         Hearts, Clubs, Trefles, Diamonds
     }
 
+    public enum Buff
+    {
+        Health, Damage, Protection, Fortune
+    }
+
 }

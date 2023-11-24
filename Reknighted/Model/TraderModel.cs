@@ -22,7 +22,7 @@ namespace Reknighted.Model
         }
 
         private List<ItemModel?> _items = new List<ItemModel?>();
-        private int _balance = 1000;
+        private int _balance = 2000;
 
         public TraderModel(TraderType type, string name = "Торговец")
         {

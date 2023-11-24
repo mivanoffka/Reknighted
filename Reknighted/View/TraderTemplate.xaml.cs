@@ -95,5 +95,10 @@ namespace Reknighted.View
                 }
             }
         }
+
+        private void leaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Game.CurrentTrader = null;
+        }
     }
 }

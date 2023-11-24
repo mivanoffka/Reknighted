@@ -35,9 +35,28 @@ namespace Reknighted
                 var gw = _window as GameWindow;
                 if (gw != null)
                 {
-                    gw.traderView.Model = _currentTrader;
-                    gw.traderView.UpdateContent();
+                    if (value != null)
+                    {
+                        gw.gameTabs.SelectedIndex = 0;
+                        gw.knightTabButton.Header = "Торговля";
+
+                        gw.traderView.Model = _currentTrader;
+                        gw.traderView.UpdateContent();
+
+                        gw.Resize();
+                    }
+                    else
+                    {
+                        gw.knightTabButton.Header = "Рыцарь";
+                        gw.gameTabs.SelectedIndex = gw.gameTabs.SelectedIndex;
+
+                        gw.Resize();
+                    }
+
+
+
                 }
+
             }
         }
 
@@ -52,7 +71,7 @@ namespace Reknighted
         public static List<Cell> TraderCells { get { return _traderCells; } }
 
 
-        private static Window? _window = null;
+        private static GameWindow? _window = null;
         private static ItemView? _item = null;
         private static bool _isDragging = false;
         private static System.Windows.Controls.Label? _infoLabel = null;
@@ -66,7 +85,7 @@ namespace Reknighted
 
         public static System.Windows.Controls.Label? InfoLabel { get { return _infoLabel; } set { _infoLabel = value; } }
 
-        public static Window Window
+        public static GameWindow Window
         {
             get { return _window; }
             set

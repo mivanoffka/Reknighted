@@ -106,6 +106,10 @@ namespace Reknighted
                 {
                     indicator.Text = "Броня";
                 }
+                if (_filter == typeof(ArtefactModel))
+                {
+                    indicator.Text = "Артефакт";
+                }
             }
         }
 

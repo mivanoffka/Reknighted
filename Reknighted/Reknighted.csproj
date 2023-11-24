@@ -29,10 +29,10 @@
     <None Update="Images\common_sword.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Images\diamond_necklace.png">
+    <None Update="Images\blue_necklace.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Images\diamond_ring.png">
+    <None Update="Images\blue_ring.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\egg.png">

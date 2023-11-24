@@ -73,7 +73,7 @@ namespace Reknighted
             Type[] types = new Type[3];
             types[0] = typeof(WeaponModel);
             types[1] = typeof(ArmorModel);
-            types[2] = null;
+            types[2] = typeof(ArtefactModel);   
 
             for (int i = 0; i < 3; i++)
             {

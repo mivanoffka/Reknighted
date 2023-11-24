@@ -18,9 +18,9 @@
                     <Label Content="Здоровье:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-5,0,0"/>
                     <Label Content="Броня" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,8,0,0"/>
                     <Label Content="Урон" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,21,0,0"/>
-                    <Label x:Name="healthLabel" Content="50 / 50" HorizontalAlignment="Left" Margin="65,-5,0,0" VerticalAlignment="Top" Foreground="#FFCE3A3A"/>
-                    <Label x:Name="armorLabel" Content="10 / 10" HorizontalAlignment="Left" Margin="65,8,0,0" VerticalAlignment="Top" Foreground="#FF39C34E"/>
-                    <Label x:Name="damageLabel" Content="25 / 25" HorizontalAlignment="Left" Margin="65,21,0,0" VerticalAlignment="Top" Foreground="#FF3A8ECE"/>
+                    <Label x:Name="healthLabel" Content="0" HorizontalAlignment="Left" Margin="65,-5,0,0" VerticalAlignment="Top" Foreground="#FF25A939"/>
+                    <Label x:Name="armorLabel" Content="0" HorizontalAlignment="Left" Margin="65,8,0,0" VerticalAlignment="Top" Foreground="#FF3A8ECE"/>
+                    <Label x:Name="damageLabel" Content="0" HorizontalAlignment="Left" Margin="65,21,0,0" VerticalAlignment="Top" Foreground="#FFCE3A3A"/>
                 </Grid>
             </GroupBox>
         </Grid>

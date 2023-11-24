@@ -16,6 +16,7 @@ namespace Reknighted.Collections
             List<ItemModel> items = new List<ItemModel>();
             items.Add(Items.Apple.Copy());
             items.Add(Items.Cheese.Copy());
+            items.Add(Items.BlueRing.Copy());
            
 
             foreach (ItemModel item in items)

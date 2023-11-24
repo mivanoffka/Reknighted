@@ -25,18 +25,6 @@ namespace Reknighted
             set
             {
                 _tradeMode = value;
-
-                if (value)
-                {
-                    gameTabs.SelectedIndex = 0;
-                    knightTabButton.Header = "Торговля";
-                }
-                else
-                {
-                    knightTabButton.Header = "Рыцарь";
-                    gameTabs.SelectedIndex = gameTabs.SelectedIndex;
-                }
-
             }
         }
 
@@ -89,14 +77,18 @@ namespace Reknighted
                     item.Foreground = new SolidColorBrush(Colors.White);
                 }
 
+                Resize();
             }
+        }
 
+        public void Resize()
+        {
 
-            if (gameTabs.SelectedIndex == 0 && TradeMode)
+            if (gameTabs.SelectedIndex == 0 && Game.CurrentTrader != null)
             {
-                this.Height = defaultWindowHeight * 1.58;
-                this.grid.Height = defaultGridHeight * 1.65;
-                this.gameTabs.Height = defaultTabHeight * 1.65;
+                this.Height = defaultWindowHeight * 1.66;
+                this.grid.Height = defaultGridHeight * 1.75;
+                this.gameTabs.Height = defaultTabHeight * 1.75;
 
             }
             else
@@ -105,24 +97,11 @@ namespace Reknighted
                 this.grid.Height = defaultGridHeight;
                 this.gameTabs.Height = defaultTabHeight;
             }
-
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TradeMode = !TradeMode;
-
-            if (TradeMode)
-            {
-                Game.CurrentTrader = Collections.Traders.Peter;
-            }
-            else
-            {
-                Game.CurrentTrader = null;
-            }
-            
+        {   
+            Game.CurrentTrader = Collections.Traders.Peter;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

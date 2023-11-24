@@ -200,6 +200,10 @@ namespace Reknighted.Model
             {
                 return new WeaponModel((WeaponModel)this);
             }
+            else if (GetType() == typeof(ArtefactModel))
+            {
+                return new ArtefactModel((ArtefactModel)this);
+            }
             else
             {
                 throw new ArgumentException();
