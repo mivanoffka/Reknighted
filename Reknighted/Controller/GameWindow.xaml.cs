@@ -60,6 +60,7 @@ namespace Reknighted
             var player = new PlayerModel();
             this.playerView.PlayerModel = player;
             Game.PlayerModel = player;
+
             this.playerView.PlayerModel.Items[0] = new FoodModel(Collections.Items.Apple);
             this.playerView.PlayerModel.Items[1] = new WeaponModel(Collections.Items.Sword);
             this.playerView.PlayerModel.Items[2] = new ArmorModel(Collections.Items.Helmet);
@@ -112,7 +113,15 @@ namespace Reknighted
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TradeMode = !TradeMode;
-            Game.CurrentTrader = Collections.Traders.Peter;
+
+            if (TradeMode)
+            {
+                Game.CurrentTrader = Collections.Traders.Peter;
+            }
+            else
+            {
+                Game.CurrentTrader = null;
+            }
             
         }
 

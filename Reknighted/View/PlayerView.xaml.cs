@@ -42,8 +42,11 @@ namespace Reknighted
             InitializeComponent();
             CreateAndPlace();
 
+            Game.healthLabel = this.healthLabel;
             Game.damageLabel = this.damageLabel;
             Game.protectionLabel = this.armorLabel;
+
+            
         }
 
 
@@ -66,12 +69,22 @@ namespace Reknighted
 
             startX = 15; startY = 0;
 
+
+            Type[] types = new Type[3];
+            types[0] = typeof(WeaponModel);
+            types[1] = typeof(ArmorModel);
+            types[2] = null;
+
             for (int i = 0; i < 3; i++)
             {
                 Cell cell = new Cell();
+                cell.Filter = types[i];
                 cell.Position = new Point(startX + i * cell.Width - 0.25 * cell.Width, startY);
+                
 
 
+
+                Game.InventoryCells.Add(cell);
                 Game.EquipmentCells.Add(cell);
                 equipmentGrid.Children.Add(cell);
             }

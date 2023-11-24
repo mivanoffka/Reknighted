@@ -67,7 +67,8 @@ namespace Reknighted.Model
 
 
         private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
-        private int[] _stats = new int[3] { 0, 0, 0 };
+        private int[] _stats = new int[3] { 100, 0, 0 };
+        private int[] _defaultStats = new int[3] { 100, 0, 5 };
         private List<Effects> _effects = new List<Effects> { };
 
         public ItemModel? Weapon
@@ -181,8 +182,8 @@ namespace Reknighted.Model
 
         public void UpdateStats()
         {
-            Protection = 10;
-            Damage = 5;
+            Protection = _defaultStats[1];
+            Damage = _defaultStats[2];
 
             try
             {
@@ -204,10 +205,14 @@ namespace Reknighted.Model
                     Game.damageLabel.Content = Damage.ToString();
                 }
 
-
                 if (Game.protectionLabel != null)
                 {
                     Game.protectionLabel.Content = Protection.ToString();
+                }
+
+                if (Game.healthLabel != null)
+                {
+                    Game.healthLabel.Content = Health.ToString();
                 }
 
             }
@@ -236,6 +241,59 @@ namespace Reknighted.Model
             {
                 this.Items.Add(null);
 
+            }
+        }
+
+        public ItemModel? this[int index]
+        {
+            get
+            {
+                return GetItem(index);
+            }
+
+            set
+            {
+                SetItem(index, value);
+            }
+        }
+
+
+        
+
+        private ItemModel? GetItem(int index)
+        {
+            int max = Items.Count;
+
+            if (index >= 0 && index < max)
+            {
+                return Items[index];
+            }
+            else if (index >= max && index < max + 3)
+            {
+                return EquippedItems[index-max];
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void SetItem(int index, ItemModel? item)
+        {
+            int max = Items.Count;
+
+            if (index >= 0 && index < max)
+            {
+                Items[index] = item;
+            }
+            else if (index >= max && index < max + 3)
+            {
+                EquippedItems[index - max] = item;
+                UpdateStats();
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
             }
         }
 

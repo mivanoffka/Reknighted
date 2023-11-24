@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:Reknighted"
              mc:Ignorable="d" Width="45" Height="45" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="True">
     <Grid>
-        <Border x:Name="border" BorderBrush="#FF797979" BorderThickness="1" Width="40" Height="40" Background="#FFE8E8E8" CornerRadius="2,2,2,2"/>
+        <Border x:Name="border" BorderBrush="#FF797979" BorderThickness="1" Width="40" Height="40" Background="#FFE8E8E8" CornerRadius="2,2,2,2">
+            <TextBlock x:Name="indicator" TextWrapping="Wrap" Text="indicator" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,12,0,0" Foreground="#FF797979"/>
+        </Border>
     </Grid>
 </UserControl>

@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Reknighted.Model;
+using Reknighted.Collections;
 
 namespace Reknighted
 {
@@ -59,6 +60,7 @@ namespace Reknighted
 
         public static System.Windows.Controls.Label? damageLabel = null;
         public static System.Windows.Controls.Label? protectionLabel = null;
+        public static System.Windows.Controls.Label? healthLabel = null;
 
         public static double Scale = -1;
 
@@ -161,7 +163,7 @@ namespace Reknighted
                     if (Item != null)
                     {   
                         if (_selectedCell != null)
-                        {
+                        {   
                             Item.Model.MoveToCell(_selectedCell);
                         }
 
@@ -177,6 +179,11 @@ namespace Reknighted
 
         public static void ResetAndUpdate()
         {   
+            if (PlayerModel != null)
+            {
+                PlayerModel.UpdateStats();
+            }
+
             if (_window == null)
             {
                 return;
@@ -199,7 +206,11 @@ namespace Reknighted
 
                 GameWindow gameWindow = (GameWindow)_window;
                 gameWindow.playerView.UpdateContent();
-                gameWindow.traderView.UpdateContent();
+                if (CurrentTrader != null)
+                {
+                    gameWindow.traderView.UpdateContent();
+                }
+
 
                 InfoLabel.Content = "Деньги: " + gameWindow.playerView.PlayerModel.Balance;
             }

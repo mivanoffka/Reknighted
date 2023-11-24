@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Security.Policy;
 using System.Windows;
+using System.Runtime.CompilerServices;
 
 namespace Reknighted.Model
 {
@@ -71,6 +72,12 @@ namespace Reknighted.Model
 
         public void MoveToCell(Cell newCell)
         {   
+
+            if (this.GetType() != newCell.Filter && newCell.Filter != null)
+            {
+                return;
+            }
+
             if (newCell?.ContentItem == this || this.IsPossessed != newCell?.IsPossessed)
             {
                 return;   
@@ -82,14 +89,15 @@ namespace Reknighted.Model
                 var bufferItem = newCell.ContentItem;
 
                 int oldIndex = Game.InventoryCells.IndexOf(oldCell);
-                Game.PlayerView!.PlayerModel!.Items[oldIndex] = bufferItem;
+
+                Game.PlayerView!.PlayerModel![oldIndex] = bufferItem;
                 if (bufferItem != null)
                 {
                     bufferItem.Cell = oldCell;
                 }
 
                 int newIndex = Game.InventoryCells.IndexOf(newCell);
-                Game.PlayerView!.PlayerModel!.Items[newIndex] = this;
+                Game.PlayerView!.PlayerModel![newIndex] = this;
                 this.Cell = newCell;
             }
             catch (Exception ex)
@@ -128,7 +136,7 @@ namespace Reknighted.Model
 
             return result;
         }
-        
+
         public virtual void Use()
         {
 
@@ -176,6 +184,26 @@ namespace Reknighted.Model
         public void Dispose()
         {
             
+        }
+
+        public ItemModel Copy()
+        {
+            if (GetType() == typeof(FoodModel))
+            {
+                return new FoodModel((FoodModel)this);
+            }
+            else if (GetType() == typeof(ArmorModel))
+            {
+                return new ArmorModel((ArmorModel)this);
+            }
+            else if (GetType() == typeof(WeaponModel))
+            {
+                return new WeaponModel((WeaponModel)this);
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
     }
 }

@@ -64,5 +64,11 @@ namespace Reknighted.Model
 
             return result;
         }
+
+        public override void Use()
+        {
+            Game.PlayerModel!.Health += this.Satiety;
+            Game.PlayerModel!.RemoveItem(this);
+        }
     }
 }

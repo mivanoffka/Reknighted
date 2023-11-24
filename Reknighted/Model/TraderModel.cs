@@ -93,5 +93,31 @@ namespace Reknighted.Model
             }
             Game.ResetAndUpdate();
         }
+
+        public ItemModel? this[int index]
+        {
+            get
+            {
+                return ItemByIndex(index);
+            }
+            set
+            {
+                ItemModel? im = ItemByIndex(index);
+                im = value;
+            }
+        }
+
+        private ItemModel? ItemByIndex(int index)
+        {
+            if (index >= 0 && index < 27)
+            {
+                return Items[index];
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+
+        }
     }
 }

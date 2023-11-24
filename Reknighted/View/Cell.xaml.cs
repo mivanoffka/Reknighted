@@ -24,7 +24,10 @@ namespace Reknighted
         private bool _isPointed = false;
         private ItemModel? _contentItem = null;
         private bool _isPossessed = true;
+        private Type? _filter = null;
 
+
+        
         public bool IsPossessed
         {
             get => _isPossessed;
@@ -34,7 +37,18 @@ namespace Reknighted
         public ItemModel? ContentItem
         {
             get { return _contentItem; }
-            set { _contentItem = value; }
+            set {
+                _contentItem = value;
+
+                if (value == null)
+                {
+                    indicator.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    indicator.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
 
@@ -75,9 +89,29 @@ namespace Reknighted
             }
         }
 
+        public Type? Filter { get => _filter; 
+            set
+            {
+                _filter = value;
+
+                if (_filter == null)
+                {
+                    indicator.Text = " ";
+                }
+                if (_filter == typeof(WeaponModel))
+                {
+                    indicator.Text = "Оружие";
+                }
+                if (_filter == typeof(ArmorModel))
+                {
+                    indicator.Text = "Броня";
+                }
+            }
+        }
+
         public Cell() : this(new Point(0, 0))
         {
-
+            this.Filter = null;
         }
 
         public Cell(Point position)
@@ -85,6 +119,11 @@ namespace Reknighted
             Game.AllCells.Add(this);
             Position = position;
             InitializeComponent();
+        }
+
+        public Cell(Point position, Type filter) : this(position) 
+        {
+            this.Filter = filter;
         }
     }
 }

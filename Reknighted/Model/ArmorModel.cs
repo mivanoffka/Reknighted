@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Reknighted.Model
 {
@@ -31,6 +32,14 @@ namespace Reknighted.Model
             this._protection = armorModel.Protection;
             this._image = armorModel.Image;
 
+        }
+
+        public override void Use()
+        {   
+
+
+            MessageBox.Show("Moving to armor...");
+            MoveToCell(Game.EquipmentCells[1]);
         }
 
         public override string Information()

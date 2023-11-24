@@ -57,7 +57,6 @@ namespace Reknighted
                 }
                 else
                 {
-                    MessageBox.Show("Use!");
                     this.Model.Use();
                 }
 

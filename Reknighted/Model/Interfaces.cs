@@ -29,6 +29,11 @@ namespace Reknighted.Model
         public void AddItem(ItemModel item);
 
         public void RemoveItem(ItemModel item);
+        public ItemModel? this[int index] {
+            get;
+            set;
+        }
+
 
     }
 

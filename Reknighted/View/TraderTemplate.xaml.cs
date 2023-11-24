@@ -26,8 +26,13 @@ namespace Reknighted.View
             set
             {
                 _model = value;
-                groupBox.Header = _model.Name;
-                UpdateContent();
+
+                if (value != null)
+                {
+                    groupBox.Header = _model.Name;
+                    UpdateContent();
+                }
+
             }
         }
 

@@ -14,11 +14,9 @@ namespace Reknighted.Collections
         public static void Initialize()
         {   
             List<ItemModel> items = new List<ItemModel>();
-            for (int i = 0; i < 18; i++)
-            {
-                items.Add(new FoodModel(Items.Apple));
-            }
-
+            items.Add(Items.Apple.Copy());
+            items.Add(Items.Cheese.Copy());
+           
 
             foreach (ItemModel item in items)
             {
