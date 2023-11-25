@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Reknighted.Collections
 
         private static string PathTo(string name)
         {
-            return "Images\\" + name + ".png";
+            return Directory.GetFiles("Images", $"{name}.png", SearchOption.AllDirectories)[0];
         } 
     }
 }
