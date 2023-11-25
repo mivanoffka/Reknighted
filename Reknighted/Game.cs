@@ -110,9 +110,9 @@ namespace Reknighted
         public static Point? delta = null;
 
         public static List<ItemView> Items { get { return _items; } }
-        public static void MouseMoveHandler(object sender, MouseEventArgs e)
-        {   
 
+        public static void MouseMoveHandler(object sender, MouseEventArgs e)
+        {
             MousePreviousPosition = MouseCurrentPosition;
             MouseCurrentPosition = e.GetPosition(_window);
 
@@ -127,9 +127,7 @@ namespace Reknighted
                     {
                         cell.IsPointed = false;
 
-
                         var mousePos = _window.PointToScreen(Mouse.GetPosition(_window));
-
                         bool isOver = true;
 
                         Point cellPos = cell.PointToScreen(new Point(0, 0));
@@ -142,8 +140,6 @@ namespace Reknighted
                         {
                             cells.Add(cell);
                         }
-
-
                     }
 
                     if (cells.Count > 0)
@@ -156,20 +152,27 @@ namespace Reknighted
                             Point cellPos = _selectedCell.PointToScreen(new Point(0, 0));
                             //InfoLabel.Content += (cellPos.X).ToString() + ", " + (cellPos.Y).ToString();
                         }
-
                     }
 
+                    // Центрирование предмета при перетаскивании
                     if (Item != null && Item.Model.IsPossessed)
                     {
-                        Item.Position = (Point)MouseCurrentPosition;
-                        Item.Position = new Point(Item.Position.X - Item.Width, Item.Position.Y - 50);
-                    }
+                        // Да это костыль но по другому я не знаю как
+                        Item.Position = new Point(
+                            MouseCurrentPosition.Value.X - Item.ActualWidth/1.7 ,
+                            MouseCurrentPosition.Value.Y - Item.ActualHeight*1.15
+                        );
 
+                        /*
+                        Уберите коммент если хотите чтобы иконка оставалась на том же месте 
+                        где её и взяли и закоментите другое
+                        Point offset = new Point(MouseCurrentPosition.Value.X - MousePreviousPosition.Value.X,
+                                             MouseCurrentPosition.Value.Y - MousePreviousPosition.Value.Y);
+                        Item.Position = new Point(Item.Position.X + offset.X, Item.Position.Y + offset.Y);
+                         */
+                    }
                 }
             }
-
-
-
         }
 
         public static void MouseUpHandler(object sender, MouseButtonEventArgs e)
