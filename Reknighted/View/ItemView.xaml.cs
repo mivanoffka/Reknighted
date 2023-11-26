@@ -1,4 +1,5 @@
-﻿using Reknighted.Model;
+﻿using Reknighted.Controller;
+using Reknighted.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

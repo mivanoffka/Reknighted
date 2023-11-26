@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Reknighted.Model
 {
@@ -12,10 +8,13 @@ namespace Reknighted.Model
         public ItemModel Armor { get; set; }
         public ItemModel Artefact { get; set; }
 
-        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int CurrentHealth { get; set; }
+        public double HealthPercentage { get; set; }
+
         public int Damage { get; }
         public int Protection { get; }
-        public double Fortune { get; }
+        public int Fortune { get; set; }
 
 
 

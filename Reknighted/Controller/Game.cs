@@ -12,7 +12,7 @@ using System.Windows.Input;
 using Reknighted.Model;
 using Reknighted.Collections;
 
-namespace Reknighted
+namespace Reknighted.Controller
 {
 
     public class Game
@@ -20,7 +20,7 @@ namespace Reknighted
         public static Point? MousePreviousPosition = null;
         public static Point? MouseCurrentPosition = null;
 
-        private static List<ItemView>  _items = new List<ItemView>();
+        private static List<ItemView> _items = new List<ItemView>();
 
         public static PlayerView? PlayerView = null;
         public static PlayerModel? PlayerModel = null;
@@ -80,6 +80,7 @@ namespace Reknighted
         public static System.Windows.Controls.Label? damageLabel = null;
         public static System.Windows.Controls.Label? protectionLabel = null;
         public static System.Windows.Controls.Label? healthLabel = null;
+        public static System.Windows.Controls.Label? fortuneLabel = null;
 
         public static double Scale = -1;
 
@@ -92,7 +93,7 @@ namespace Reknighted
             {
                 _window = value;
                 var gw = _window as GameWindow;
-                Game.PlayerView = gw!.playerView;
+                PlayerView = gw!.playerView;
             }
         }
 
@@ -116,7 +117,7 @@ namespace Reknighted
             MousePreviousPosition = MouseCurrentPosition;
             MouseCurrentPosition = e.GetPosition(_window);
 
-            GameWindow? gameWindow = (GameWindow?)_window;
+            GameWindow? gameWindow = _window;
             if (gameWindow != null)
             {
                 if (gameWindow.gameTabs.SelectedIndex == 0)
@@ -159,8 +160,8 @@ namespace Reknighted
                     {
                         // Да это костыль но по другому я не знаю как
                         Item.Position = new Point(
-                            MouseCurrentPosition.Value.X - Item.ActualWidth/1.7 ,
-                            MouseCurrentPosition.Value.Y - Item.ActualHeight*1.15
+                            MouseCurrentPosition.Value.X - Item.ActualWidth / 1.7,
+                            MouseCurrentPosition.Value.Y - Item.ActualHeight * 1.15
                         );
 
                         /*
@@ -177,15 +178,15 @@ namespace Reknighted
 
         public static void MouseUpHandler(object sender, MouseButtonEventArgs e)
         {
-            GameWindow? gameWindow = (GameWindow?)_window;
+            GameWindow? gameWindow = _window;
             if (gameWindow != null)
             {
                 if (gameWindow.gameTabs.SelectedIndex == 0)
                 {
                     if (Item != null)
-                    {   
+                    {
                         if (_selectedCell != null)
-                        {   
+                        {
                             Item.Model.MoveToCell(_selectedCell);
                         }
 
@@ -197,10 +198,10 @@ namespace Reknighted
                 }
             }
 
-        }   
+        }
 
         public static void ResetAndUpdate()
-        {   
+        {
             if (PlayerModel != null)
             {
                 PlayerModel.UpdateStats();
@@ -226,7 +227,7 @@ namespace Reknighted
 
                 Items.Clear();
 
-                GameWindow gameWindow = (GameWindow)_window;
+                GameWindow gameWindow = _window;
                 gameWindow.playerView.UpdateContent();
                 if (CurrentTrader != null)
                 {
@@ -245,7 +246,7 @@ namespace Reknighted
         }
 
         public static void CalculateCoeff()
-        {   
+        {
             if (Scale == -1)
             {
                 if (_allCells[0] != null && _allCells[1] != null)
@@ -267,6 +268,6 @@ namespace Reknighted
         {
             MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-    }   
+    }
 
 }

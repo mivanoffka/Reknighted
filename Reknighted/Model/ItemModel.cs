@@ -11,6 +11,7 @@ using System.IO;
 using System.Security.Policy;
 using System.Windows;
 using System.Runtime.CompilerServices;
+using Reknighted.Controller;
 
 namespace Reknighted.Model
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
@@ -67,7 +68,7 @@ namespace Reknighted.Model
 
         public override void Use()
         {
-            Game.PlayerModel!.Health += this.Satiety;
+            Game.PlayerModel!.CurrentHealth += this.Satiety;
             Game.PlayerModel!.RemoveItem(this);
         }
     }

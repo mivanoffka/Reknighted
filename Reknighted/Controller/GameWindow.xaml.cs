@@ -1,6 +1,8 @@
-﻿using Reknighted.Model;
+﻿using Reknighted.Controller;
+using Reknighted.Model;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -109,17 +111,22 @@ namespace Reknighted
             var result_1 = MessageBox.Show("Вы уверены, что хотите вступить в бой? Это может стоить вам жизни. Ну или хотя бы 50 тугриков.", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result_1 == MessageBoxResult.Yes)
             {
-                if(playerView.PlayerModel.Balance < 50)
-                {
-                    MessageBox.Show("У вас слишком мало денег");
-                    return;
-                }
+                //if (playerView.PlayerModel.Balance < 50)
+                //{
+                //    MessageBox.Show("У вас слишком мало денег");
+                //    return;
+                //}
                 Random random = new Random();
-                int v = random.Next(0, 2);
 
-                if (v == 0)
+                int margin = (int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, 0, Game.PlayerModel.HealthPercentage }, new double[] { 15, 15, 0, 1}));
+                int result = random.Next(0, 100);
+
+                string stats = string.Format("\n\n{0}% из {1}%", result, margin);
+
+
+                if (result >= margin)
                 {
-                    MessageBox.Show("Вы трагически проиграли. Вам грозит позор до следующей битвы. Потом о вас все забудут.", "Поражение", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    MessageBox.Show("Вы трагически проиграли. Вам грозит позор до следующей битвы. Потом о вас все забудут." + stats, "Поражение", MessageBoxButton.OK, MessageBoxImage.Hand);
 
                     gameTabs.SelectedIndex = 0;
                     playerView.PlayerModel.Balance -= 50;
@@ -129,7 +136,7 @@ namespace Reknighted
 
                 else
                 {
-                    MessageBox.Show("Вы героически победили. Но не обольщайтесь, уже через час о вашем подвиге все забудут.", "Победа!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Вы героически победили. Но не обольщайтесь, уже через час о вашем подвиге все забудут." + stats, "Победа!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     gameTabs.SelectedIndex = 0;
 
@@ -141,6 +148,11 @@ namespace Reknighted
                 }
 
             }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Game.CurrentTrader = Collections.Traders.Alexander;
         }
     }
 }

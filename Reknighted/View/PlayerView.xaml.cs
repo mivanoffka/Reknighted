@@ -1,4 +1,5 @@
-﻿using Reknighted.Model;
+﻿using Reknighted.Controller;
+using Reknighted.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,8 +46,8 @@ namespace Reknighted
             Game.healthLabel = this.healthLabel;
             Game.damageLabel = this.damageLabel;
             Game.protectionLabel = this.armorLabel;
+            Game.fortuneLabel = this.fortuneLabel;
 
-            
         }
 
 

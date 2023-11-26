@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
@@ -65,10 +66,10 @@ namespace Reknighted.Model
 
         #region IFightable
 
-
         private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
-        private int _health = 100;
-        private double _luck = 0.5;
+        private int _maxHealth = 100;
+        private int _currentHealth = 50;
+        private int _fortune =  10;
 
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
         private List<Effects> _effects = new List<Effects> { };
@@ -123,18 +124,53 @@ namespace Reknighted.Model
 
 
 
-        public int Health
+        public int MaxHealth
         {
             get
             {
-                return _health;
+                return _maxHealth;
             }
 
             set
             {
-                _health = value;
+                _maxHealth = value;
             }
         }
+
+        public int CurrentHealth
+        {
+            get
+            {
+                return _currentHealth;
+            }
+
+            set
+            {
+                if (value < MaxHealth)
+                {
+                    _currentHealth = value;
+                }
+                else
+                {
+                    _currentHealth = MaxHealth;
+                }
+            }
+        }
+
+        public double HealthPercentage
+        {
+            get
+            {
+                return (double)_currentHealth / (double)_maxHealth;
+            }
+
+            set
+            {
+                _currentHealth = (int)(value * _maxHealth);
+            }
+
+        }
+
         public int Damage
         {
             get
@@ -167,11 +203,16 @@ namespace Reknighted.Model
             }
         }
 
-        public double Fortune
+        public int Fortune
         {
             get
             {
-                return _luck;
+                return _fortune;
+            }
+
+            set
+            {
+                _fortune = value;
             }
         }
 
@@ -214,7 +255,12 @@ namespace Reknighted.Model
 
                 if (Game.healthLabel != null)
                 {
-                    Game.healthLabel.Content = Health.ToString();
+                    Game.healthLabel.Content = CurrentHealth.ToString() + " (" + Math.Round(HealthPercentage * 100) + "%)";
+                }
+
+                if (Game.fortuneLabel != null)
+                {
+                    Game.fortuneLabel.Content = Fortune.ToString();
                 }
 
             }
