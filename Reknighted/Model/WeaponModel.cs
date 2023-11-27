@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reknighted.Model
 {
-    internal class WeaponModel : ItemModel
+    public class WeaponModel : DurableItem
     {
         private int _damage;
 
@@ -14,11 +14,11 @@ namespace Reknighted.Model
         {
             get
             {
-                return _damage;
+                return (int)(_damage * Math.Sqrt(DurabilityPercentage));
             }
         }
 
-        public WeaponModel(string name, string description, int cost, int damage, string imageSource) : base(name, description, cost, imageSource)
+        public WeaponModel(string name, string description, int cost, int maxDurability, int damage, string imageSource) : base(name, description, cost, maxDurability, imageSource)
         {
             this._damage = damage;
         }
@@ -29,6 +29,8 @@ namespace Reknighted.Model
             this._description = weaponModel.Description;
             this._price = weaponModel.Price;
             this._damage = weaponModel.Damage;
+            this._maxDurability = weaponModel.MaxDurability;
+            this._currentDurability = weaponModel.CurrentDurability;
             this._image = weaponModel.Image;
 
         }
@@ -60,6 +62,7 @@ namespace Reknighted.Model
             result += editedDescription;
 
             result += "\n\nУрон: " + _damage;
+            result += "\nПрочность: " + Math.Round(DurabilityPercentage * 100) + "%";
             result += "\nЦена: " + _price;
 
             return result;

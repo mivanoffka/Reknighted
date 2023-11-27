@@ -8,7 +8,7 @@ using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
-    internal class ArmorModel : ItemModel
+    public class ArmorModel : DurableItem
     {
         private int _protection;
 
@@ -16,11 +16,11 @@ namespace Reknighted.Model
         {
             get
             {
-                return _protection;
+                return (int)(_protection * Math.Sqrt(DurabilityPercentage));
             }
         }
 
-        public ArmorModel(string name, string description, int cost, int protection, string imageSource) : base(name, description, cost, imageSource)
+        public ArmorModel(string name, string description, int cost, int maxDurability, int protection, string imageSource) : base(name, description, cost, maxDurability, imageSource)
         {
             this._protection = protection;
         }
@@ -30,6 +30,8 @@ namespace Reknighted.Model
             this._name = armorModel.Name;
             this._description = armorModel.Description;
             this._price = armorModel.Price;
+            this._maxDurability = armorModel.MaxDurability;
+            this._currentDurability = armorModel.CurrentDurability;
             this._protection = armorModel.Protection;
             this._image = armorModel.Image;
 
@@ -69,6 +71,7 @@ namespace Reknighted.Model
             result += editedDescription;
 
             result += "\n\nЗащита: " + _protection;
+            result += "\nПрочность: " + Math.Round(DurabilityPercentage * 100) + "%";
             result += "\nЦена: " + _price;
 
 

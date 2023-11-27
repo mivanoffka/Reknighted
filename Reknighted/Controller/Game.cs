@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Reknighted.Model;
 using Reknighted.Collections;
+using System.Windows.Documents;
 
 namespace Reknighted.Controller
 {
@@ -25,6 +26,8 @@ namespace Reknighted.Controller
         public static PlayerView? PlayerView = null;
         public static PlayerModel? PlayerModel = null;
         private static TraderModel? _currentTrader = null;
+
+        public static List<ItemView> TraderItems = new(); 
 
         public static TraderModel? CurrentTrader
         {
@@ -49,6 +52,30 @@ namespace Reknighted.Controller
                     {
                         gw.knightTabButton.Header = "Рыцарь";
                         gw.gameTabs.SelectedIndex = gw.gameTabs.SelectedIndex;
+                        //gw.traderView.UpdateContent();
+                        
+                        foreach (var item in Items)
+                        {   
+                            if (item != null)
+                            {
+                                if (!item.Model.IsPossessed)
+                                {
+                                    Grid? grid = (Grid?)item.Parent;
+                                    if (grid != null)
+                                    {
+                                        grid.Children.Remove(item);
+                                    }
+
+                                    
+                                }
+                            }
+
+                        }
+
+                        foreach (var cell in TraderCells)
+                        {
+                            cell.ContentItem = null;
+                        }
 
                         gw.Resize();
                     }
@@ -215,9 +242,14 @@ namespace Reknighted.Controller
             try
             {
                 foreach (var item in Items)
-                {
-                    Grid grid = (Grid)item.Parent;
-                    grid.Children.Remove(item);
+                {   
+                    
+                    Grid? grid = (Grid?)item.Parent;
+                    if (grid != null)
+                    {
+                        grid.Children.Remove(item);
+                    }
+
                 }
 
                 foreach (var cell in AllCells)
@@ -260,13 +292,54 @@ namespace Reknighted.Controller
                     delta = new Point(0, 0);
                 }
             }
-
-
         }
 
         public static void Error(string message)
         {
             MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public static IFightable? Fight(IFightable? firstFighter, IFightable? secondFighter, int bet, bool noChange = true)
+        {   
+            if (firstFighter == null || secondFighter == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            Random random = new Random();
+
+            if (firstFighter.HealthPercentage <= 0.2 || secondFighter.HealthPercentage <= 0.2)
+            {
+                MessageBox.Show("Нельзя вступать в схватку в таком состоянии здоровья!");
+                return null;
+            }
+
+            int margin = (int)(100 * Fighting.Fight(new double[] {firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
+            int result = random.Next(0, 100);
+
+            IFightable? winner = result <= margin ? firstFighter : secondFighter;
+            IFightable? looser = result <= margin ? secondFighter : firstFighter;
+
+            if (winner != null && (winner != secondFighter && noChange))
+            {
+                winner.CurrentHealth -= looser.Damage / 2;
+                if (winner.Weapon != null) winner.Weapon.CurrentDurability -= looser.Damage;
+                if (winner.Armor != null) winner.Armor.CurrentDurability -= looser.Damage;
+                winner.Balance += bet;
+            }
+
+            if (looser != null && (looser != secondFighter && noChange))
+            {
+                looser.CurrentHealth -= winner.Damage;
+                if (looser.Weapon != null) looser.Weapon.CurrentDurability -= looser.Damage;
+                if (looser.Armor != null) looser.Armor.CurrentDurability -= looser.Damage;
+                looser.Balance -= bet;
+            }
+
+
+            MessageBox.Show(winner.ToString() + ": " + result + " / " + margin);
+
+            return winner;
         }
     }
 

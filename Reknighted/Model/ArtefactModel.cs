@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reknighted.Model
 {
-    internal class ArtefactModel : ItemModel
+    public class ArtefactModel : ItemModel
     {
         protected Buff? _buff = null; 
         protected double _multiplier = 0;

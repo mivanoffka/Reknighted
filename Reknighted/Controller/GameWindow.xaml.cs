@@ -60,6 +60,12 @@ namespace Reknighted
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (gameTabs.SelectedIndex != 0)
+            {
+                Game.CurrentTrader = null;
+            }
+
+
             List<TabItem> list = new List<TabItem>();
             list.Add(mapTabButton);
             list.Add(locationTabButton);
@@ -110,44 +116,13 @@ namespace Reknighted
         {
             var result_1 = MessageBox.Show("Вы уверены, что хотите вступить в бой? Это может стоить вам жизни. Ну или хотя бы 50 тугриков.", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result_1 == MessageBoxResult.Yes)
-            {
-                //if (playerView.PlayerModel.Balance < 50)
-                //{
-                //    MessageBox.Show("У вас слишком мало денег");
-                //    return;
-                //}
-                Random random = new Random();
-
-                int margin = (int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, 0, Game.PlayerModel.HealthPercentage }, new double[] { 15, 15, 0, 1}));
-                int result = random.Next(0, 100);
-
-                string stats = string.Format("\n\n{0}% из {1}%", result, margin);
-
-
-                if (result >= margin)
-                {
-                    MessageBox.Show("Вы трагически проиграли. Вам грозит позор до следующей битвы. Потом о вас все забудут." + stats, "Поражение", MessageBoxButton.OK, MessageBoxImage.Hand);
-
-                    gameTabs.SelectedIndex = 0;
-                    playerView.PlayerModel.Balance -= 50;
-
-
-                }
-
-                else
-                {
-                    MessageBox.Show("Вы героически победили. Но не обольщайтесь, уже через час о вашем подвиге все забудут." + stats, "Победа!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    gameTabs.SelectedIndex = 0;
-
-                    playerView.PlayerModel.AddItem(new ArmorModel(Collections.Items.HornsHelmet));
-                    playerView.PlayerModel.Balance += 50;
-
-                    //Game.ResetAndUpdate();
-                    //playerView.UpdateContent();
-                }
-
+            {   
+                gameTabs.SelectedIndex = 0;
+                IFightable winner = Game.Fight(Game.PlayerModel, Collections.Fighters.Simon, 50);
             }
+
+            Game.PlayerModel.UpdateStats();
+            Game.ResetAndUpdate();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

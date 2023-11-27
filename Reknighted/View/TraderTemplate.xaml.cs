@@ -71,6 +71,7 @@ namespace Reknighted.View
                 {
                     ItemModel? itemModel;
                     itemModel = _model.Items[i];
+                    
 
                     if (itemModel != null)
                     {

@@ -58,7 +58,7 @@ namespace Reknighted.Model
                 }
 
                 _balance = value;
-                Game.ResetAndUpdate();
+                //Game.ResetAndUpdate();
             }
         }
 
@@ -67,18 +67,18 @@ namespace Reknighted.Model
         #region IFightable
 
         private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
-        private int _maxHealth = 100;
-        private int _currentHealth = 50;
+        private int _maxHealth = 50;
+        private int _currentHealth = 40;
         private int _fortune =  10;
 
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
         private List<Effects> _effects = new List<Effects> { };
 
-        public ItemModel? Weapon
+        public WeaponModel? Weapon
         {
             get
             {
-                return _equippedItems[0];
+                return (WeaponModel?)_equippedItems[0];
             }
 
             set
@@ -86,11 +86,11 @@ namespace Reknighted.Model
                 _equippedItems[0] = value;
             }
         }
-        public ItemModel? Armor
+        public ArmorModel? Armor
         {
             get
             {
-                return _equippedItems[1];
+                return (ArmorModel?)_equippedItems[1];
             }
 
             set
@@ -98,11 +98,11 @@ namespace Reknighted.Model
                 _equippedItems[1] = value;
             }
         }
-        public ItemModel? Artefact
+        public ArtefactModel? Artefact
         {
             get
             {
-                return _equippedItems[2];
+                return (ArtefactModel?)_equippedItems[2];
             }
 
             set
@@ -147,8 +147,11 @@ namespace Reknighted.Model
             set
             {
                 if (value < MaxHealth)
-                {
-                    _currentHealth = value;
+                {   
+                    if (value >= 0.2 *  MaxHealth)
+                        _currentHealth = value;
+                    else 
+                        _currentHealth = (int)(0.2 * MaxHealth);
                 }
                 else
                 {
@@ -242,7 +245,12 @@ namespace Reknighted.Model
         public void UpdateStats()
         {
             try
-            {
+            {   
+                if (Game.InfoLabel == null)
+                {
+                    Game.InfoLabel.Content = Balance.ToString();
+                }
+
                 if (Game.damageLabel != null)
                 {
                     Game.damageLabel.Content = Damage.ToString();
@@ -344,6 +352,8 @@ namespace Reknighted.Model
                 throw new ArgumentOutOfRangeException();
             }
         }
+
+
 
     }
 }

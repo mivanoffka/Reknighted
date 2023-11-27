@@ -4,9 +4,9 @@ namespace Reknighted.Model
 {
     public interface IFightable
     {
-        public ItemModel Weapon { get; set; }
-        public ItemModel Armor { get; set; }
-        public ItemModel Artefact { get; set; }
+        public WeaponModel Weapon { get; set; }
+        public ArmorModel Armor { get; set; }
+        public ArtefactModel Artefact { get; set; }
 
         public int MaxHealth { get; set; }
         public int CurrentHealth { get; set; }
@@ -16,7 +16,7 @@ namespace Reknighted.Model
         public int Protection { get; }
         public int Fortune { get; set; }
 
-
+        public int Balance { get; set; }
 
 
 
