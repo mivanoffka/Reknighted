@@ -101,11 +101,16 @@ namespace Reknighted
             Place();
         }
 
-        private void Place()
-        {
+        public void Place(Window? window = null)
+        {   
+            if (window == null)
+            {
+                window = Game.Window;
+            }
+
             if (this.Model.Cell != null)
             {
-                var winPos = Game.Window.PointToScreen(new Point(0, 0));
+                var winPos = window.PointToScreen(new Point(0, 0));
                 var cellPos = this.Model.Cell.PointToScreen(new Point(0, 0));
 
                 // -6, -28

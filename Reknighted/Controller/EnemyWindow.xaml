@@ -1,0 +1,28 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Reknighted.Controller"
+        xmlns:Reknighted="clr-namespace:Reknighted" x:Class="Reknighted.Controller.EnemyWindow"
+        mc:Ignorable="d"
+        Title="Противник" Height="270" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="235">
+        <Rectangle HorizontalAlignment="Center" Height="215" Stroke="#FFA4A4A4" VerticalAlignment="Center" Width="200" Fill="White"/>
+        <GroupBox x:Name="enemyBox" Header="GroupBox" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Foreground="Black" BorderBrush="Gray" Margin="0,13,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="141" Width="180">
+            <Grid x:Name="enemyGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <GroupBox Header="Снаряжение" Margin="4,-2,0,0" BorderBrush="#FF757575" Background="#FFCECECE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Width="160">
+                    <Grid x:Name="equipmentGrid"/>
+                </GroupBox>
+                <GroupBox x:Name="betBox" Header="Ставка" Margin="4,68,0,0" BorderBrush="#FF757575" Background="#FFCECECE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="160">
+                    <Grid x:Name="equipmentGrid1">
+                        <Slider x:Name="betSlider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="139" Minimum="5" Maximum="250" Value="50" ValueChanged="betSlider_ValueChanged" SmallChange="1"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <Label x:Name="errorLabel" Content="Ошибка!" HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="Black" Foreground="#FFC84545" Margin="0,182,0,0"/>
+        <Button x:Name="fightButton" Content="Сразиться" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="170" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Click="fightButton_Click" Height="24"/>
+
+    </Grid>
+</Window>

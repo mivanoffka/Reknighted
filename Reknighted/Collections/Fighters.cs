@@ -9,6 +9,6 @@ namespace Reknighted.Collections
 {
     public class Fighters
     {   
-        public static Fighter Simon = new Fighter("Саймон", new ItemModel[] {Items.Sword.Copy(), Items.GoldenHelmet.Copy(), null});
+        public static Fighter Simon = new Fighter("Саймон", new ItemModel[] {Items.Sword.Copy(), Items.Helmet.Copy(), null});
     }
 }

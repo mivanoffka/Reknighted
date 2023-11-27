@@ -53,7 +53,7 @@ namespace Reknighted
 
             this.playerView.PlayerModel.Items[0] = new FoodModel(Collections.Items.Apple);
             this.playerView.PlayerModel.Items[1] = new WeaponModel(Collections.Items.Sword);
-            this.playerView.PlayerModel.Items[2] = new ArmorModel(Collections.Items.Helmet);
+            this.playerView.PlayerModel.Items[2] = new ArmorModel(Collections.Items.GoldenHelmet);
             //this.playerView.UpdateContent();
             Game.ResetAndUpdate();
         }
@@ -114,15 +114,9 @@ namespace Reknighted
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var result_1 = MessageBox.Show("Вы уверены, что хотите вступить в бой? Это может стоить вам жизни. Ну или хотя бы 50 тугриков.", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result_1 == MessageBoxResult.Yes)
-            {   
                 gameTabs.SelectedIndex = 0;
-                IFightable winner = Game.Fight(Game.PlayerModel, Collections.Fighters.Simon, 50);
-            }
-
-            Game.PlayerModel.UpdateStats();
-            Game.ResetAndUpdate();
+                EnemyWindow enemyWindow = new EnemyWindow(Collections.Fighters.Simon);
+                enemyWindow.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

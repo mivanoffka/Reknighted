@@ -317,6 +317,8 @@ namespace Reknighted.Controller
             int margin = (int)(100 * Fighting.Fight(new double[] {firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
             int result = random.Next(0, 100);
 
+            //MessageBox.Show(result + ", " + margin);
+
             IFightable? winner = result <= margin ? firstFighter : secondFighter;
             IFightable? looser = result <= margin ? secondFighter : firstFighter;
 
@@ -335,9 +337,6 @@ namespace Reknighted.Controller
                 if (looser.Armor != null) looser.Armor.CurrentDurability -= looser.Damage;
                 looser.Balance -= bet;
             }
-
-
-            MessageBox.Show(winner.ToString() + ": " + result + " / " + margin);
 
             return winner;
         }

@@ -39,8 +39,6 @@ namespace Reknighted.Model
 
         public override void Use()
         {   
-
-
             MessageBox.Show("Moving to armor...");
             MoveToCell(Game.EquipmentCells[1]);
         }
