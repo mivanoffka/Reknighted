@@ -72,7 +72,7 @@ namespace Reknighted.Model
                 }
 
                 _balance = value;
-                Game.ResetAndUpdate();
+                Game.Update();
             }
         }
 
@@ -80,7 +80,7 @@ namespace Reknighted.Model
         {
             int index = Items.IndexOf(null);
             Items[index] = newItem;
-            Game.ResetAndUpdate();
+            Game.Update();
         }
 
         public void RemoveItem(ItemModel? item)
@@ -92,7 +92,7 @@ namespace Reknighted.Model
                     Items[i] = null;
                 }
             }
-            Game.ResetAndUpdate();
+            Game.Update();
         }
 
         public ItemModel? this[int index]

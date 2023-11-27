@@ -1,34 +1,78 @@
-﻿using Reknighted.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Reknighted.Model;
-using Reknighted.Collections;
-using System.Windows.Documents;
 
 namespace Reknighted.Controller
 {
-
+    // Статический класс, служащий связующим звеном между всеми компонентами игры.
     public class Game
     {
-        public static Point? MousePreviousPosition = null;
-        public static Point? MouseCurrentPosition = null;
+        #region Поля и свойства
 
-        private static List<ItemView> _items = new List<ItemView>();
+        #region Контейнеры интерактивных элементов
 
-        public static PlayerView? PlayerView = null;
-        public static PlayerModel? PlayerModel = null;
+        #region Представления предметов
+
+        // Выбранный (перетаскиваемый мышью) предмет
+        private static ItemView? _selectedItem = null;
+        public static ItemView? SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; }
+        }
+
+        // Список всех предметов на экране
+        private static List<ItemView> _allItemViews = new List<ItemView>();
+        public static List<ItemView> AllItemsViews { get { return _allItemViews; } }
+
+        // Список предметов в инвентаре торговца
+        public static List<ItemView> TraderItems = new();
+
+        #endregion
+
+        #region Представления клеток
+
+        // Клетка, на которую наведён курсор
+        private static Cell? _selectedCell = null;
+
+        // Список клеток неактивного инвентаря игрока
+        private static List<Cell> _inventoryCells = new List<Cell>();
+        public static List<Cell> InventoryCells { get { return _inventoryCells; } }
+
+        // Список клеток активного инвентаря игрока
+        private static List<Cell> _equipmentCells = new List<Cell>();
+        public static List<Cell> EquipmentCells { get { return _equipmentCells; } }
+
+        // Список клеток инвентаря торговца
+        private static List<Cell> _traderCells = new List<Cell>();
+        public static List<Cell> TraderCells { get { return _traderCells; } }
+
+        // Список всех клеток на экране
+        private static List<Cell> _allCells = new List<Cell>();
+        public static List<Cell> AllCells
+        {
+            get { return _allCells; }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Персонажи
+
+        // Представление игрока
+        private static PlayerView? _playerView = null;
+        public static PlayerView? PlayerView { get => _playerView; set => _playerView = value; }
+
+        // Модель игрока
+        private static PlayerModel? _playerModel = null;
+        public static PlayerModel? PlayerModel { get => _playerModel; set => _playerModel = value; }
+
+        // Модель торговца
         private static TraderModel? _currentTrader = null;
-
-        public static List<ItemView> TraderItems = new(); 
-
         public static TraderModel? CurrentTrader
         {
             get => _currentTrader;
@@ -53,9 +97,9 @@ namespace Reknighted.Controller
                         gw.knightTabButton.Header = "Рыцарь";
                         gw.gameTabs.SelectedIndex = gw.gameTabs.SelectedIndex;
                         //gw.traderView.UpdateContent();
-                        
-                        foreach (var item in Items)
-                        {   
+
+                        foreach (var item in AllItemsViews)
+                        {
                             if (item != null)
                             {
                                 if (!item.Model.IsPossessed)
@@ -66,7 +110,7 @@ namespace Reknighted.Controller
                                         grid.Children.Remove(item);
                                     }
 
-                                    
+
                                 }
                             }
 
@@ -87,33 +131,13 @@ namespace Reknighted.Controller
             }
         }
 
-        private static List<Cell> _allCells = new List<Cell>();
-        private static Cell? _selectedCell = null;
-        private static List<Cell> _inventoryCells = new List<Cell>();
-        private static List<Cell> _equipmentCells = new List<Cell>();
-        private static List<Cell> _traderCells = new List<Cell>();
+        #endregion
 
-        public static List<Cell> InventoryCells { get { return _inventoryCells; } }
-        public static List<Cell> EquipmentCells { get { return _equipmentCells; } }
-        public static List<Cell> TraderCells { get { return _traderCells; } }
+        #region Прочее
 
-
+        // Главное окно игры
         private static GameWindow? _window = null;
-        private static ItemView? _item = null;
-        private static bool _isDragging = false;
-        private static System.Windows.Controls.Label? _infoLabel = null;
-
-
-        public static System.Windows.Controls.Label? damageLabel = null;
-        public static System.Windows.Controls.Label? protectionLabel = null;
-        public static System.Windows.Controls.Label? healthLabel = null;
-        public static System.Windows.Controls.Label? fortuneLabel = null;
-
-        public static double Scale = -1;
-
-        public static System.Windows.Controls.Label? InfoLabel { get { return _infoLabel; } set { _infoLabel = value; } }
-
-        public static GameWindow Window
+        public static GameWindow? Window
         {
             get { return _window; }
             set
@@ -124,20 +148,90 @@ namespace Reknighted.Controller
             }
         }
 
-        public static ItemView? Item
+        // Коэффициент масштабирования
+        public static double Scale = -1;
+        public static void CalculateCoeff()
         {
-            get { return _item; }
-            set { _item = value; }
+            if (Scale == -1)
+            {
+                if (_allCells[0] != null && _allCells[1] != null)
+                {
+                    Point point_0 = _allCells[0].PointToScreen(new Point(0, 0));
+                    Point point_1 = _allCells[1].PointToScreen(new Point(0, 0));
+                    double d = Math.Abs(point_0.X - point_1.X);
+
+                    Scale = d / 45;
+                }
+            }
         }
 
-        public static List<Cell> AllCells
+        #endregion
+
+        #endregion
+
+        #region Методы
+
+        #region Обновление информации на экране
+
+        private static void Reset()
         {
-            get { return _allCells; }
+            foreach (var item in AllItemsViews)
+            {
+                Grid? grid = (Grid?)item.Parent;
+                if (grid != null)
+                {
+                    grid.Children.Remove(item);
+                }
+            }
+            AllItemsViews.Clear();
+
+            foreach (var cell in AllCells)
+            {
+                cell.ContentItem = null;
+            }
+
+        }
+        public static void Update()
+        {
+            if (Window == null)
+            {
+                return;
+            }
+
+            if (PlayerView != null)
+            {
+                PlayerView.UpdateStats();
+            }
+
+            try
+            {
+                Reset();
+
+                Window.playerView.UpdateContent();
+                if (CurrentTrader != null)
+                {
+                    Window.traderView.UpdateContent();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+        public static void Error(string message)
+        {
+            MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public static Point? delta = null;
+        #endregion
 
-        public static List<ItemView> Items { get { return _items; } }
+        #region Обработчики движения мыши
+
+        // Положения курсора мыши
+        public static Point? MousePreviousPosition = null;
+        public static Point? MouseCurrentPosition = null;
 
         public static void MouseMoveHandler(object sender, MouseEventArgs e)
         {
@@ -174,21 +268,15 @@ namespace Reknighted.Controller
                     {
                         _selectedCell = cells[cells.Count - 1];
                         _selectedCell.IsPointed = true;
-
-                        if (InfoLabel != null)
-                        {
-                            Point cellPos = _selectedCell.PointToScreen(new Point(0, 0));
-                            //InfoLabel.Content += (cellPos.X).ToString() + ", " + (cellPos.Y).ToString();
-                        }
                     }
 
                     // Центрирование предмета при перетаскивании
-                    if (Item != null && Item.Model.IsPossessed)
+                    if (SelectedItem != null && SelectedItem.Model.IsPossessed)
                     {
                         // Да это костыль но по другому я не знаю как
-                        Item.Position = new Point(
-                            MouseCurrentPosition.Value.X - Item.ActualWidth / 1.7,
-                            MouseCurrentPosition.Value.Y - Item.ActualHeight * 1.15
+                        SelectedItem.Position = new Point(
+                            MouseCurrentPosition.Value.X - SelectedItem.ActualWidth / 1.7,
+                            MouseCurrentPosition.Value.Y - SelectedItem.ActualHeight * 1.15
                         );
 
                         /*
@@ -210,97 +298,28 @@ namespace Reknighted.Controller
             {
                 if (gameWindow.gameTabs.SelectedIndex == 0)
                 {
-                    if (Item != null)
+                    if (SelectedItem != null)
                     {
                         if (_selectedCell != null)
                         {
-                            Item.Model.MoveToCell(_selectedCell);
+                            SelectedItem.Model.MoveToCell(_selectedCell);
                         }
 
-                        ResetAndUpdate();
+                        Update();
 
-                        Item.Opacity = 1;
-                        Item = null;
+                        SelectedItem.Opacity = 1;
+                        SelectedItem = null;
                     }
                 }
             }
 
         }
 
-        public static void ResetAndUpdate()
-        {
-            if (PlayerModel != null)
-            {
-                PlayerModel.UpdateStats();
-            }
+        #endregion
 
-            if (_window == null)
-            {
-                return;
-            }
-
-            try
-            {
-                foreach (var item in Items)
-                {   
-                    
-                    Grid? grid = (Grid?)item.Parent;
-                    if (grid != null)
-                    {
-                        grid.Children.Remove(item);
-                    }
-
-                }
-
-                foreach (var cell in AllCells)
-                {
-                    cell.ContentItem = null;
-                }
-
-                Items.Clear();
-
-                GameWindow gameWindow = _window;
-                gameWindow.playerView.UpdateContent();
-                if (CurrentTrader != null)
-                {
-                    gameWindow.traderView.UpdateContent();
-                }
-
-
-                InfoLabel.Content = "Деньги: " + gameWindow.playerView.PlayerModel.Balance;
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-        }
-
-        public static void CalculateCoeff()
-        {
-            if (Scale == -1)
-            {
-                if (_allCells[0] != null && _allCells[1] != null)
-                {
-                    Point point_0 = _allCells[0].PointToScreen(new Point(0, 0));
-                    Point point_1 = _allCells[1].PointToScreen(new Point(0, 0));
-                    double d = Math.Abs(point_0.X - point_1.X);
-
-                    Scale = d / 45;
-
-                    delta = new Point(0, 0);
-                }
-            }
-        }
-
-        public static void Error(string message)
-        {
-            MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
+        #region Игровой процесс
         public static IFightable? Fight(IFightable? firstFighter, IFightable? secondFighter, int bet, bool noChange = true)
-        {   
+        {
             if (firstFighter == null || secondFighter == null)
             {
                 throw new NullReferenceException();
@@ -314,7 +333,7 @@ namespace Reknighted.Controller
                 return null;
             }
 
-            int margin = (int)(100 * Fighting.Fight(new double[] {firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
+            int margin = (int)(100 * Fighting.Fight(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
             int result = random.Next(0, 100);
 
             //MessageBox.Show(result + ", " + margin);
@@ -340,6 +359,9 @@ namespace Reknighted.Controller
 
             return winner;
         }
-    }
 
+        #endregion
+
+        #endregion
+    }
 }

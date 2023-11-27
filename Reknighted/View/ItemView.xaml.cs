@@ -34,7 +34,7 @@ namespace Reknighted
         public ItemView(ItemModel itemInfo)
         {
             InitializeComponent();
-            Game.Items.Add(this);
+            Game.AllItemsViews.Add(this);
 
 
             this._model = itemInfo;
@@ -47,7 +47,7 @@ namespace Reknighted
         {   
             if (e.RightButton == MouseButtonState.Pressed)
             {
-                if (Game.CurrentTrader != null && Game.PlayerView?.PlayerModel != null)
+                if (Game.CurrentTrader != null && Game.PlayerView?.Model != null)
                 {
                     ITradeable? customer = Model.IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
                     if (customer != null)
@@ -66,7 +66,7 @@ namespace Reknighted
             {
                 if (this.Model.IsPossessed)
                 {
-                    Game.Item = this;
+                    Game.SelectedItem = this;
                 }
             }
         }

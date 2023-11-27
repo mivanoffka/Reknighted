@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Reknighted.Controller"
         xmlns:Reknighted="clr-namespace:Reknighted" x:Class="Reknighted.Controller.EnemyWindow"
         mc:Ignorable="d"
-        Title="Противник" Height="270" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Противник" Height="270" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
     <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="235">
         <Rectangle HorizontalAlignment="Center" Height="215" Stroke="#FFA4A4A4" VerticalAlignment="Center" Width="200" Fill="White"/>
         <GroupBox x:Name="enemyBox" Header="GroupBox" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Foreground="Black" BorderBrush="Gray" Margin="0,13,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="141" Width="180">

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Reknighted
 {
@@ -21,7 +22,7 @@ namespace Reknighted
     {
         PlayerModel? _playerModel;
 
-        public PlayerModel? PlayerModel
+        public PlayerModel? Model
         {
             set
             {
@@ -36,17 +37,25 @@ namespace Reknighted
         //List<Cell> _inventoryCells = new List<Cell>();
         List<Cell> _equipmentCells = new List<Cell>();
 
+        public void UpdateStats()
+        {
+            try
+            {
+                damageLabel.Content = Model.Damage.ToString();
+                armorLabel.Content = Model.Protection.ToString();
+                healthLabel.Content = Model.CurrentHealth.ToString() + " (" + Math.Round(Model.HealthPercentage * 100) + "%)";
+                balanceLabel.Content = Model.Balance.ToString();
+            }
+            catch
+            {
 
+            }
+        }
 
         public PlayerView()
         {   
             InitializeComponent();
             CreateAndPlace();
-
-            Game.healthLabel = this.healthLabel;
-            Game.damageLabel = this.damageLabel;
-            Game.protectionLabel = this.armorLabel;
-            Game.fortuneLabel = this.fortuneLabel;
 
         }
 

@@ -9,10 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\appicon.bmp" />
+    <None Remove="Images\damage_icon.png" />
+    <None Remove="Images\health_icon.png" />
     <None Remove="question_mark.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\appicon.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\damage_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\health_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="question_mark.png" />
   </ItemGroup>
 

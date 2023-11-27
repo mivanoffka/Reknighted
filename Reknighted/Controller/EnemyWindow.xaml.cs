@@ -91,8 +91,8 @@ namespace Reknighted.Controller
             MessageBox.Show(message);
             this.Close();
 
-            player.UpdateStats();
-            Game.ResetAndUpdate();
+            Game.PlayerView.UpdateStats();
+            Game.Update();
         }
     }
 }

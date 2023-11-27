@@ -91,14 +91,14 @@ namespace Reknighted.Model
 
                 int oldIndex = Game.InventoryCells.IndexOf(oldCell);
 
-                Game.PlayerView!.PlayerModel![oldIndex] = bufferItem;
+                Game.PlayerView!.Model![oldIndex] = bufferItem;
                 if (bufferItem != null)
                 {
                     bufferItem.Cell = oldCell;
                 }
 
                 int newIndex = Game.InventoryCells.IndexOf(newCell);
-                Game.PlayerView!.PlayerModel![newIndex] = this;
+                Game.PlayerView!.Model![newIndex] = this;
                 this.Cell = newCell;
             }
             catch (Exception ex)

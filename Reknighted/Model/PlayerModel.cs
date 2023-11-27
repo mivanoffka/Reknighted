@@ -227,7 +227,7 @@ namespace Reknighted.Model
         {
             int index = Items.IndexOf(null);
             Items[index] = newItem;
-            Game.ResetAndUpdate();
+            Game.Update();
         }
 
         public void RemoveItem(ItemModel? item)
@@ -239,44 +239,7 @@ namespace Reknighted.Model
                     Items[i] = null;
                 }
             }
-            Game.ResetAndUpdate();
-        }
-
-        public void UpdateStats()
-        {
-            try
-            {   
-                if (Game.InfoLabel == null)
-                {
-                    Game.InfoLabel.Content = Balance.ToString();
-                }
-
-                if (Game.damageLabel != null)
-                {
-                    Game.damageLabel.Content = Damage.ToString();
-                }
-
-                if (Game.protectionLabel != null)
-                {
-                    Game.protectionLabel.Content = Protection.ToString();
-                }
-
-                if (Game.healthLabel != null)
-                {
-                    Game.healthLabel.Content = CurrentHealth.ToString() + " (" + Math.Round(HealthPercentage * 100) + "%)";
-                }
-
-                if (Game.fortuneLabel != null)
-                {
-                    Game.fortuneLabel.Content = Fortune.ToString();
-                }
-
-            }
-            catch
-            {
-
-            }
-
+            Game.Update();
         }
 
         public void SellTo(ITradeable trader, ItemModel item)
@@ -345,7 +308,7 @@ namespace Reknighted.Model
             else if (index >= max && index < max + 3)
             {
                 EquippedItems[index - max] = item;
-                UpdateStats();
+                Game.PlayerView.UpdateStats();
             }
             else
             {

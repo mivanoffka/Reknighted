@@ -15,14 +15,18 @@
             </GroupBox>
             <GroupBox x:Name="equipmentGroupBox_Copy" Header="Параметры" Margin="177,172,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="68" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256">
                 <Grid>
-                    <Label Content="Здоровье:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-5,0,0"/>
-                    <Label Content="Броня" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,8,0,0"/>
-                    <Label Content="Урон" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,21,0,0"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="199*"/>
+                        <ColumnDefinition Width="45*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Здоровье" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-5,0,0"/>
                     <Label x:Name="healthLabel" Content="0" HorizontalAlignment="Left" Margin="65,-5,0,0" VerticalAlignment="Top" Foreground="#FF25A939"/>
-                    <Label x:Name="armorLabel" Content="0" HorizontalAlignment="Left" Margin="65,8,0,0" VerticalAlignment="Top" Foreground="#FF3A8ECE"/>
-                    <Label x:Name="damageLabel" Content="0" HorizontalAlignment="Left" Margin="65,21,0,0" VerticalAlignment="Top" Foreground="#FFCE3A3A"/>
-                    <Label Content="Удача" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="153,-5,0,0"/>
-                    <Label x:Name="fortuneLabel" Content="0" HorizontalAlignment="Left" Margin="201,-5,0,0" VerticalAlignment="Top" Foreground="#FF893ACE"/>
+                    <Label Content="Броня" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="143,-5,0,0"/>
+                    <Label Content="Урон" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="143,0,0,0"/>
+                    <Label x:Name="armorLabel" Content="0" HorizontalAlignment="Left" Margin="8,-5,0,0" VerticalAlignment="Top" Foreground="#FF3A8ECE" Grid.Column="1"/>
+                    <Label x:Name="damageLabel" Content="0" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Center" Foreground="#FFCE3A3A" Grid.Column="1"/>
+                    <Label Content="Средства" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label x:Name="balanceLabel" Content="0" HorizontalAlignment="Left" Margin="65,0,0,0" VerticalAlignment="Center" Foreground="#FF6A27E6"/>
                 </Grid>
             </GroupBox>
         </Grid>

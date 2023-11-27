@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reknighted"
         mc:Ignorable="d"
-        Title="Выбор" Height="285" Width="670" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Выбор" Height="285" Width="670" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
     <Grid>
         <Border BorderThickness="1" HorizontalAlignment="Left" Width="140" Background="#FFD45858" CornerRadius="3,3,3,3" Margin="23,20,0,0" OpacityMask="Black" VerticalAlignment="Top" Height="210"/>
 

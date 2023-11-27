@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Reknighted"
         xmlns:View="clr-namespace:Reknighted.View" x:Class="Reknighted.GameWindow"
         mc:Ignorable="d"
-        Title="ReKnighted by Drystal Systems Inc." Height="368" Width="515" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="ReKnighted by Drystal Systems Inc." Height="368" Width="515" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
     <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" Width="500" Height="330" VerticalAlignment="Top">
         <TabControl x:Name="gameTabs" Margin="10,10,15,11" SelectionChanged="TabControl_SelectionChanged">
             <TabControl.FocusVisualStyle>
@@ -16,7 +16,6 @@
                 <Grid x:Name="knightGrid" Background="White" OpacityMask="Black" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <local:PlayerView x:Name="playerView" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <View:TraderTemplate x:Name="traderView" HorizontalAlignment="Left" Margin="0,279,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="balanceLabel" Content="Деньги: 1000 тугр." HorizontalAlignment="Left" Margin="359,-26,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="locationTabButton" Header="Локация" Background="#FFCC7676">
@@ -24,6 +23,7 @@
                     <Button Content="Торговец Петя" HorizontalAlignment="Left" Margin="73,79,0,0" VerticalAlignment="Top" Height="24" Click="Button_Click" Width="143"/>
                     <Button Content="Арена" HorizontalAlignment="Left" Margin="234,190,0,0" VerticalAlignment="Top" Width="150" Height="24" Click="Button_Click_1"/>
                     <Button Content="Бронник Александр" HorizontalAlignment="Left" Margin="42,162,0,0" VerticalAlignment="Top" Height="24" Click="Button_Click_2" Width="143"/>
+                    <Image Margin="286,68,137,167" Source="/icon_134.png" Stretch="Fill"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="mapTabButton" HorizontalAlignment="Center" Height="20" Header="Карта" VerticalAlignment="Center" Width="54" Background="#FFCC7676">

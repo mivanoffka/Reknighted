@@ -34,8 +34,6 @@ namespace Reknighted
         public GameWindow()
         {
             InitializeComponent();
-            Game.InfoLabel = this.balanceLabel;
-
 
             this.MouseMove += Game.MouseMoveHandler;
             this.MouseUp += Game.MouseUpHandler;
@@ -48,14 +46,14 @@ namespace Reknighted
         public void LoadPlayer()
         {
             var player = new PlayerModel();
-            this.playerView.PlayerModel = player;
+            this.playerView.Model = player;
             Game.PlayerModel = player;
 
-            this.playerView.PlayerModel.Items[0] = new FoodModel(Collections.Items.Apple);
-            this.playerView.PlayerModel.Items[1] = new WeaponModel(Collections.Items.Sword);
-            this.playerView.PlayerModel.Items[2] = new ArmorModel(Collections.Items.GoldenHelmet);
+            this.playerView.Model.Items[0] = new FoodModel(Collections.Items.Apple);
+            this.playerView.Model.Items[1] = new WeaponModel(Collections.Items.Sword);
+            this.playerView.Model.Items[2] = new ArmorModel(Collections.Items.GoldenHelmet);
             //this.playerView.UpdateContent();
-            Game.ResetAndUpdate();
+            Game.Update();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
