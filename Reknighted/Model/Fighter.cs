@@ -9,140 +9,76 @@ namespace Reknighted.Model
 {
     public class Fighter : IFightable
     {
-        private string _name = "";
-        public string Name { get { return _name; } }
+        public string Name { get; init; } = string.Empty;
 
-        private ItemModel? _reward = null;
-        public ItemModel? Reward { get { return _reward; } }
+        public ItemModel? Reward { get; init; }
 
-        private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
+        private ItemModel?[] _equippedItems = new ItemModel?[3];
         private int _maxHealth = 50;
         private int _currentHealth = 40;
         private int _fortune = 10;
         private int _balance = 1000;
 
-        private int[] _defaultStats = new int[3] { 100, 0, 5 };
-        private List<Effects> _effects = new List<Effects> { };
+        private readonly int[] _defaultStats = new int[3] { 100, 0, 5 };
+        private readonly List<Effects> _effects = new();
 
         public WeaponModel? Weapon
         {
-            get
-            {
-                return (WeaponModel?)_equippedItems[0];
-            }
-
-            set
-            {
-                _equippedItems[0] = value;
-            }
+            get => (WeaponModel?)_equippedItems[0];
+            set => _equippedItems[0] = value;
         }
+
         public ArmorModel? Armor
         {
-            get
-            {
-                return (ArmorModel?)_equippedItems[1];
-            }
-
-            set
-            {
-                _equippedItems[1] = value;
-            }
+            get => (ArmorModel?)_equippedItems[1];
+            set => _equippedItems[1] = value;
         }
+
         public ArtefactModel? Artefact
         {
-            get
-            {
-                return (ArtefactModel?)_equippedItems[2];
-            }
-
-            set
-            {
-                _equippedItems[2] = value;
-            }
+            get => (ArtefactModel?)_equippedItems[2];
+            set => _equippedItems[2] = value;
         }
+
         public ItemModel?[] EquippedItems
         {
-            get
-            {
-                return _equippedItems;
-            }
-            set
-            {
-                _equippedItems = value;
-            }
+            get => _equippedItems; 
+            set => _equippedItems = value;
         }
-
-
 
         public int MaxHealth
         {
-            get
-            {
-                return _maxHealth;
-            }
-
-            set
-            {
-                _maxHealth = value;
-            }
+            get => _maxHealth;
+            set => _maxHealth = value;
         }
 
         public int CurrentHealth
         {
-            get
-            {
-                return _currentHealth;
-            }
-
-            set
-            {
-                if (value < MaxHealth)
-                {
-                    _currentHealth = value;
-                }
-                else
-                {
-                    _currentHealth = MaxHealth;
-                }
-            }
+            get => _currentHealth;
+            set => _currentHealth = value < MaxHealth ? value : MaxHealth;
         }
 
         public double HealthPercentage
         {
-            get
-            {
-                return (double)_currentHealth / (double)_maxHealth;
-            }
-
-            set
-            {
-                _currentHealth = (int)(value * _maxHealth);
-            }
-
+            get => (double)_currentHealth / _maxHealth;
+            set => _currentHealth = (int)(value * _maxHealth);
         }
 
-        public int Damage
-        {
-            get
-            {
-                int value = 5;
-                if (Weapon != null)
-                {
-                    value += ((WeaponModel)Weapon).Damage;
-                }
-                return value;
-            }
-        }
-        public int Protection
-        {
-            get
-            {
+        public int Damage => Weapon is not null ? 5 + Weapon.Damage : 5;
+
+        public int Protection => Artefact is { Buff: Buff.Protection } 
+            ? 5 + (Armor is not null 
+                ? (int)(Armor.Protection * Artefact.Multiplier) 
+                : 0) 
+            : 5;
+
+        /*{
                 int value = 5;
 
                 double mp = 1;
-                if (Artefact != null && ((ArtefactModel)Artefact)?.Buff == Buff.Protection)
+                if (Artefact != null && Artefact?.Buff == Buff.Protection)
                 {
-                    mp = ((ArtefactModel)Artefact).Multiplier;
+                    mp = Artefact.Multiplier;
                 }
 
                 if (Armor != null)
@@ -150,8 +86,7 @@ namespace Reknighted.Model
                     value += (int)(((ArmorModel)Armor).Protection * mp);
                 }
                 return value;
-            }
-        }
+            }*/
 
         public int Fortune
         {
@@ -186,9 +121,9 @@ namespace Reknighted.Model
 
         public Fighter(string name, ItemModel[] equipment, ItemModel? reward = null)
         {
-            this._name = name;
+            Name = name;
 
-            if (reward != null) this._reward = reward;
+            if (reward != null) Reward = reward;
 
             if (equipment != null)
             {   

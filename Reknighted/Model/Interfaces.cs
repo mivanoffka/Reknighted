@@ -4,9 +4,9 @@ namespace Reknighted.Model
 {
     public interface IFightable
     {
-        public WeaponModel Weapon { get; set; }
-        public ArmorModel Armor { get; set; }
-        public ArtefactModel Artefact { get; set; }
+        public WeaponModel? Weapon { get; set; }
+        public ArmorModel? Armor { get; set; }
+        public ArtefactModel? Artefact { get; set; }
 
         public ItemModel? Reward { get; }
 
@@ -34,17 +34,11 @@ namespace Reknighted.Model
         public void AddItem(ItemModel item);
 
         public void RemoveItem(ItemModel item);
-        public ItemModel? this[int index] {
-            get;
-            set;
-        }
-
-
+        public ItemModel? this[int index] { get; set; }
     }
 
     public interface IPlayable
     {
         public Location Location { get; set; }
-
     }
 }
