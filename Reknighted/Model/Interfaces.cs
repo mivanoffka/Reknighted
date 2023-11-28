@@ -39,6 +39,6 @@ namespace Reknighted.Model
 
     public interface IPlayable
     {
-        public Location Location { get; set; }
+        public City Location { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Reknighted.Collections
         {
         }
 
-        private static string PathTo(string name)
+        public static string PathTo(string name)
         {
             return Directory.GetFiles("Images", $"{name}.png", SearchOption.AllDirectories)[0];
         } 

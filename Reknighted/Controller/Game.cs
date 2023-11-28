@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Reknighted.Model;
+using Reknighted.View;
 
 namespace Reknighted.Controller
 {
@@ -145,8 +146,12 @@ namespace Reknighted.Controller
                 _window = value;
                 var gw = _window as GameWindow;
                 PlayerView = gw!.playerView;
+                LocationView = gw!.location;
+            
             }
         }
+        // Карта локации
+        public static LocationView? LocationView { get; set; }
 
         // Коэффициент масштабирования
         public static double Scale = -1;
@@ -366,6 +371,20 @@ namespace Reknighted.Controller
 
             return winner;
         }
+
+        public static void FightWith(Fighter fighter)
+        {   
+            if (Window == null)
+            {
+                return;
+            }
+
+            Window.gameTabs.SelectedIndex = 0;
+            EnemyWindow enemyWindow = new EnemyWindow(fighter);
+            enemyWindow.ShowDialog();
+        }
+
+
 
         #endregion
 

@@ -143,6 +143,12 @@
     <None Update="Images\helmet_but_cooler.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\Icons\hearts.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Icons\trefles.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\iron_boots.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

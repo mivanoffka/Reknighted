@@ -23,6 +23,7 @@ namespace Reknighted
             InitializeComponent();
             Items.Initialize();
             Traders.Initialize();
+            Locations.Initialize();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)

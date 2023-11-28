@@ -31,6 +31,8 @@ namespace Reknighted
         }
 
 
+        public string LocationInfo { get => locationInfoLabel.Content.ToString(); set => locationInfoLabel.Content = value; }
+
         public GameWindow()
         {
             InitializeComponent();
@@ -41,6 +43,9 @@ namespace Reknighted
             defaultWindowHeight = this.Height;
             defaultGridHeight = this.grid.Height;
             defaultTabHeight = this.gameTabs.Height;
+
+            location.MapIcons = Collections.Locations.HeartsLocation;
+            globalMap.MapIcons = Collections.Locations.GlobalMap;
         }
 
         public void LoadPlayer()
@@ -112,9 +117,7 @@ namespace Reknighted
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-                gameTabs.SelectedIndex = 0;
-                EnemyWindow enemyWindow = new EnemyWindow(Collections.Fighters.Simon);
-                enemyWindow.ShowDialog();
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

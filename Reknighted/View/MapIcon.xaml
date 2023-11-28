@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Reknighted.View.MapIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Reknighted"
+             mc:Ignorable="d" Width="46" Height="46" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="46" Margin="-8,-8,0,0" MouseLeftButtonUp="Action" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave">
+            <Image.OpacityMask>
+                <ImageBrush Stretch="Uniform" TileMode="None" ImageSource="/question_mark.png"/>
+            </Image.OpacityMask>
+        </Image>
+        <Ellipse x:Name="indicator" Height="9" VerticalAlignment="Top" Fill="#FFD07B7B" Stroke="#FF9C3333" HorizontalAlignment="Left" Width="9" Margin="20,20,0,0" Visibility="Hidden"/>
+    </Grid>
+</UserControl>

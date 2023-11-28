@@ -1,5 +1,6 @@
 ﻿using Reknighted.Controller;
 using Reknighted.Model;
+using Reknighted.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,9 +92,6 @@ namespace Reknighted
                 cell.Filter = types[i];
                 cell.Position = new Point(startX + i * cell.Width - 0.25 * cell.Width, startY);
                 
-
-
-
                 Game.InventoryCells.Add(cell);
                 Game.EquipmentCells.Add(cell);
                 equipmentGrid.Children.Add(cell);

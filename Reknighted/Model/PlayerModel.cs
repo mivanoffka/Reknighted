@@ -13,9 +13,9 @@ namespace Reknighted.Model
 
         #region IPlayable
 
-        private Location _location = Location.Masquarade;
+        private City _location = City.Masquarade;
 
-        public Location Location
+        public City Location
         {
             get
             {
