@@ -12,6 +12,8 @@ namespace Reknighted.Model
         private string _name = "";
         public string Name { get { return _name; } }
 
+        private ItemModel? _reward = null;
+        public ItemModel? Reward { get { return _reward; } }
 
         private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
         private int _maxHealth = 50;
@@ -182,9 +184,11 @@ namespace Reknighted.Model
             }
         }
 
-        public Fighter(string name, ItemModel[] equipment = null)
+        public Fighter(string name, ItemModel[] equipment, ItemModel? reward = null)
         {
             this._name = name;
+
+            if (reward != null) this._reward = reward;
 
             if (equipment != null)
             {   

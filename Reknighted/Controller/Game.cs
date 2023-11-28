@@ -341,6 +341,13 @@ namespace Reknighted.Controller
             IFightable? winner = result <= margin ? firstFighter : secondFighter;
             IFightable? looser = result <= margin ? secondFighter : firstFighter;
 
+            if (looser?.Reward != null && winner.GetType() == typeof(PlayerModel))
+            {
+                var reward = looser.Reward.Copy();
+                PlayerModel player = (PlayerModel)winner;
+                player.AddItem(reward);
+            }
+
             if (winner != null && (winner != secondFighter && noChange))
             {
                 winner.CurrentHealth -= looser.Damage / 2;

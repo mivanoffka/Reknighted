@@ -74,6 +74,8 @@ namespace Reknighted.Model
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
         private List<Effects> _effects = new List<Effects> { };
 
+        public ItemModel? Reward { get => null; }
+
         public WeaponModel? Weapon
         {
             get

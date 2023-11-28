@@ -8,6 +8,8 @@ namespace Reknighted.Model
         public ArmorModel Armor { get; set; }
         public ArtefactModel Artefact { get; set; }
 
+        public ItemModel? Reward { get; }
+
         public int MaxHealth { get; set; }
         public int CurrentHealth { get; set; }
         public double HealthPercentage { get; set; }
