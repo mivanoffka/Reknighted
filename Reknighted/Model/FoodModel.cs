@@ -34,12 +34,12 @@ namespace Reknighted.Model
 
         }
 
-        public override string Information()
+        public override string ToString()
         {
             string result = string.Empty;
-            result += "[ " + Name + " ] ";
+            //result += "[ " + Name + " ] ";
 
-            string editedDescription = "\n\n";
+            string editedDescription = "";
 
             int maxCounter = 30;
             int counter = 0;
@@ -64,6 +64,15 @@ namespace Reknighted.Model
             result += "\nЦена: " + _price;
 
             return result;
+        }
+
+        public override string Help()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append("Нажмите правую кнопку мыши, чтобы [СЪЕСТЬ]");
+
+            return result.ToString();
         }
 
         public override void Use()

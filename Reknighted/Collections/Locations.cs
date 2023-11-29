@@ -12,14 +12,14 @@ namespace Reknighted.Collections
     public static class Locations
     {
         public static List<MapIcon> HeartsLocation = new List<MapIcon>();
-        public static List<MapIcon> ClubsLocation = new List<MapIcon>();
+        public static List<MapIcon> SpadesLocation = new List<MapIcon>();
         public static List<MapIcon> DiamondsLocation = new List<MapIcon>();
         public static List<MapIcon> TreflesLocation = new List<MapIcon>();
         public static List<MapIcon> HarlequinLocation = new List<MapIcon>();
 
         public static List<MapIcon> GlobalMap = new List<MapIcon>();
 
-        public static Dictionary<string, List<MapIcon>> CityMaps = new Dictionary<string, List<MapIcon>> {{ "Червы", HeartsLocation}, { "Трефы", TreflesLocation }, { "Пики", ClubsLocation } , { "Бубны", DiamondsLocation }, { "Арлекин", HarlequinLocation } };
+        public static Dictionary<string, List<MapIcon>> CityMaps = new Dictionary<string, List<MapIcon>> {{ "Червы", HeartsLocation}, { "Трефы", TreflesLocation }, { "Пики", SpadesLocation } , { "Бубны", DiamondsLocation }, { "Арлекин", HarlequinLocation } };
 
 
         public static void Initialize()

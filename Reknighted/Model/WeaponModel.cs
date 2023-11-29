@@ -35,7 +35,7 @@ namespace Reknighted.Model
 
         }
 
-        public override string Information()
+        public override string ToString()
         {
             string result = string.Empty;
             result += "[ " + Name + " ] ";
@@ -66,6 +66,11 @@ namespace Reknighted.Model
             result += "\nЦена: " + _price;
 
             return result;
+        }
+
+        public override string Help()
+        {
+            return "Можно перенести в слот [ОРУЖИЕ]";
         }
     }
 }

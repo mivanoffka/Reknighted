@@ -42,10 +42,10 @@ namespace Reknighted
         {
             try
             {
-                damageLabel.Content = Model.Damage.ToString();
-                armorLabel.Content = Model.Protection.ToString();
-                healthLabel.Content = Model.CurrentHealth.ToString() + " (" + Math.Round(Model.HealthPercentage * 100) + "%)";
-                balanceLabel.Content = Model.Balance.ToString();
+                damageLabel.Text = Model.Damage.ToString();
+                armorLabel.Text = Model.Protection.ToString();
+                healthLabel.Text = Math.Round(Model.HealthPercentage * 100) + "%";
+                balanceLabel.Text = Model.Balance.ToString();
             }
             catch
             {
@@ -60,10 +60,48 @@ namespace Reknighted
 
         }
 
+        public void ShowInfo(ItemModel itemModel)
+        {
+            InfoLabel.Text = itemModel.Description;
+            InfoBox.Header = itemModel.Name;
+
+            healthLabel.Text = "—";
+            damageLabel.Text = "—";
+            armorLabel.Text = "—";
+            balanceLabel.Text = "—";
+
+            if (itemModel.GetType() == typeof(FoodModel))
+            {
+                healthLabel.Text = "+" + ((FoodModel)itemModel).Satiety.ToString();
+            }
+
+            if (itemModel.GetType() == typeof(WeaponModel))
+            {
+                damageLabel.Text = "+" + ((WeaponModel)itemModel).Damage.ToString();
+            }
+
+            if (itemModel.GetType() == typeof(ArmorModel))
+            {
+                armorLabel.Text = "+" + ((ArmorModel)itemModel).Protection.ToString();
+            }
+
+            balanceLabel.Text = itemModel.Price.ToString();
+        }
+
+        public void HideInfo()
+        {
+            InfoBox.Header = string.Empty;
+            InfoLabel.Text = string.Empty;
+
+            UpdateStats();
+        }
+
 
         private void CreateAndPlace()
         {
             int startX = 15; int startY = 15;
+
+
 
             for (int i = 0; i < 3; i++)
             {
@@ -146,6 +184,21 @@ namespace Reknighted
                     }
                 }
             } 
+        }
+
+        private void healthLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            healthLabel.Text = Model.CurrentHealth.ToString();
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            healthLabel.Text = Math.Round(Model.HealthPercentage * 100) + "%";
+        }
+
+        private void healthLabel_MouseLeave(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Reknighted.Model;
 using Reknighted.View;
 
@@ -229,6 +231,26 @@ namespace Reknighted.Controller
         {
             MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+        public static void Message(string message, MessageType messageType = MessageType.Information)
+        {
+            if (Window == null)
+            {
+                return;
+            }
+
+            Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Gray);
+
+            if (messageType == MessageType.Win)
+            {
+                Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            if (messageType == MessageType.Loose)
+            {
+                Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Red);
+            }
+
+            Window.locationInfoLabel.Content = message;
+        }
 
         #endregion
 
@@ -382,8 +404,21 @@ namespace Reknighted.Controller
             Window.gameTabs.SelectedIndex = 0;
             EnemyWindow enemyWindow = new EnemyWindow(fighter);
             enemyWindow.ShowDialog();
-        }
 
+            if (!enemyWindow.Success)
+            {
+                return;
+            }
+
+            IFightable? winner = Game.Fight(PlayerModel, fighter, enemyWindow.Bet);
+            string message = winner == PlayerModel ? "Победа!" : "Поражение...";
+            MessageType messageType = winner == PlayerModel ? MessageType.Win : MessageType.Loose;
+
+            Message(message, messageType);
+
+            Game.PlayerView.UpdateStats();
+            Game.Update();
+        }
 
 
         #endregion

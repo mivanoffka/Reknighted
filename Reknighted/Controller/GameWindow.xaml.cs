@@ -44,6 +44,7 @@ namespace Reknighted
             defaultGridHeight = this.grid.Height;
             defaultTabHeight = this.gameTabs.Height;
 
+
             location.MapIcons = Collections.Locations.HeartsLocation;
             globalMap.MapIcons = Collections.Locations.GlobalMap;
         }

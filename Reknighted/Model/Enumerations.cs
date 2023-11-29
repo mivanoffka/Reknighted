@@ -13,6 +13,11 @@ namespace Reknighted.Model
         Masquarade, Hearts, Clubs, Trefles, Diamonds
     }
     
+    public enum MessageType
+    {
+        Information, Win, Loose, Error
+    }
+
     public enum Effects
     {
 

@@ -23,6 +23,9 @@ namespace Reknighted.Controller
         Fighter _enemy;
         public bool success = false;
 
+        public int Bet { get => (int)betSlider.Value;  }
+        public bool Success { get; set;  } = false;
+
         public EnemyWindow(Fighter enemy)
         {
             InitializeComponent();
@@ -81,18 +84,13 @@ namespace Reknighted.Controller
             if (player.Balance < bet)
             {
                 //errorLabel.Content = "Подлечитесь! Нельзя вступать в схватку в таком состоянии здоровья..."; 
-                errorLabel.Content = "А денежек-то не хватит..."; 
+                errorLabel.Content = "А денежек-то не хватит...";
+                Success = false;
                 return;
             }
 
-            IFightable? winner = Game.Fight(player, _enemy, bet);
-            string message = winner == player ? "Победа!" : "Поражение...";
-
-            MessageBox.Show(message);
+            Success = true;
             this.Close();
-
-            Game.PlayerView.UpdateStats();
-            Game.Update();
         }
     }
 }

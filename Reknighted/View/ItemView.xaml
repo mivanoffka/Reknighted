@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Reknighted"
              mc:Ignorable="d" Width="46" Height="46" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="UserControl_MouseDown" MouseUp="UserControl_MouseUp" MouseMove="UserControl_MouseMove">
     <Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="46" Margin="-8,-8,0,0">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="46" Margin="-8,-8,0,0" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave">
             <Image.OpacityMask>
                 <ImageBrush Stretch="Uniform" TileMode="None" ImageSource="/question_mark.png"/>
             </Image.OpacityMask>

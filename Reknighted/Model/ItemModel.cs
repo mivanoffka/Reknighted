@@ -25,7 +25,7 @@ namespace Reknighted.Model
         private Cell? _cell = null;
 
         public string Name { get { return _name; } }
-        public string Description { get { return _description;} }
+        public string Description { get { return "   " + _description;} }
         public int Price { get { return _price; } }
         public Image Image { get { return _image; } }
 
@@ -108,34 +108,9 @@ namespace Reknighted.Model
 
         }
 
-        public virtual string Information()
+        public virtual string Help()
         {
-            string result = string.Empty;
-            result += "[ " + Name + " ] ";
-
-            string editedDescription = "\n\n";
-
-            int maxCounter = 30;
-            int counter = 0;
-            for (int i = 0; i < Description.Length; i++)
-            {
-                if (counter >= maxCounter && Description[i] == ' ')
-                {
-                    editedDescription += "\n";
-                    counter = 0;
-                }
-                else
-                {
-                    editedDescription += Description[i];
-                }
-                counter++;
-
-            }
-
-            result += editedDescription;
-            result += "\n\nЦена: " + _price;
-
-            return result;
+            return string.Empty;
         }
 
         public virtual void Use()

@@ -43,7 +43,7 @@ namespace Reknighted.Model
             MoveToCell(Game.EquipmentCells[1]);
         }
 
-        public override string Information()
+        public override string ToString()
         {
             string result = string.Empty;
             result += "[ " + Name + " ] ";
@@ -74,6 +74,11 @@ namespace Reknighted.Model
 
 
             return result;
+        }
+
+        public override string Help()
+        {
+            return "Можно перенести в слот [БРОНЯ]";
         }
     }
 }

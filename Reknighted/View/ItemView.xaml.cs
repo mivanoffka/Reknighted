@@ -37,14 +37,19 @@ namespace Reknighted
             Game.AllItemsViews.Add(this);
 
 
+            ToolTipService.SetInitialShowDelay(this, 250);
+            ToolTipService.SetBetweenShowDelay(this, 250);
+
+
             this._model = itemInfo;
-            this.ToolTip = this._model.Information();
             this.image.Source = itemInfo.Image.Source;
         }
 
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
-        {   
+        {
+            Game.PlayerView.HideInfo();
+
             if (e.RightButton == MouseButtonState.Pressed)
             {
                 if (Game.CurrentTrader != null && Game.PlayerView?.Model != null)
@@ -118,6 +123,35 @@ namespace Reknighted
             }
 
 
+        }
+
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            string message = string.Empty;
+            if (Game.CurrentTrader != null)
+            {
+                string word = Model.IsPossessed ? "продать" : "купить";
+                message = "Можно " + word + " за " + Model.Price + " тугриков.";
+            }
+            else
+            {
+                message = Model.Help();
+            }
+
+            if (Game.PlayerView != null && Model != null)
+                if (e.LeftButton != MouseButtonState.Pressed)
+                    Game.PlayerView.ShowInfo(Model);
+
+            Game.Message(message);
+
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Game.Message(string.Empty);
+
+            if (Game.PlayerView != null && Model != null)
+                Game.PlayerView.HideInfo();
         }
     }
 }
