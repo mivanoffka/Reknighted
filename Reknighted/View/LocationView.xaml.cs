@@ -51,7 +51,7 @@ namespace Reknighted.View
                     }
 
                     foreach (var icon in mapIcons)
-                    {   
+                    {
                         grid.Children.Add(icon);
                     }
 

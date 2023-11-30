@@ -28,7 +28,6 @@ namespace Reknighted
         private Type? _filter = null;
 
 
-        
         public bool IsPossessed
         {
             get => _isPossessed;
@@ -63,6 +62,7 @@ namespace Reknighted
             { 
                 _position = value;
                 this.Margin = new Thickness(_position.X, _position.Y, 0, 0);
+                
             } 
         }
 
@@ -80,12 +80,17 @@ namespace Reknighted
                 {
 
                     this.Opacity = 1d;
+                    //this.border.BorderBrush = new SolidColorBrush(Color.FromRgb(202, 162, 72));
                     this.border.BorderThickness = new Thickness(1.5);
+
+
                 }
                 else
                 {
                     this.Opacity = 0.75d;
+                    //this.border.BorderBrush = new SolidColorBrush(Colors.Gray);
                     this.border.BorderThickness = new Thickness(1);
+
                 }
             }
         }
@@ -124,6 +129,7 @@ namespace Reknighted
             Game.AllCells.Add(this);
             Position = position;
             InitializeComponent();
+            this.BorderBrush = new SolidColorBrush(Colors.Gray);
         }
 
         public Cell(Point position, Type filter) : this(position) 

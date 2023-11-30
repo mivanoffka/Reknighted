@@ -14,10 +14,11 @@ namespace Reknighted.Model
         public int CurrentHealth { get; set; }
         public double HealthPercentage { get; set; }
 
+        public int BaseDamage { get; set; }
+        public int BaseProtection { get; set; }
+
         public int Damage { get; }
         public int Protection { get; }
-        public int Fortune { get; set; }
-
         public int Balance { get; set; }
 
 
@@ -37,8 +38,10 @@ namespace Reknighted.Model
         public ItemModel? this[int index] { get; set; }
     }
 
-    public interface IPlayable
+    public interface IMappable
     {
-        public City Location { get; set; }
+        public System.Windows.Point Point { get; set; }
+
+        public string PathToIcon { get; set; }
     }
 }

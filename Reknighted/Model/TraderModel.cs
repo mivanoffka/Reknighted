@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
-    public class TraderModel : ITradeable
+    public class TraderModel : ITradeable, IMappable
     {
         private TraderType type = TraderType.Universal;
         private string _name;
@@ -22,10 +23,13 @@ namespace Reknighted.Model
             get => type;
         }
 
+        public string PathToIcon { get; set; } = string.Empty;
+        public System.Windows.Point Point { get; set; } = new System.Windows.Point(0, 0);
+
         private List<ItemModel?> _items = new List<ItemModel?>();
         private int _balance = 2000;
 
-        public TraderModel(TraderType type, string name = "Торговец")
+        public TraderModel(TraderType type, string name, ItemModel?[] items, string pathToIcon, System.Windows.Point position)
         {
             this.type = type;
             _name = name;
@@ -34,19 +38,15 @@ namespace Reknighted.Model
             {
                 this.Items.Add(null);
             }
-        }
 
-        public TraderModel(TraderType type, List<ItemModel?> items, int balance)
-        {
-            this.type = type;
-            _items = items;
-            Balance = balance;
-
-            for (int i = 0; i < 27; i++)
+            for (int i = 0; i < items.Length; i++)
             {
-                this.Items.Add(null);
-
+                items[i].IsPossessed = false;
+                AddItem(items[i]);
             }
+
+            Point = position;
+            PathToIcon = pathToIcon;
         }
 
         public List<ItemModel?> Items

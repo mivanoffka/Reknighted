@@ -22,12 +22,11 @@ namespace Reknighted.Controller
             double s1 = (d1 + p1) * Math.Sqrt(h1);
             double s2 = (d2 + p2) * Math.Sqrt(h2);
 
-            double sq1 = Math.Pow(s1, 1.25);
-            double sq2 = Math.Pow(s2, 1.25);
+            double power = 2;
+            double sq1 = Math.Pow(s1, power);
+            double sq2 = Math.Pow(s2, power);
 
             double x1 = sq1 / (sq2 + sq1);
-
-
 
             return x1;
         }

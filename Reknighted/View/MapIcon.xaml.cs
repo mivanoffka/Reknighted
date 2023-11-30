@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Reknighted.View
 {
@@ -28,7 +29,18 @@ namespace Reknighted.View
         private object _link;
 
         public string Name { get; set; } = String.Empty;
-        public string Description { get; set; } = String.Empty;
+        public string Description
+        {
+            get
+            {
+                if (Link.GetType() == typeof(TraderModel))
+                {
+                    return ((TraderModel)Link).Name;
+                }
+
+                return "Undefined";
+            }
+        }
 
         public object Link
         {
@@ -47,11 +59,54 @@ namespace Reknighted.View
         }
 
 
+        public MapIcon(TraderModel trader)
+        {
+            InitializeComponent();
+
+            Position = trader.Point;
+            
+            var _image = new System.Windows.Controls.Image();
+            BitmapImage bitmap = new BitmapImage();
+
+            this.image.Source = bitmap;
+
+            LoadImage(trader.PathToIcon);
+            Link = trader;
+        }
+
+        public MapIcon(Fighter trader)
+        {
+            InitializeComponent();
+
+            Position = trader.Point;
+
+            var _image = new System.Windows.Controls.Image();
+            BitmapImage bitmap = new BitmapImage();
+
+            this.image.Source = bitmap;
+
+            LoadImage(trader.PathToIcon);
+            Link = trader;
+        }
+
+        private void LoadImage(string path_str)
+        {
+            var _image = new System.Windows.Controls.Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            var path = System.IO.Path.Combine(Environment.CurrentDirectory, path_str);
+            bitmap.UriSource = new Uri(path);
+            bitmap.EndInit();
+            _image.Source = bitmap;
+
+            this.image.Source = bitmap;
+        }
+
         public MapIcon(string imageSource, object character)
         {
             InitializeComponent();
 
-            var _image = new Image();
+            var _image = new System.Windows.Controls.Image();
 
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();

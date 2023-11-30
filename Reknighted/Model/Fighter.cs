@@ -19,6 +19,12 @@ namespace Reknighted.Model
         private int _fortune = 10;
         private int _balance = 1000;
 
+        public int BaseDamage { get; set; } = 1;
+        public int BaseProtection { get; set; } = 1;
+
+        public string PathToIcon { get; set; } = string.Empty;
+        public System.Windows.Point Point { get; set; } = new System.Windows.Point(0, 0);
+
         private readonly int[] _defaultStats = new int[3] { 100, 0, 5 };
         private readonly List<Effects> _effects = new();
 
@@ -64,29 +70,38 @@ namespace Reknighted.Model
             set => _currentHealth = (int)(value * _maxHealth);
         }
 
-        public int Damage => Weapon is not null ? 5 + Weapon.Damage : 5;
-
-        public int Protection => Artefact is { Buff: Buff.Protection } 
-            ? 5 + (Armor is not null 
-                ? (int)(Armor.Protection * Artefact.Multiplier) 
-                : 0) 
-            : 5;
-
-        /*{
-                int value = 5;
-
-                double mp = 1;
-                if (Artefact != null && Artefact?.Buff == Buff.Protection)
+        public int Damage
+        {
+            get
+            {
+                int value = BaseDamage;
+                if (Weapon != null)
                 {
-                    mp = Artefact.Multiplier;
-                }
-
-                if (Armor != null)
-                {
-                    value += (int)(((ArmorModel)Armor).Protection * mp);
+                    value += 2 * Weapon.Damage;
+                    if (Artefact != null && Artefact.Buff == Buff.Damage)
+                    {
+                        value = (int)(value * Artefact.Multiplier);
+                    }
                 }
                 return value;
-            }*/
+            }
+        }
+        public int Protection
+        {
+            get
+            {
+                int value = BaseProtection;
+                if (Armor != null)
+                {
+                    value += 2 * Armor.Protection;
+                    if (Artefact != null && Artefact.Buff == Buff.Protection)
+                    {
+                        value = (int)(value * Artefact.Multiplier);
+                    }
+                }
+                return value;
+            }
+        }
 
         public int Fortune
         {
@@ -119,8 +134,10 @@ namespace Reknighted.Model
             }
         }
 
-        public Fighter(string name, ItemModel[] equipment, ItemModel? reward = null)
+        public Fighter(string name, ItemModel[] equipment, ItemModel? reward, string pathToIcon, System.Windows.Point position)
         {
+            PathToIcon = pathToIcon;
+            Point = position;
             Name = name;
 
             if (reward != null) Reward = reward;

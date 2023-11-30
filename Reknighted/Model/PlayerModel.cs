@@ -33,7 +33,7 @@ namespace Reknighted.Model
         #region ITradeable
 
         private List<ItemModel?> _items = new List<ItemModel?>();
-        private int _balance = 100;
+        private int _balance = 10000;
 
         public List<ItemModel?> Items
         {
@@ -139,6 +139,8 @@ namespace Reknighted.Model
             }
         }
 
+
+
         public int CurrentHealth
         {
             get
@@ -150,10 +152,10 @@ namespace Reknighted.Model
             {
                 if (value < MaxHealth)
                 {   
-                    if (value >= 0.2 *  MaxHealth)
+                    if (value >= 0)
                         _currentHealth = value;
                     else 
-                        _currentHealth = (int)(0.2 * MaxHealth);
+                        _currentHealth = 0;
                 }
                 else
                 {
@@ -165,25 +167,33 @@ namespace Reknighted.Model
         public double HealthPercentage
         {
             get
-            {
-                return (double)_currentHealth / (double)_maxHealth;
+            {   
+
+                return (double)_currentHealth / (double)MaxHealth;
             }
 
             set
             {
-                _currentHealth = (int)(value * _maxHealth);
+                _currentHealth = (int)(value * MaxHealth);
             }
 
         }
+
+        public int BaseDamage { get; set; } = 1;
+        public int BaseProtection { get; set; } = 1;
 
         public int Damage
         {
             get
             {
-                int value = 5;
+                int value = BaseDamage;
                 if (Weapon != null)
                 {
-                    value += ((WeaponModel)Weapon).Damage; 
+                    value += Weapon.Damage; 
+                    if (Artefact != null && Artefact.Buff == Buff.Damage)
+                    {
+                        value = (int)(value * Artefact.Multiplier);
+                    }
                 }
                 return value;
             }
@@ -192,17 +202,14 @@ namespace Reknighted.Model
         {
             get
             {
-                int value = 5;
-
-                double mp = 1;
-                if (Artefact != null && ((ArtefactModel)Artefact)?.Buff == Buff.Protection)
-                {
-                    mp = ((ArtefactModel)Artefact).Multiplier;
-                }
-
+                int value = BaseProtection;
                 if (Armor != null)
                 {
-                    value += (int)(((ArmorModel)Armor).Protection * mp);
+                    value += Armor.Protection;
+                    if (Artefact != null && Artefact.Buff == Buff.Protection)
+                    {
+                        value = (int)(value * Artefact.Multiplier);
+                    }
                 }
                 return value;
             }

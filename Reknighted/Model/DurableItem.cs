@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Reknighted.Controller.Game;
 
 namespace Reknighted.Model
 {
@@ -33,8 +34,15 @@ namespace Reknighted.Model
             set
             {
                 if (value < MaxDurability)
-                {
-                    _currentDurability = value;
+                {   
+                    if (value > 0)
+                    {
+                        _currentDurability = value;
+                    }
+                    else
+                    {   
+                        Reknighted.Controller.Game.PlayerModel.RemoveItem(this);
+                    }
                 }
                 else
                 {

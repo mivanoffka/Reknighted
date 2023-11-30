@@ -32,6 +32,7 @@ namespace Reknighted.Controller
             _enemy = enemy;
             enemyBox.Header = _enemy.Name;
             errorLabel.Content = "";
+            errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
             betBox.Header = "Ставка    [ 50 ]";
 
             CreateAndPlace();

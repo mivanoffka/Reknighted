@@ -63,7 +63,10 @@ namespace Reknighted
         public void ShowInfo(ItemModel itemModel)
         {
             InfoLabel.Text = itemModel.Description;
+
             InfoBox.Header = itemModel.Name;
+
+
 
             healthLabel.Text = "—";
             damageLabel.Text = "—";
@@ -72,17 +75,21 @@ namespace Reknighted
 
             if (itemModel.GetType() == typeof(FoodModel))
             {
-                healthLabel.Text = "+" + ((FoodModel)itemModel).Satiety.ToString();
+                healthLabel.Text = "+" + (Math.Round(((FoodModel)itemModel).Satiety / (double)Game.PlayerModel.MaxHealth * 100)).ToString() + "%";
             }
 
             if (itemModel.GetType() == typeof(WeaponModel))
             {
                 damageLabel.Text = "+" + ((WeaponModel)itemModel).Damage.ToString();
+                if (itemModel.IsPossessed)
+                    InfoBox.Header = itemModel.Name + " [" + Math.Round((itemModel as DurableItem).DurabilityPercentage * 100) + "% прочности ]";
             }
 
             if (itemModel.GetType() == typeof(ArmorModel))
             {
                 armorLabel.Text = "+" + ((ArmorModel)itemModel).Protection.ToString();
+                if (itemModel.IsPossessed)
+                    InfoBox.Header = itemModel.Name + " [" + Math.Round((itemModel as DurableItem).DurabilityPercentage * 100) + "% прочности ]";
             }
 
             balanceLabel.Text = itemModel.Price.ToString();

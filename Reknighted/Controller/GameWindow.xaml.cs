@@ -55,9 +55,10 @@ namespace Reknighted
             this.playerView.Model = player;
             Game.PlayerModel = player;
 
-            this.playerView.Model.Items[0] = new FoodModel(Collections.Items.Apple);
+            this.playerView.Model.Items[0] = new FoodModel(Collections.Items.AppleGreen);
             this.playerView.Model.Items[1] = new WeaponModel(Collections.Items.Sword);
             this.playerView.Model.Items[2] = new ArmorModel(Collections.Items.GoldenHelmet);
+            this.playerView.Model.Items[3] = new ArtefactModel(Collections.Items.GreenRing);
             //this.playerView.UpdateContent();
             Game.Update();
         }

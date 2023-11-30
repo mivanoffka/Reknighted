@@ -9,38 +9,45 @@ namespace Reknighted.Collections
 {
     public class Traders
     {
-        public static TraderModel Peter = new TraderModel(TraderType.Universal, "Петя");
-        public static TraderModel Alexander = new TraderModel(TraderType.Armor, "Александр");
+        public static TraderModel Peter;
+        public static TraderModel Victor;
+        public static TraderModel Alexander;
+        public static TraderModel Leonid;
+        public static TraderModel Johann;
 
         public static void Initialize()
-        {   
-            List<ItemModel> items = new List<ItemModel>();
-
-            items.Add(Items.Apple.Copy());
-            items.Add(Items.Cheese.Copy());
-            items.Add(Items.BlueRing.Copy());
-           
-
-            foreach (ItemModel item in items)
+        {
+            ItemModel?[] items = new ItemModel?[]
             {
-                item.IsPossessed = false;
-                Peter.AddItem(item);
-            }
+                Items.AppleGreen.Copy(), Items.AppleRed.Copy(), Items.AppleGreen.Copy(), Items.AppleGreen.Copy(), Items.AppleRed.Copy(), Items.AppleGreen.Copy(),
+                Items.AppleGreen.Copy(), Items.AppleGreen.Copy(), Items.AppleGreen.Copy(), Items.AppleRed.Copy(), Items.AppleGreen.Copy(), Items.AppleGreen.Copy(),
+                Items.AppleRed.Copy(), Items.AppleGreen.Copy(), Items.AppleGreen.Copy(), Items.AppleGreen.Copy(), Items.AppleGreen.Copy(), Items.AppleRed.Copy(),
 
-            items.Clear();
+            };
+            Peter = new TraderModel(TraderType.Food, "Садовод Пётр", items, Items.PathTo("green_houses"), new System.Windows.Point(60, 75));
 
-            items.Add(Items.Helmet.Copy());
-            items.Add(Items.HornsHelmet.Copy());
-            items.Add(Items.GoldenHelmet.Copy());
-            items.Add(Items.ButcherHelmet.Copy());
-
-            foreach (ItemModel item in items)
+            items = new ItemModel?[]
             {
-                item.IsPossessed = false;
-                Alexander.AddItem(item);
-            }
+                Items.Chicken, Items.Bacon, Items.BoarHead, Items.Steak, Items.Chicken, Items.Chicken, Items.Steak, Items.Chicken, Items.Steak, Items.Bacon, Items.Bacon, Items.Bacon, Items.Chicken,
+            };
+            Victor = new TraderModel(TraderType.Food, "Мясник Виктор", items, Items.PathTo("yellow_houses"), new System.Windows.Point(145, 180));
 
+            items = new ItemModel?[] { Items.Weapons["generic_sword"].Copy(), Items.Weapons["generic_spear"].Copy(), Items.Weapons["generic_club"].Copy(),
+                                        Items.Weapons["generic_spear"].Copy(), Items.Weapons["generic_sword"].Copy(), Items.Weapons["hearts_sword"].Copy(),
+                                        Items.Weapons["generic_club"].Copy(), Items.Weapons["generic_sword"].Copy(), Items.Weapons["generic_spear"].Copy(),
+                                        Items.Weapons["generic_spear"].Copy(), Items.Weapons["generic_sword"].Copy(), Items.Weapons["generic_club"].Copy(),
+                                        Items.Weapons["fencing_sword"].Copy(), Items.Weapons["hearts_sword"].Copy(), Items.Weapons["generic_sword"].Copy(),
+                                        Items.Weapons["generic_sword"].Copy(), Items.Weapons["generic_spear"].Copy(), Items.Weapons["generic_sword"].Copy(),
 
+            };
+            //items = Items.Weapons.Values.ToArray();
+            {
+                //Items.Sword, Items.FencingSword, Items.DiamondsSword, Items.HeartsSword, Items.HeavySword, Items.GenericClub, Items.GenericSpear, Items.Spade
+            };
+            Leonid = new TraderModel(TraderType.Weapon, "Оружейник Леонид", items, Items.PathTo("chimney_house"), new System.Windows.Point(200, 123));
+
+            items = new ItemModel?[] { Items.Armors["guardian_helmet"].Copy() };
+            Johann = new TraderModel(TraderType.Armor, "Бронник Иоанн", items, Items.PathTo("tiny_house"), new System.Windows.Point(150, 250));
         }
     }
 }

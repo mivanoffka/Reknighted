@@ -24,27 +24,13 @@ namespace Reknighted.Collections
 
         public static void Initialize()
         {
-            MapIcon mapIcon = new MapIcon(Items.PathTo("apple"), Traders.Peter);
-            mapIcon.Position = new Point(30, 40);
-            mapIcon.Description = "Торговец Петя.";
-            HeartsLocation.Add(mapIcon);
+            HeartsLocation.Add(new MapIcon(Traders.Peter));
+            HeartsLocation.Add(new MapIcon(Traders.Victor));
+            HeartsLocation.Add(new MapIcon(Traders.Leonid));
+            HeartsLocation.Add(new MapIcon(Fighters.Simon));
+            HeartsLocation.Add(new MapIcon(Traders.Johann));
+            HeartsLocation.Add(new MapIcon(Fighters.HeartsGuardian));
 
-            MapIcon fighterIcon = new MapIcon(Items.PathTo("common_helmet"), Fighters.Simon);
-            fighterIcon.Position = new Point(150, 150);
-            fighterIcon.Description = "Саймон.";
-            TreflesLocation.Add(fighterIcon);
-
-            MapIcon hearts = new MapIcon(Items.PathTo("hearts"), City.Hearts);
-            hearts.Name = "Червы";
-            hearts.Position = new Point(10, 10);
-            hearts.Description = "Столица земель Червей";
-            GlobalMap.Add(hearts);
-
-            MapIcon trefles = new MapIcon(Items.PathTo("trefles"), City.Hearts);
-            trefles.Name = "Трефы";
-            trefles.Position = new Point(60, 100);
-            trefles.Description = "Столица земель Треф";
-            GlobalMap.Add(trefles);
         }
 
     }
