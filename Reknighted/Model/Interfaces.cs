@@ -23,8 +23,6 @@ namespace Reknighted.Model
 
 
 
-        public List<Effects> Effects { get; set; }
-
     }
 
     public interface ITradeable

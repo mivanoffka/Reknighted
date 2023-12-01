@@ -25,7 +25,12 @@ namespace Reknighted.Collections
 
         public static FoodModel Cheese = new FoodModel("Сыр", "От него пахнет плесенью. Но далеко не факт, что это дор-блю.", 50, 20, PathTo("cheese"));
 
-        #region Оружие
+        public static Dictionary<string, ArtefactModel> Artefacts = new()
+        {
+            {"sapphire_ring", new ArtefactModel("Кольцо с сапфиром", "-", 1000, Buff.Protection, 1.5, PathTo("sapphire_ring")) },
+            {"ruby_ring", new ArtefactModel("Кольцо с рубином", "-", 1000, Buff.Damage, 1.5, PathTo("ruby_ring")) },
+            {"emerald_ring", new ArtefactModel("Кольцо с изумрудом", "-", 1000, Buff.Health, 1.5, PathTo("emerald_ring")) }
+        };
 
         public static Dictionary<string, WeaponModel> Weapons = new Dictionary<string, WeaponModel>()
         {
@@ -38,6 +43,14 @@ namespace Reknighted.Collections
             {"fencing_sword",  new WeaponModel("Шпага для фехтования", "Создана исключительно в спортивных целях. Спорт, однако, бывает смертельно опасным.", 650, 50, 75, PathTo("fencing_sword"))}
         };
 
+        public static Dictionary<string, PotionModel> Potions = new Dictionary<string, PotionModel>()
+        {
+            {"health_potion", new PotionModel("Флакон с зелёной жидкостью", "Одному богу известно, что случится, если это выпить", 500, 10, PathTo("health_potion"), Buff.Health) },
+            {"protection_potion", new PotionModel("Флакон с голубой жидкостью", "Одному богу известно, что случится, если это выпить", 500, 10, PathTo("protection_potion"), Buff.Protection)},
+            {"damage_potion", new PotionModel("Флакон с красной жидкостью", "Одному богу известно, что случится, если это выпить", 500, 10, PathTo("damage_potion"), Buff.Damage)   }
+
+        };
+
         public static WeaponModel Sword = new WeaponModel("Меч", "Им можно кого-то убить. Наверное...", 300, 100, 15, PathTo("common_sword"));
         //public static WeaponModel FencingSword = new WeaponModel("Меч для фехтования", "Создан исключительно в спортивных целях. Спорт, однако, бывает смертельно опасным.", 450, 100, 25, PathTo("fencing_sword"));
         //public static WeaponModel DiamondsSword = new WeaponModel("Бубновый клинок", "Разработан специально для Бубновой армии. Сочетает в себе низкую цену и долговечность.", 200, 300, 20, PathTo("diamonds_sword"));
@@ -46,10 +59,9 @@ namespace Reknighted.Collections
 
         //public static WeaponModel RegularSword = new WeaponModel("Образцовый меч", "Такие же стоят на вооружении у регулярной армии.", 400, 150, 25, PathTo("regular_sword"));
 
-        #endregion
-
         public static Dictionary<string, ArmorModel> Armors = new Dictionary<string, ArmorModel>()
         {
+            {"generic_helmet", new ArmorModel("Шлем", "Ничем не примечательный шлем", 250, 150, 20, PathTo("generic_helmet")) },
             {"guardian_helmet", new ArmorModel("Шлем гвардейца", "Это носит вся наша армия. И ты тоже носил.", 250, 100, 100, PathTo("guardian_helmet")) }
     
         };
@@ -61,9 +73,6 @@ namespace Reknighted.Collections
 
         public static ArmorModel ButcherHelmet = new ArmorModel("Шлем палача", "Скрывает лицо, чтобы оно не сильно пугало ваших противников. Если они, конечно, боятся слёз.", 1000, 500, 75, PathTo("butcher_helmet"));
 
-
-        public static ArtefactModel BlueRing = new ArtefactModel("Кольцо с сапфиром", "Носить кольцо под перчатками доспехов звучит как не самая рациональная идея.", 0, Buff.Protection, 1.5, PathTo("blue_ring"));
-        public static ArtefactModel GreenRing = new ArtefactModel("Кольцо с изумрудом", "Кольцо...", 0, Buff.Health, 1.5, PathTo("emerald_ring"));
 
 
         public static void Initialize()

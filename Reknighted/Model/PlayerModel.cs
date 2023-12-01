@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
-    public class PlayerModel : IFightable, ITradeable, IPlayable
+    public class PlayerModel : IFightable, ITradeable
     {
         public static PlayerModel DefaultPlayerModel = new PlayerModel();
 
@@ -72,7 +73,6 @@ namespace Reknighted.Model
         private int _fortune =  10;
 
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
-        private List<Effects> _effects = new List<Effects> { };
 
         public ItemModel? Reward { get => null; }
 
@@ -150,12 +150,28 @@ namespace Reknighted.Model
 
             set
             {
+                double mp = 1;
+                if (Artefact != null && Artefact.Buff == Buff.Health)
+                {
+                    mp = Artefact.Multiplier;
+                }
+
+                if (value < CurrentHealth)
+                {
+                    value = (int)(value / mp);
+                }
+                else
+                {
+                    value = (int)(value * mp);
+                }
+
+
                 if (value < MaxHealth)
                 {   
                     if (value >= 0)
                         _currentHealth = value;
                     else 
-                        _currentHealth = 0;
+                        _currentHealth = 1;
                 }
                 else
                 {
@@ -228,8 +244,6 @@ namespace Reknighted.Model
             }
         }
 
-        public List<Effects> Effects { get; set; }
-
         #endregion
 
         public void AddItem(ItemModel? newItem)
@@ -246,6 +260,15 @@ namespace Reknighted.Model
                 if (Items[i] == item)
                 {
                     Items[i] = null;
+                    
+                }
+            }
+
+            for (int i = 0; i < EquippedItems.Count(); i++)
+            {
+                if (EquippedItems[i] == item)
+                {
+                    EquippedItems[i] = null;
                 }
             }
             Game.Update();

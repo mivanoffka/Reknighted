@@ -26,7 +26,6 @@ namespace Reknighted.Model
         public System.Windows.Point Point { get; set; } = new System.Windows.Point(0, 0);
 
         private readonly int[] _defaultStats = new int[3] { 100, 0, 5 };
-        private readonly List<Effects> _effects = new();
 
         public WeaponModel? Weapon
         {
@@ -159,7 +158,6 @@ namespace Reknighted.Model
 
         }
 
-        public List<Effects> Effects { get; set; }
 
     }
 }

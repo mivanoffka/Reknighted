@@ -180,6 +180,10 @@ namespace Reknighted.Model
             {
                 return new ArtefactModel((ArtefactModel)this);
             }
+            else if (GetType() == typeof(PotionModel))
+            {
+                return new PotionModel((PotionModel)this);
+            }
             else
             {
                 throw new ArgumentException();

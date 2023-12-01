@@ -14,6 +14,8 @@ namespace Reknighted.Collections
         public static TraderModel Alexander;
         public static TraderModel Leonid;
         public static TraderModel Johann;
+        public static TraderModel Jeweler;
+        public static TraderModel Potions;
 
         public static void Initialize()
         {
@@ -46,8 +48,11 @@ namespace Reknighted.Collections
             };
             Leonid = new TraderModel(TraderType.Weapon, "Оружейник Леонид", items, Items.PathTo("chimney_house"), new System.Windows.Point(200, 123));
 
-            items = new ItemModel?[] { Items.Armors["guardian_helmet"].Copy() };
-            Johann = new TraderModel(TraderType.Armor, "Бронник Иоанн", items, Items.PathTo("tiny_house"), new System.Windows.Point(150, 250));
+
+            Johann = new TraderModel(TraderType.Armor, "Бронник Иоанн", Items.Armors.Values.ToArray(), Items.PathTo("tiny_house"), new System.Windows.Point(150, 250));
+
+            Jeweler = new TraderModel(TraderType.Artefact, "Ювелир", Items.Artefacts.Values.ToArray(), Items.PathTo("tiny_house"), new System.Windows.Point(250, 150));
+            Potions = new TraderModel(TraderType.Universal, "Зельевар", Items.Potions.Values.ToArray(), Items.PathTo("castle"), new System.Windows.Point(260, 260));
         }
     }
 }

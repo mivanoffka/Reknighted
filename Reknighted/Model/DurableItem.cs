@@ -40,8 +40,10 @@ namespace Reknighted.Model
                         _currentDurability = value;
                     }
                     else
-                    {   
+                    {
+                        _currentDurability = 0;
                         Reknighted.Controller.Game.PlayerModel.RemoveItem(this);
+                        Reknighted.Controller.Game.Update();
                     }
                 }
                 else

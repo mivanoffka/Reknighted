@@ -31,6 +31,20 @@ namespace Reknighted.Model
 
         public TraderModel(TraderType type, string name, ItemModel?[] items, string pathToIcon, System.Windows.Point position)
         {
+            ItemModel?[] copied = new ItemModel[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {   
+                if (items[i] != null)
+                {
+                    copied[i] = items[i].Copy();
+                }
+                else
+                {
+                    copied[i] = null;
+                }
+
+            }
+
             this.type = type;
             _name = name;
 
@@ -41,8 +55,8 @@ namespace Reknighted.Model
 
             for (int i = 0; i < items.Length; i++)
             {
-                items[i].IsPossessed = false;
-                AddItem(items[i]);
+                copied[i].IsPossessed = false;
+                AddItem(copied[i]);
             }
 
             Point = position;

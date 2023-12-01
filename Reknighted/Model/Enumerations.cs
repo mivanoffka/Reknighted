@@ -7,7 +7,8 @@ using System.Windows;
 using System.Windows.Navigation;
 
 namespace Reknighted.Model
-{
+{   
+
     public enum City
     {
         Masquarade, Hearts, Clubs, Trefles, Diamonds
@@ -16,11 +17,6 @@ namespace Reknighted.Model
     public enum MessageType
     {
         Information, Win, Loose, Error
-    }
-
-    public enum Effects
-    {
-
     }
 
     public enum TraderType
@@ -35,7 +31,7 @@ namespace Reknighted.Model
 
     public enum Buff
     {
-        Health, Damage, Protection, Fortune
+        Health, Damage, Protection, Wealth
     }
 
 }

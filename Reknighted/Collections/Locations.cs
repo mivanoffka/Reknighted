@@ -30,6 +30,8 @@ namespace Reknighted.Collections
             HeartsLocation.Add(new MapIcon(Fighters.Simon));
             HeartsLocation.Add(new MapIcon(Traders.Johann));
             HeartsLocation.Add(new MapIcon(Fighters.HeartsGuardian));
+            HeartsLocation.Add(new MapIcon(Traders.Jeweler));
+            HeartsLocation.Add(new MapIcon(Traders.Potions));
 
         }
 
