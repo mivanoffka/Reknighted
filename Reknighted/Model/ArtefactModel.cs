@@ -45,6 +45,8 @@ namespace Reknighted.Model
 
         public override void Use()
         {
+            MoveToCell(Game.EquipmentCells[0]);
+            Game.Update();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reknighted.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,12 @@ namespace Reknighted.Model
         public override ItemModel Copy()
         {
             return new WeaponModel(_name, _description, _price, _maxDurability, _damage, pathToImage);
+        }
+
+        public override void Use()
+        {
+            MoveToCell(Game.EquipmentCells[0]);
+            Game.Update();
         }
 
         public override string ToString()
