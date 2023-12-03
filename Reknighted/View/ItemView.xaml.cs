@@ -53,13 +53,20 @@ namespace Reknighted
             if (e.RightButton == MouseButtonState.Pressed)
             {
                 if (Game.CurrentTrader != null && Game.PlayerView?.Model != null)
-                {
-                    ITradeable? customer = Model.IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
-                    if (customer != null)
-                    {
-                        this.Model.SellTo(customer);
+                {   
+                    if (Game._productItem == this)
+                    {   
+                        ITradeable? customer = Model.IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
+                        if (customer != null)
+                        {
+                            this.Model.SellTo(customer);
+                        }
                     }
-
+                    else
+                    {
+                        Game._productItem = this;
+                        Game.Message("Чтобы подтвердить действие, снова нажмите ПКМ");
+                    }
                 }
                 else
                 {

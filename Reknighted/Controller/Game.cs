@@ -20,6 +20,9 @@ namespace Reknighted.Controller
 
         #region Представления предметов
 
+        // Предмет, ждущий подтверждения для купли/продажи
+        public static ItemView? _productItem { get; set; }
+
         // Выбранный (перетаскиваемый мышью) предмет
         private static ItemView? _selectedItem = null;
         public static ItemView? SelectedItem

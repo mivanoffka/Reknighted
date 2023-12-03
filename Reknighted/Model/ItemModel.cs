@@ -150,21 +150,21 @@ namespace Reknighted.Model
 
         public virtual void SellTo(ITradeable buyer, bool showWarning = true)
         {
-            bool isConfirmed = true;
-            if (showWarning)
-            {
-                string caption = this.IsPossessed ? "Продажа" : "Покупка";
-                string text = this.IsPossessed ? "Вы уверены, что хотите продать [ " + this.Name + " ] за " + this.Price + " тугриков?"
-                                               : "Вы уверены, что хотите купить [ " + this.Name + " ] за " + this.Price + " тугриков?";
+            //bool isConfirmed = true;
+            //if (showWarning)
+            //{
+            //    string caption = this.IsPossessed ? "Продажа" : "Покупка";
+            //    string text = this.IsPossessed ? "Вы уверены, что хотите продать [ " + this.Name + " ] за " + this.Price + " тугриков?"
+            //                                   : "Вы уверены, что хотите купить [ " + this.Name + " ] за " + this.Price + " тугриков?";
 
-                var result = MessageBox.Show(text, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                isConfirmed = result == MessageBoxResult.Yes;
-            }
+            //    var result = MessageBox.Show(text, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //    isConfirmed = result == MessageBoxResult.Yes;
+            //}
 
-            if (!isConfirmed)
-            {   
-                return;
-            }
+            //if (!isConfirmed)
+            //{   
+            //    return;
+            //}
 
             ITradeable? customer = IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
             ITradeable? seller = IsPossessed ?  Game.PlayerModel : Game.CurrentTrader;
