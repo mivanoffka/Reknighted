@@ -2,10 +2,12 @@
 using Reknighted.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using static Reknighted.View.MapIcon;
 
 namespace Reknighted
 {
@@ -45,19 +47,20 @@ namespace Reknighted
             defaultTabHeight = this.gameTabs.Height;
 
 
-            location.MapIcons = Collections.Locations.HeartsLocation;
-            globalMap.MapIcons = Collections.Locations.GlobalMap;
+
+            location.MapIcons = Collections.Locations.Locs["showroom"];
+            globalMap.MapIcons = Collections.Locations.GlobalMap.Values.ToList();
         }
 
-        public void LoadPlayer()
+        public void LoadPlayer(Faction faction)
         {
-            var player = new PlayerModel();
+            var player = new PlayerModel(faction);
             this.playerView.Model = player;
             Game.PlayerModel = player;
 
-            this.playerView.Model.Items[0] = new FoodModel(Collections.Items.AppleGreen);
-            this.playerView.Model.Items[1] = new WeaponModel(Collections.Items.Sword);
-            this.playerView.Model.Items[2] = new ArmorModel(Collections.Items.GoldenHelmet);
+            this.playerView.Model.Items[0] = Collections.Items.Food["apple_green"].Copy();
+            this.playerView.Model.Items[1] = Collections.Items.Weapons["veteran_sword"].Copy();
+            this.playerView.Model.Items[2] = Collections.Items.Armors["leather_hat"].Copy();
             //this.playerView.UpdateContent();
             Game.Update();
         }
@@ -113,7 +116,6 @@ namespace Reknighted
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {   
-            Game.CurrentTrader = Collections.Traders.Peter;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -123,7 +125,6 @@ namespace Reknighted
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Game.CurrentTrader = Collections.Traders.Alexander;
         }
     }
 }

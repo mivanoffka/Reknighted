@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Reknighted.Model
 {
@@ -23,16 +24,9 @@ namespace Reknighted.Model
             this._damage = damage;
         }
 
-        public WeaponModel(WeaponModel weaponModel)
-        {   
-            this._name = weaponModel.Name;
-            this._description = weaponModel.Description;
-            this._price = weaponModel.Price;
-            this._damage = weaponModel.Damage;
-            this._maxDurability = weaponModel.MaxDurability;
-            this._currentDurability = weaponModel.CurrentDurability;
-            this._image = weaponModel.Image;
-
+        public override ItemModel Copy()
+        {
+            return new WeaponModel(_name, _description, _price, _maxDurability, _damage, pathToImage);
         }
 
         public override string ToString()

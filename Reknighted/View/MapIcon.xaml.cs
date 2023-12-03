@@ -33,11 +33,8 @@ namespace Reknighted.View
         {
             get
             {
-                if (Link.GetType() == typeof(TraderModel))
-                {
-                    return ((TraderModel)Link).Name;
-                }
-
+                if (Name != string.Empty)
+                    return Name;
                 return "Undefined";
             }
         }
@@ -47,46 +44,34 @@ namespace Reknighted.View
             get => _link;
             set
             {
-                if (value.GetType() == typeof(Fighter) || value.GetType() == typeof(TraderModel) || value.GetType() == typeof(City))
-                {
-                    _link = value;
-                }
-                else
-                {
-                    throw new ArgumentException();
-                }
+                _link = value;
             }
         }
 
 
-        public MapIcon(TraderModel trader)
+        public MapIcon(IMappable link)
         {
             InitializeComponent();
 
-            Position = trader.Point;
-            
-            var _image = new System.Windows.Controls.Image();
-            BitmapImage bitmap = new BitmapImage();
+            Position = link.Point;
 
-            this.image.Source = bitmap;
+            this.image.Source = new BitmapImage();
 
-            LoadImage(trader.PathToIcon);
-            Link = trader;
+            LoadImage(link.PathToIcon);
+            Link = link;
         }
 
-        public MapIcon(Fighter trader)
-        {
+
+        public MapIcon(string name, List<MapIcon> link, string pathToIcon, Point position)
+        {   
             InitializeComponent();
+            Position = position;
+            Name = name;
 
-            Position = trader.Point;
+            this.image.Source = new BitmapImage();
 
-            var _image = new System.Windows.Controls.Image();
-            BitmapImage bitmap = new BitmapImage();
-
-            this.image.Source = bitmap;
-
-            LoadImage(trader.PathToIcon);
-            Link = trader;
+            LoadImage(pathToIcon);
+            Link = link;
         }
 
         private void LoadImage(string path_str)
@@ -102,23 +87,6 @@ namespace Reknighted.View
             this.image.Source = bitmap;
         }
 
-        public MapIcon(string imageSource, object character)
-        {
-            InitializeComponent();
-
-            var _image = new System.Windows.Controls.Image();
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            var path = System.IO.Path.Combine(Environment.CurrentDirectory, imageSource);
-            bitmap.UriSource = new Uri(path);
-            bitmap.EndInit();
-            _image.Source = bitmap;
-
-            this.image.Source = bitmap;
-            Link = character;
-        }
-
         private void Action(object sender, MouseButtonEventArgs e)
         {   
             if (Link == null)
@@ -129,16 +97,10 @@ namespace Reknighted.View
             {
                 Game.CurrentTrader = (TraderModel)Link;
             }
-            if (Link.GetType() == typeof(City))
-            {   
-                if (Game.LocationView != null)
-                {
-                    Game.LocationView.MapIcons = Collections.Locations.CityMaps[this.Name];
-                }
-                if (Game.Window != null)
-                {
-                    Game.Window.gameTabs.SelectedIndex = 1;
-                } 
+            if (Link is List<MapIcon>)
+            {
+                Game.LocationView.MapIcons = Link as List<MapIcon>;
+                Game.Window.gameTabs.SelectedIndex = 1;
             }
             if (Link.GetType() == typeof(Fighter))
             {

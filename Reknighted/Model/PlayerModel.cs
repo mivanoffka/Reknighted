@@ -10,8 +10,6 @@ namespace Reknighted.Model
 {
     public class PlayerModel : IFightable, ITradeable
     {
-        public static PlayerModel DefaultPlayerModel = new PlayerModel();
-
         #region IPlayable
 
         private City _location = City.Masquarade;
@@ -52,7 +50,7 @@ namespace Reknighted.Model
             }
 
             set
-            {
+            {   
                 if (value < 0)
                 {
                     value = 0;
@@ -195,6 +193,7 @@ namespace Reknighted.Model
 
         }
 
+        public Faction Faction { get; set; }
         public int BaseDamage { get; set; } = 1;
         public int BaseProtection { get; set; } = 1;
 
@@ -209,6 +208,10 @@ namespace Reknighted.Model
                     if (Artefact != null && Artefact.Buff == Buff.Damage)
                     {
                         value = (int)(value * Artefact.Multiplier);
+                    }
+                    if (Faction == Faction.Spades)
+                    {
+                        value = (int)(value * 1.5);
                     }
                 }
                 return value;
@@ -225,6 +228,10 @@ namespace Reknighted.Model
                     if (Artefact != null && Artefact.Buff == Buff.Protection)
                     {
                         value = (int)(value * Artefact.Multiplier);
+                    }
+                    if (Faction == Faction.Hearts)
+                    {
+                        value = (int)(value * 1.5);
                     }
                 }
                 return value;
@@ -286,8 +293,9 @@ namespace Reknighted.Model
 
         static int MaxIventorySize = 27;
 
-        public PlayerModel()
+        public PlayerModel(Faction faction)
         {
+            Faction = faction;
             for (int i = 0; i < MaxIventorySize; i++)
             {
                 this.Items.Add(null);

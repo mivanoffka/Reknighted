@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Reknighted.Controller"
         xmlns:Reknighted="clr-namespace:Reknighted" x:Class="Reknighted.Controller.EnemyWindow"
         mc:Ignorable="d"
-        Title="Противник" Height="270" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
-    <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="235">
-        <Rectangle HorizontalAlignment="Center" Height="215" Stroke="#FFA4A4A4" VerticalAlignment="Center" Width="200" Fill="White"/>
+        Title="Противник" Height="240" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
+    <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="205">
+        <Rectangle HorizontalAlignment="Center" Height="153" Stroke="#FFA4A4A4" VerticalAlignment="Top" Width="200" Fill="White" Margin="0,41,0,0"/>
         <GroupBox x:Name="enemyBox" Header="GroupBox" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Foreground="Black" BorderBrush="Gray" Margin="0,13,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="141" Width="180">
             <Grid x:Name="enemyGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <GroupBox Header="Снаряжение" Margin="4,-2,0,0" BorderBrush="#FF757575" Background="#FFCECECE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Width="160">
@@ -21,7 +21,6 @@
                 </GroupBox>
             </Grid>
         </GroupBox>
-        <Label x:Name="errorLabel" Content="Ошибка!" HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="Black" Foreground="#FFC84545" Margin="0,182,0,0"/>
         <Button x:Name="fightButton" Content="Сразиться" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="170" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Click="fightButton_Click" Height="24"/>
 
     </Grid>

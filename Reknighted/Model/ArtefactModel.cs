@@ -1,40 +1,46 @@
-﻿using System;
+﻿using Reknighted.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Reknighted.Controller.Game;
 
 namespace Reknighted.Model
 {
-    public class ArtefactModel : ItemModel
+    public class ArtefactModel : DurableItem
     {
-        protected Buff? _buff = null; 
+        protected Buff _buff;
         protected double _multiplier = 0;
 
-        public Buff? Buff
+        public Buff Buff
         {
             get => this._buff;
         }
         public double Multiplier
         {
-            get => _multiplier;
+            get
+            {
+                double value = this._multiplier;
+
+                if (Game.PlayerModel.Faction == Faction.Clubs && IsPossessed)
+                {
+                    value *= 1.5;
+                }
+
+                return value;
+            }
         }
 
-        public ArtefactModel(string name, string description, int cost, Buff buff, double multiplier, string imageSource) : base(name, description, cost, imageSource)
+        public override ItemModel Copy()
+        {
+            return new ArtefactModel(this._name, this._description, this._price, this._maxDurability, this._multiplier, this.Buff, pathToImage);
+        }
+
+        public ArtefactModel(string name, string description, int cost, int durability, double multiplier, Buff buff, string imageSource) : base(name, description, cost, durability, imageSource)
         {
             _buff = buff;
             _multiplier = multiplier;
-        }
-
-        public ArtefactModel(ArtefactModel model)
-        {
-            _name = model.Name;
-            _description = model.Description;
-            _price = model.Price;
-            _image = model.Image;
-            _buff = model.Buff;
-            _multiplier = model.Multiplier;
-
         }
 
         public override void Use()

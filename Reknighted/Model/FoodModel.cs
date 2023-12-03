@@ -24,6 +24,11 @@ namespace Reknighted.Model
             this._satiety = satiety;
         }
 
+        public override ItemModel Copy()
+        {
+            return new FoodModel(this._name, this._description, this._price, this._satiety, pathToImage);
+        }
+
         public FoodModel(FoodModel foodModel)
         {   
             this._name = foodModel.Name;

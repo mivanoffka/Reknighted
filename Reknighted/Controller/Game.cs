@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
@@ -67,6 +68,7 @@ namespace Reknighted.Controller
         #region Персонажи
 
         // Представление игрока
+
         private static PlayerView? _playerView = null;
         public static PlayerView? PlayerView { get => _playerView; set => _playerView = value; }
 
@@ -422,6 +424,19 @@ namespace Reknighted.Controller
 
 
         #endregion
+
+        public static string PathTo(string name)
+        {
+            try
+            {
+                return Directory.GetFiles("Images", $"{name}.png", SearchOption.AllDirectories)[0];
+            }
+            catch
+            {
+                MessageBox.Show("Файл не найден. " + name);
+                throw;
+            }
+        }
 
         #endregion
     }

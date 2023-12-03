@@ -15,27 +15,29 @@ namespace Reknighted.Model
         public int Addition
         {
             get
-            {
+            {   
+                int value = _addition;
+
+                if (Game.PlayerModel.Faction == Faction.Clubs && IsPossessed)
+                {
+                    value = (int)(value * 1.5);
+                }
+
                 return _addition;
             }
         }
 
         public Buff Buff { get { return _buff; } }
 
-        public PotionModel(string name, string description, int cost, int addition, string imageSource, Buff buff) : base(name, description, cost, imageSource)
+        public PotionModel(string name, string description, int cost, int addition, Buff buff, string imageSource) : base(name, description, cost, imageSource)
         {
             this._addition = addition;
             this._buff = buff;
         }
 
-        public PotionModel(PotionModel model)
+        public override ItemModel Copy()
         {
-            this._name = model.Name;
-            this._description = model.Description;
-            this._price = model.Price;
-            this._addition = model.Addition;
-            this._buff = model.Buff;
-            this._image = model.Image;
+            return new PotionModel(this._name, this._description, this._price, this._addition, _buff, pathToImage);
         }
 
         public override void Use()

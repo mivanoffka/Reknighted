@@ -37,19 +37,6 @@ namespace Reknighted.View
 
                 if (mapIcons is not null)
                 {
-                    foreach (var i in Collections.Locations.CityMaps)
-                    {
-                        if (i.Value == mapIcons)
-                        {
-                            this.groupBox.Header = i.Key;
-                            break;
-                        }
-                        else
-                        {
-                            this.groupBox.Header = "Карточное Королевство";
-                        }
-                    }
-
                     foreach (var icon in mapIcons)
                     {
                         grid.Children.Add(icon);

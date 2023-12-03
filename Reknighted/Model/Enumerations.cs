@@ -24,9 +24,9 @@ namespace Reknighted.Model
         Universal, Food, Armor, Weapon, Artefact
     }
 
-    public enum Family
+    public enum Faction
     {
-        Hearts, Clubs, Trefles, Diamonds
+        Hearts, Spades, Clubs, Diamonds
     }
 
     public enum Buff

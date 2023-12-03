@@ -22,7 +22,7 @@ namespace Reknighted
         {
             InitializeComponent();
             Items.Initialize();
-            Traders.Initialize();
+            Entities.Initialize();
             Locations.Initialize();
         }
 

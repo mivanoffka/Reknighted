@@ -20,9 +20,6 @@
             </TabItem>
             <TabItem x:Name="locationTabButton" Header="Локация" Background="#FFCC7676">
                 <Grid Background="White">
-                    <Button Content="Торговец Петя" HorizontalAlignment="Left" Margin="316,10,0,0" VerticalAlignment="Top" Height="24" Click="Button_Click" Width="143"/>
-                    <Button Content="Арена" HorizontalAlignment="Left" Margin="316,39,0,0" VerticalAlignment="Top" Width="143" Height="24" Click="Button_Click_1"/>
-                    <Button Content="Бронник Александр" HorizontalAlignment="Left" Margin="316,67,0,0" VerticalAlignment="Top" Height="24" Click="Button_Click_2" Width="143"/>
                     <Image Margin="286,68,137,167" Source="/icon_134.png" Stretch="Fill"/>
                     <View:LocationView x:Name="location" HorizontalAlignment="Center" VerticalAlignment="Top" Height="296" Width="449"/>
                 </Grid>

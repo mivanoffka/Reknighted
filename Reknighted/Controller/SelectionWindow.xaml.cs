@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Reknighted.Controller;
+using Reknighted.Model;
 
 namespace Reknighted
 {
@@ -30,7 +31,12 @@ namespace Reknighted
             GameWindow gameWindow = new GameWindow();
             Game.Window = gameWindow;
             gameWindow.Show();
-            gameWindow.LoadPlayer();
+            
+
+
+            Dictionary<Button, Faction> factions = new() { {heartsButton, Faction.Hearts }, {spadesButton, Faction.Spades }, {clubsButton, Faction.Clubs}, {diamondsButton, Faction.Diamonds} };
+            Faction faction = factions[sender as Button];
+            gameWindow.LoadPlayer(faction);
 
             this.Close();
         }

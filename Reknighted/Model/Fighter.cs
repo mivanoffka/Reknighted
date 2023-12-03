@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reknighted.Model
 {
-    public class Fighter : IFightable
+    public class Fighter : IFightable, IMappable
     {
         public string Name { get; init; } = string.Empty;
 

@@ -23,10 +23,40 @@ namespace Reknighted.Model
         protected Image _image;
         protected bool _isPossessed = true;
         private Cell? _cell = null;
+        protected string pathToImage;
 
         public string Name { get { return _name; } }
         public string Description { get { return "   " + _description;} }
-        public int Price { get { return _price; } }
+        public int Price
+        {
+            get
+            {
+                int value = _price;
+
+                if (Game.PlayerModel.Faction == Faction.Diamonds)
+                {
+                    if (IsPossessed)
+                    {
+                        value = (int)(value * 0.8);
+                    }
+                    else
+                    {
+                        value = (int)(value * 0.9);
+                    }
+                }
+                else
+                {
+                    if (IsPossessed)
+                    {
+                        value = (int)(value * 0.7);
+                    }
+                }
+
+
+
+                return value; 
+            }
+        }
         public Image Image { get { return _image; } }
 
         public bool IsPossessed
@@ -41,7 +71,7 @@ namespace Reknighted.Model
             _name = name;
             _description = description;
             _price = basePrice;
-
+            pathToImage = imageSource;
 
             if (imageSource == "")
             {
@@ -162,32 +192,6 @@ namespace Reknighted.Model
             
         }
 
-        public ItemModel Copy()
-        {
-            if (GetType() == typeof(FoodModel))
-            {
-                return new FoodModel((FoodModel)this);
-            }
-            else if (GetType() == typeof(ArmorModel))
-            {
-                return new ArmorModel((ArmorModel)this);
-            }
-            else if (GetType() == typeof(WeaponModel))
-            {
-                return new WeaponModel((WeaponModel)this);
-            }
-            else if (GetType() == typeof(ArtefactModel))
-            {
-                return new ArtefactModel((ArtefactModel)this);
-            }
-            else if (GetType() == typeof(PotionModel))
-            {
-                return new PotionModel((PotionModel)this);
-            }
-            else
-            {
-                throw new ArgumentException();
-            }
-        }
+        public abstract ItemModel Copy();
     }
 }

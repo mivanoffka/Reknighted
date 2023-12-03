@@ -31,8 +31,9 @@ namespace Reknighted.Controller
             InitializeComponent();
             _enemy = enemy;
             enemyBox.Header = _enemy.Name;
-            errorLabel.Content = "";
-            errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
+            //errorLabel.Content = "";
+            Game.Error("Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%");
+            //errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
             betBox.Header = "Ставка    [ 50 ]";
 
             CreateAndPlace();
@@ -65,9 +66,8 @@ namespace Reknighted.Controller
 
         private void betSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (betBox != null && betSlider != null && errorLabel != null)
+            if (betBox != null && betSlider != null)
             {
-                errorLabel.Content = "";
                 betBox.Header = "Ставка    [ " + Math.Round(betSlider.Value).ToString() + " ]";
 
             }
@@ -75,7 +75,6 @@ namespace Reknighted.Controller
 
         private void fightButton_Click(object sender, RoutedEventArgs e)
         {
-            errorLabel.Content = "";
             PlayerModel? player = Game.PlayerModel;
             if (player == null)
                 return;
@@ -84,8 +83,7 @@ namespace Reknighted.Controller
             
             if (player.Balance < bet)
             {
-                //errorLabel.Content = "Подлечитесь! Нельзя вступать в схватку в таком состоянии здоровья..."; 
-                errorLabel.Content = "А денежек-то не хватит...";
+                Game.Error("А денежек то не хватит...");
                 Success = false;
                 return;
             }

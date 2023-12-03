@@ -25,16 +25,9 @@ namespace Reknighted.Model
             this._protection = protection;
         }
 
-        public ArmorModel(ArmorModel armorModel)
+        public override ItemModel Copy()
         {
-            this._name = armorModel.Name;
-            this._description = armorModel.Description;
-            this._price = armorModel.Price;
-            this._maxDurability = armorModel.MaxDurability;
-            this._currentDurability = armorModel.CurrentDurability;
-            this._protection = armorModel.Protection;
-            this._image = armorModel.Image;
-
+            return new ArmorModel(_name, _description, _price, _maxDurability, _protection, pathToImage);
         }
 
         public override void Use()
