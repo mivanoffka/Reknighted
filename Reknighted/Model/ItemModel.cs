@@ -100,6 +100,7 @@ namespace Reknighted.Model
             get => _isPossessed;
             set =>_isPossessed=value;
         }
+        [JsonIgnore]
         public Cell? Cell { get => _cell; set => _cell = value; }
 
         public ItemModel(string name, string description, int basePrice, string imageSource = "")

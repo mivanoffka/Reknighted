@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,13 +28,13 @@ namespace Reknighted
         private bool _isPossessed = true;
         private Type? _filter = null;
 
-
         public bool IsPossessed
         {
             get => _isPossessed;
             set => _isPossessed = value;
         }
-        
+
+        [JsonIgnore]
         public ItemModel? ContentItem
         {
             get { return _contentItem; }
@@ -51,7 +52,6 @@ namespace Reknighted
             }
         }
 
-
         public Point Position
         {
             get 
@@ -65,7 +65,6 @@ namespace Reknighted
                 
             } 
         }
-
         public bool IsPointed
         {
             get
@@ -95,6 +94,7 @@ namespace Reknighted
             }
         }
 
+        [JsonIgnore]
         public Type? Filter { get => _filter; 
             set
             {
@@ -123,7 +123,6 @@ namespace Reknighted
         {
             this.Filter = null;
         }
-
         public Cell(Point position)
         {
             Game.AllCells.Add(this);
@@ -131,7 +130,6 @@ namespace Reknighted
             InitializeComponent();
             this.BorderBrush = new SolidColorBrush(Colors.Gray);
         }
-
         public Cell(Point position, Type filter) : this(position) 
         {
             this.Filter = filter;

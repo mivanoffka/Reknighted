@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
+    [JsonDerivedType(typeof(PlayerModel))]
     public class PlayerModel : IFightable, ITradeable
     {
         #region IPlayable
 
         private City _location = City.Masquarade;
-
         public City Location
         {
             get
@@ -30,10 +31,7 @@ namespace Reknighted.Model
         #endregion
 
         #region ITradeable
-
-        private List<ItemModel?> _items = new List<ItemModel?>();
-        private int _balance = 10000;
-
+        private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };        
         public List<ItemModel?> Items
         {
             get
@@ -41,6 +39,8 @@ namespace Reknighted.Model
                 return _items;
             }
         }
+        private List<ItemModel?> _items = new List<ItemModel?>();
+        private int _balance = 10000;
 
         public int Balance
         {
@@ -65,15 +65,14 @@ namespace Reknighted.Model
 
         #region IFightable
 
-        private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
         private int _maxHealth = 50;
         private int _currentHealth = 40;
         private int _fortune =  10;
 
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
-
+        [JsonIgnore]
         public ItemModel? Reward { get => null; }
-
+        [JsonIgnore]
         public WeaponModel? Weapon
         {
             get
@@ -86,6 +85,7 @@ namespace Reknighted.Model
                 _equippedItems[0] = value;
             }
         }
+        [JsonIgnore]
         public ArmorModel? Armor
         {
             get
@@ -98,6 +98,7 @@ namespace Reknighted.Model
                 _equippedItems[1] = value;
             }
         }
+        [JsonIgnore]
         public ArtefactModel? Artefact
         {
             get
@@ -122,8 +123,6 @@ namespace Reknighted.Model
             }
         }
 
-
-
         public int MaxHealth
         {
             get
@@ -136,9 +135,6 @@ namespace Reknighted.Model
                 _maxHealth = value;
             }
         }
-
-
-
         public int CurrentHealth
         {
             get
@@ -178,6 +174,7 @@ namespace Reknighted.Model
             }
         }
 
+        [JsonIgnore]
         public double HealthPercentage
         {
             get
@@ -192,11 +189,11 @@ namespace Reknighted.Model
             }
 
         }
-
         public Faction Faction { get; set; }
         public int BaseDamage { get; set; } = 1;
         public int BaseProtection { get; set; } = 1;
 
+        [JsonIgnore]
         public int Damage
         {
             get
@@ -217,6 +214,7 @@ namespace Reknighted.Model
                 return value;
             }
         }
+        [JsonIgnore]
         public int Protection
         {
             get
@@ -237,7 +235,6 @@ namespace Reknighted.Model
                 return value;
             }
         }
-
         public int Fortune
         {
             get

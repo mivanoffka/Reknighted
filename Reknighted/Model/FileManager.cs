@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Reknighted.Controller;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -8,17 +9,35 @@ namespace Reknighted.Model
 {
     public static class FileManager
     {
-        public static void Save()
+        public static void Save(int slot)
         {
-            string path = "Saves";
+            string path = $"Saves\\{slot}.json";
+            var properties = new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
 
-            //var properties = new JsonSerializerOptions()
-            //{
-            //    WriteIndented = true,
-            //};
-            //var json = JsonSerializer.Serialize<Dictionary<string, ArtefactModel>>(Items.Artefacts, properties);
-            //File.WriteAllText($"{path}/Artefacts.json", json);
+            var json = JsonSerializer.Serialize <PlayerModel>(Game.PlayerModel, properties);
+            File.WriteAllText(path, json);
 
+        }
+
+        public static void LoadProgress(int slot) 
+        {
+            string path = $"Saves\\{slot}.json";
+            var properties = new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            };
+            
+            var playerInfo = JsonSerializer.Deserialize<PlayerModel>(File.ReadAllText(path), properties);
+            Game.PlayerModel = playerInfo;
+            Game.PlayerView = new PlayerView();
+            Game.PlayerView.Model = Game.PlayerModel;
         }
 
         public static Dictionary<string, ItemModel> LoadAssets(string dictName)

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Reknighted.Collections;
+using Reknighted.Controller;
+using Reknighted.Model;
 
 namespace Reknighted
 {
@@ -36,6 +38,17 @@ namespace Reknighted
             SelectionWindow selectionWindow = new SelectionWindow();
             selectionWindow.Show();
 
+            this.Close();
+        }
+
+        private void loadGameButtom_Click(object sender, RoutedEventArgs e)
+        {
+            SaveWindow saveWindow = new SaveWindow();
+            saveWindow.isSaving = false;
+            saveWindow.ShowDialog();
+
+            GameWindow gameWindow = new GameWindow();
+            gameWindow.Show();
             this.Close();
         }
     }

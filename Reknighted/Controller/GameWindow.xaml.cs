@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using static Reknighted.View.MapIcon;
 
 namespace Reknighted
@@ -109,6 +111,17 @@ namespace Reknighted
                 this.Height = defaultWindowHeight;
                 this.grid.Height = defaultGridHeight;
                 this.gameTabs.Height = defaultTabHeight;
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+            {
+                SaveWindow saveWindow = new SaveWindow();
+                saveWindow.isSaving = true;
+                saveWindow.ShowDialog();
+                e.Handled = true;
             }
         }
     }
