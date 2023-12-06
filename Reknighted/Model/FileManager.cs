@@ -12,6 +12,10 @@ namespace Reknighted.Model
         public static void Save(int slot)
         {
             string path = $"Saves\\{slot}.json";
+            if (!Directory.Exists("Saves"))
+            {
+                Directory.CreateDirectory("Saves");
+            }
             var properties = new JsonSerializerOptions()
             {
                 WriteIndented = true,
