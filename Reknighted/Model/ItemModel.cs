@@ -12,18 +12,53 @@ using System.Security.Policy;
 using System.Windows;
 using System.Runtime.CompilerServices;
 using Reknighted.Controller;
+using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Reknighted.Model
 {
+    [JsonDerivedType(typeof(ItemModel))]
+    [JsonDerivedType(typeof(DurableItem))]
+    [JsonDerivedType(typeof(FoodModel), typeDiscriminator: "food")]
+    [JsonDerivedType(typeof(ArmorModel), typeDiscriminator: "armor")]
+    [JsonDerivedType(typeof(ArtefactModel), typeDiscriminator: "artefact")]
+    [JsonDerivedType(typeof(PotionModel), typeDiscriminator: "potion")]
+    [JsonDerivedType(typeof(WeaponModel), typeDiscriminator: "weapon")]
+    [JsonPolymorphic(
+    UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToNearestAncestor)]
+
     public abstract class ItemModel : IDisposable
     {
         protected string _name;
         protected string _description;
         protected int _price;
+
+        [JsonIgnore]
         protected Image _image;
         protected bool _isPossessed = true;
         private Cell? _cell = null;
-        protected string pathToImage;
+        [JsonInclude]
+        public string _pathToImage;
+        public string PathToImage 
+        { 
+            get { return _pathToImage; }
+            set
+            {
+                _pathToImage = value;
+                if (_pathToImage == "" || _pathToImage == null)
+                {
+                    _pathToImage = Images.Sources.QuestionMark;
+                }
+                _image = new Image();
+
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                var path = Path.Combine(Environment.CurrentDirectory, _pathToImage);
+                bitmap.UriSource = new Uri(path);
+                bitmap.EndInit();
+                _image.Source = bitmap;
+            }
+        }
 
         public string Name { get { return _name; } }
         public string Description { get { return "   " + _description;} }
@@ -32,7 +67,6 @@ namespace Reknighted.Model
             get
             {
                 int value = _price;
-
                 if (Game.PlayerModel.Faction == Faction.Diamonds)
                 {
                     if (IsPossessed)
@@ -51,12 +85,14 @@ namespace Reknighted.Model
                         value = (int)(value * 0.7);
                     }
                 }
+                _price = value;
 
-
-
-                return value; 
+                return _price;
             }
+
         }
+
+        [JsonIgnore]
         public Image Image { get { return _image; } }
 
         public bool IsPossessed
@@ -71,23 +107,8 @@ namespace Reknighted.Model
             _name = name;
             _description = description;
             _price = basePrice;
-            pathToImage = imageSource;
-
-            if (imageSource == "")
-            {
-                imageSource = Images.Sources.QuestionMark;
-            }
-            _image = new Image();
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            var path = Path.Combine(Environment.CurrentDirectory, imageSource);
-            bitmap.UriSource = new Uri(path);
-            bitmap.EndInit();
-            _image.Source = bitmap;
-
+            PathToImage = imageSource;
         }
-
         public ItemModel(ItemModel itemModel) 
         {
             _name = itemModel.Name;
@@ -95,11 +116,22 @@ namespace Reknighted.Model
             _price = itemModel.Price;
             _image = itemModel.Image;
         }
-
         public ItemModel()
         {
 
         }
+
+        [JsonConstructor]
+        public ItemModel(string name, string description, int price, bool isPossessed, Cell cell, string pathToImage)
+        {
+            _name = name;
+            _description = description;
+            _price = price;
+            _isPossessed = isPossessed;
+            _cell = cell;
+            PathToImage = pathToImage;
+        }
+
 
         public void MoveToCell(Cell newCell)
         {   

@@ -281,16 +281,6 @@ namespace Reknighted.Model
             Game.Update();
         }
 
-        public void SellTo(ITradeable trader, ItemModel item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BuyFrom(ITradeable trader, ItemModel item)
-        {
-            throw new NotImplementedException();
-        }
-
         static int MaxIventorySize = 27;
 
         public PlayerModel(Faction faction)

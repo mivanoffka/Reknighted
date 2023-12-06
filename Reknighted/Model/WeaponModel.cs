@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
@@ -24,10 +25,20 @@ namespace Reknighted.Model
         {
             this._damage = damage;
         }
+        public WeaponModel() { }
+
+        [JsonConstructor]
+        public WeaponModel(int damage, int maxDurability, int currentDurability, string pathToImage, string name,
+            string description, int price, bool isPossessed, Cell cell)
+            : base(maxDurability, currentDurability, pathToImage, name, description, price, isPossessed, cell)
+        {
+            _damage = damage;
+            _maxDurability = maxDurability;
+        }
 
         public override ItemModel Copy()
         {
-            return new WeaponModel(_name, _description, _price, _maxDurability, _damage, pathToImage);
+            return new WeaponModel(_name, _description, _price, _maxDurability, _damage, _pathToImage);
         }
 
         public override void Use()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Reknighted.Controller;
 
@@ -24,9 +25,17 @@ namespace Reknighted.Model
             this._satiety = satiety;
         }
 
+        [JsonConstructor]
+        public FoodModel(string name, string description, int price, bool isPossessed, Cell cell, string pathToImage, int satiety) :
+            base(name,description,price, isPossessed, cell, pathToImage)
+        {
+            _satiety = satiety;
+        }
+
+
         public override ItemModel Copy()
         {
-            return new FoodModel(this._name, this._description, this._price, this._satiety, pathToImage);
+            return new FoodModel(this._name, this._description, this._price, this._satiety, _pathToImage);
         }
 
         public FoodModel(FoodModel foodModel)

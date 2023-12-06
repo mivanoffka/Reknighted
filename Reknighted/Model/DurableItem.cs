@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Reknighted.Controller.Game;
 
@@ -53,6 +54,7 @@ namespace Reknighted.Model
             }
         }
 
+        [JsonIgnore]
         public double DurabilityPercentage
         {
             get
@@ -73,6 +75,20 @@ namespace Reknighted.Model
         { 
             _maxDurability = maxDurability;
             _currentDurability = _maxDurability;
+        }
+
+        [JsonConstructor]
+        public DurableItem(int maxDurability, int currentDurability,
+            string pathToImage, string name, string description, int price, bool isPossesed, Cell cell)
+        {
+            _maxDurability = maxDurability;
+            _currentDurability = currentDurability;
+            PathToImage = pathToImage;
+            _name = name;
+            _description = description;
+            _price = price;
+            _isPossessed = isPossesed;
+            Cell = cell;
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Reknighted.Controller;
 
@@ -15,7 +16,7 @@ namespace Reknighted.Model
         public int Addition
         {
             get
-            {   
+            {
                 int value = _addition;
 
                 if (Game.PlayerModel.Faction == Faction.Clubs && IsPossessed)
@@ -34,10 +35,19 @@ namespace Reknighted.Model
             this._addition = addition;
             this._buff = buff;
         }
+        public PotionModel(){}
 
+        [JsonConstructor]
+        public PotionModel(int addition, Buff buff, string pathToImage, string name, string description, int price,
+            bool isPossessed, Cell cell) : base(name, description, price, isPossessed, cell, pathToImage)
+        {
+            _addition = addition;
+            _buff = buff;
+        }
+        
         public override ItemModel Copy()
         {
-            return new PotionModel(this._name, this._description, this._price, this._addition, _buff, pathToImage);
+            return new PotionModel(this._name, this._description, this._price, this._addition, _buff, _pathToImage);
         }
 
         public override void Use()

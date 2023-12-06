@@ -1,0 +1,266 @@
+{
+	"strawberry":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Strawberry",
+	  "Description": "-",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\strawberry.png"
+	},
+	
+	"eggs":{
+	  "$type": "food",
+	  "Satiety": 20,
+	  "Name": "Eggs",
+	  "Description": "Eggstremely tasty",
+	  "Price": 17,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\eggs.png"
+	},
+	
+	"bacon":{
+	  "$type": "food",
+	  "Satiety": 90,
+	  "Name": "Bacon",
+	  "Description": "Absolutely not bourgeoisie",
+	  "Price": 52,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\bacon.png"
+	},
+	
+	"jam":{
+	  "$type": "food",
+	  "Satiety": 60,
+	  "Name": "Jam",
+	  "Description": "Not the fate berries dreamed about",
+	  "Price": 35,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\jam.png"
+	},
+	
+	"waffles":{
+	  "$type": "food",
+	  "Satiety": 24,
+	  "Name": "Waffles",
+	  "Description": "-",
+	  "Price": 21,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\waffles.png"
+	},
+	
+	"cherry":{
+	  "$type": "food",
+	  "Satiety": 4,
+	  "Name": "Cherry",
+	  "Description": "A pity it's not on a pie",
+	  "Price": 3,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\cherry.png"
+	},
+	
+	"steak":{
+	  "$type": "food",
+	  "Satiety": 120,
+	  "Name": "Beef Steak",
+	  "Description": "Medium-well? No, blin, physic-bad",
+	  "Price": 70,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\steak.png"
+	},
+	
+	"apple_green":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Green Apple",
+	  "Description": "Doesn't fall very far from the apple tree.",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\green_apple.png"
+	},
+	
+	"pepper_green":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Green Pepper",
+	  "Description": "It's already ripe, jst fashionable",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pepper_green.png"
+	},
+	
+	"potato":{
+	  "$type": "food",
+	  "Satiety": 24,
+	  "Name": "Potato",
+	  "Description": "Why eat meat with it? So you eat it with fish, with herring.",
+	  "Price": 21,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\potato.png"
+	},
+	
+	"pepperoni":{
+	  "$type": "food",
+	  "Satiety": 160,
+	  "Name": "Pepperoni",
+	  "Description": "",
+	  "Price": 105,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pepperoni.png"
+	},
+	
+	"candy":{
+	  "$type": "food",
+	  "Satiety": 4,
+	  "Name": "\u041A\u043E\u043D\u0444\u0435\u0442\u043A\u0430",
+	  "Description": "   \u041C\u0430\u043B\u0435\u043D\u044C\u043A\u0430\u044F \u0438 \u043D\u0435\u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F",
+	  "Price": 3,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\candy.png"
+	},
+	
+	"apple_red":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "\u041A\u0440\u0430\u0441\u043D\u043E\u0435 \u044F\u0431\u043B\u043E\u043A\u043E",
+	  "Description": "   \u0412\u043E\u0437\u043C\u043E\u0436\u043D\u043E, \u043E\u043D\u043E \u0447\u0435\u0433\u043E-\u0442\u043E \u0441\u0442\u044B\u0434\u0438\u0442\u0441\u044F.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\red_apple.png"
+	},
+	
+	"pepper_red":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "\u041A\u0440\u0430\u0441\u043D\u044B\u0439 \u043F\u0435\u0440\u0435\u0446",
+	  "Description": "   \u041A\u0430\u043A \u0437\u0435\u043B\u0451\u043D\u044B\u0439, \u0442\u043E\u043B\u044C\u043A\u043E \u043A\u0440\u0443\u0447\u0435.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pepper_red.png"
+	},
+	
+	"pretzel":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "\u041A\u0440\u0435\u043D\u0434\u0435\u043B\u044C",
+	  "Description": "   \u041F\u0440\u043E\u0438\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u0438\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0430 \u043D\u0430 \u0442\u0435\u043C\u0443 \u0022\u0437\u0430\u0432\u043E\u0440\u043E\u0442 \u043A\u0438\u0448\u043E\u043A\u0022",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pretzel.png"
+	},
+	
+	"chicken":{
+	  "$type": "food",
+	  "Satiety": 60,
+	  "Name": "\u041A\u0443\u0440\u043E\u0447\u043A\u0430",
+	  "Description": "   \u0414\u043E\u0431\u0435\u0433\u0430\u043B\u0430\u0441\u044C.",
+	  "Price": 35,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\chicken.png"
+	},
+	
+	"lemon":{
+	  "$type": "food",
+	  "Satiety": 24,
+	  "Name": "\u041B\u0438\u043C\u043E\u043D",
+	  "Description": "   \u041B\u0430\u043A\u043E\u043C\u0441\u0442\u0432\u043E \u0434\u043B\u044F \u0438\u0437\u0432\u0440\u0430\u0449\u0435\u043D\u0446\u0430.",
+	  "Price": 21,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\lemon.png"
+	},
+	
+	"onion":{
+	  "$type": "food",
+	  "Satiety": 4,
+	  "Name": "\u041B\u0443\u043A",
+	  "Description": "   \u042F \u043D\u0435 \u043F\u043B\u0430\u0447\u0443, \u044D\u0442\u043E \u043F\u0440\u043E\u0441\u0442\u043E \u0441\u043B\u0451\u0437\u044B...",
+	  "Price": 3,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\onion.png"
+	},
+	
+	"honey":{
+	  "$type": "food",
+	  "Satiety": 160,
+	  "Name": "\u041C\u0451\u0434",
+	  "Description": "   \u0422\u0440\u0443\u0434 \u0432\u0441\u0435\u0439 \u0436\u0438\u0437\u043D\u0438 \u0446\u0435\u043B\u043E\u0433\u043E \u0443\u043B\u044C\u044F",
+	  "Price": 105,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\honey.png"
+	},
+	
+	"pickle":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "\u041E\u0433\u0443\u0440\u0435\u0446",
+	  "Description": "   \u041E\u043D \u043A\u043E\u043B\u044E\u0447\u0438\u0439. \u041F\u0440\u0438\u043A\u0430\u0437\u0430\u043D\u043E \u0431\u043E\u044F\u0442\u044C\u0441\u044F.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pickle.png"
+	},
+	
+	"peach":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "\u041F\u0435\u0440\u0441\u0438\u043A",
+	  "Description": "   -",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\peach.png"
+	},
+	
+	"cookie":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "\u041F\u0435\u0447\u0435\u043D\u044C\u043A\u0430",
+	  "Description": "   \u041F\u0435\u0447\u0451\u043D\u043A\u0430 \u0432 \u043A\u043E\u0441\u0442\u044E\u043C\u0435 \u043F\u0435\u0447\u0435\u043D\u044C\u043A\u0438",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\cookie.png"
+	},
+	
+	"tomato":{
+	  "$type": "food",
+	  "Satiety": 20,
+	  "Name": "\u041F\u043E\u043C\u0438\u0434\u043E\u0440",
+	  "Description": "   \u041A\u0440\u0430\u0441\u043D\u044B\u0439, \u043A\u0430\u043A... \u043E\u043D \u0441\u0430\u043C?",
+	  "Price": 17,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\tomato.png"
+	},
+	
+	"cheese":{
+	  "$type": "food",
+	  "Satiety": 40,
+	  "Name": "\u0421\u044B\u0440",
+	  "Description": "   \u041E\u0442 \u043D\u0435\u0433\u043E \u043F\u0430\u0445\u043D\u0435\u0442 \u043F\u043B\u0435\u0441\u0435\u043D\u044C\u044E. \u041D\u043E \u0434\u0430\u043B\u0435\u043A\u043E \u043D\u0435 \u0444\u0430\u043A\u0442, \u0447\u0442\u043E \u044D\u0442\u043E \u0434\u043E\u0440-\u0431\u043B\u044E.",
+	  "Price": 28,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\cheese.png"
+	}
+
+}

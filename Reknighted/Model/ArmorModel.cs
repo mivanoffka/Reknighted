@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using Reknighted.Controller;
@@ -24,10 +25,19 @@ namespace Reknighted.Model
         {
             this._protection = protection;
         }
+        public ArmorModel() { }
+
+        [JsonConstructor]
+        public ArmorModel(int protection, int maxDurability, int currentDurability,
+            string pathToImage, string name, string description, int price, bool isPossessed, Cell cell)
+            : base(maxDurability, currentDurability, pathToImage, name, description, price, isPossessed, cell)
+        {
+            _protection = protection;
+        }
 
         public override ItemModel Copy()
         {
-            return new ArmorModel(_name, _description, _price, _maxDurability, _protection, pathToImage);
+            return new ArmorModel(_name, _description, _price, _maxDurability, _protection, _pathToImage);
         }
 
         public override void Use()

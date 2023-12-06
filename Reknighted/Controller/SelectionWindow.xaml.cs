@@ -32,8 +32,6 @@ namespace Reknighted
             Game.Window = gameWindow;
             gameWindow.Show();
             
-
-
             Dictionary<Button, Faction> factions = new() { {heartsButton, Faction.Hearts }, {spadesButton, Faction.Spades }, {clubsButton, Faction.Clubs}, {diamondsButton, Faction.Diamonds} };
             Faction faction = factions[sender as Button];
             gameWindow.LoadPlayer(faction);
