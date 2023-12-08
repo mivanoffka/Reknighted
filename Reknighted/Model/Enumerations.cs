@@ -9,9 +9,9 @@ using System.Windows.Navigation;
 namespace Reknighted.Model
 {   
 
-    public enum City
+    public enum Location
     {
-        Masquarade, Hearts, Clubs, Trefles, Diamonds
+        Masquarade, Hearts, Clubs, Spades, Diamonds, ShowRoom
     }
     
     public enum MessageType

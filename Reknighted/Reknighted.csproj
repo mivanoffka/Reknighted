@@ -239,6 +239,9 @@
     <None Update="Images\Icons\cyan_tents.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\Icons\diamonds.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\Icons\green_gates.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -278,13 +281,16 @@
     <None Update="Images\Icons\ruined_tower.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\Icons\spades.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\Icons\three_houses.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Icons\tiny_house.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Images\Icons\trefles.png">
+    <None Update="Images\Icons\clubs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Icons\yellow_gates.png">

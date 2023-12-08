@@ -25,7 +25,6 @@ namespace Reknighted
             InitializeComponent();
             Items.Initialize();
             Entities.Initialize();
-            Locations.Initialize();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)

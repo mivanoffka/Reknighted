@@ -40,6 +40,7 @@ namespace Reknighted.Model
     {
         public System.Windows.Point Point { get; set; }
 
+        public Location City { get; set; }
         public string PathToIcon { get; set; }
     }
 }

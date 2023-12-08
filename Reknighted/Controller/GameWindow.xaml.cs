@@ -48,8 +48,7 @@ namespace Reknighted
             defaultGridHeight = this.grid.Height;
             defaultTabHeight = this.gameTabs.Height;
 
-            location.MapIcons = Collections.Locations.Locs["showroom"];
-            globalMap.MapIcons = Collections.Locations.GlobalMap.Values.ToList();
+            globalMap.MapIcons = Collections.Entities.GlobalMap.Values.ToList();
         }
 
         public void LoadPlayer(Faction faction)

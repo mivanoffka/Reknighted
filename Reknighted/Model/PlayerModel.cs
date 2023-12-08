@@ -15,8 +15,8 @@ namespace Reknighted.Model
     {
         #region IPlayable
 
-        private City _location = City.Masquarade;
-        public City Location
+        private Location _location = Location.Masquarade;
+        public Location Location
         {
             get
             {
@@ -294,7 +294,7 @@ namespace Reknighted.Model
         }
 
         [JsonConstructor]
-        public PlayerModel(City location, List<ItemModel?> items, int balance, ItemModel[] equippedItems, int maxHealth,
+        public PlayerModel(Location location, List<ItemModel?> items, int balance, ItemModel[] equippedItems, int maxHealth,
             int currentHealth, Faction faction, int baseDamage, int baseProtection, int fortune)
         {
             _location = location;

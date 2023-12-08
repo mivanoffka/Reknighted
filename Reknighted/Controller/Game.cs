@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,6 +70,10 @@ namespace Reknighted.Controller
         #endregion
 
         #region Персонажи
+
+        // Списки всех торговцев и противников
+        public static List<TraderModel> AllTraders { get; set; }
+        public static List<Fighter> AllFighters { get; set; }
 
         // Представление игрока
 
@@ -439,6 +444,12 @@ namespace Reknighted.Controller
                 MessageBox.Show("Файл не найден. " + name);
                 throw;
             }
+        }
+
+        public static void InitEntities()
+        {
+            AllTraders = Collections.Entities.AllTradersDefaultState.Values.ToList();
+            AllFighters = Collections.Entities.AllFightersDefaultState.Values.ToList();
         }
 
         #endregion

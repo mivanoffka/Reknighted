@@ -62,7 +62,7 @@ namespace Reknighted.View
         }
 
 
-        public MapIcon(string name, List<MapIcon> link, string pathToIcon, Point position)
+        public MapIcon(string name, Location link, string pathToIcon, Point position)
         {   
             InitializeComponent();
             Position = position;
@@ -97,9 +97,27 @@ namespace Reknighted.View
             {
                 Game.CurrentTrader = (TraderModel)Link;
             }
-            if (Link is List<MapIcon>)
+            if (Link is Location)
             {
-                Game.LocationView.MapIcons = Link as List<MapIcon>;
+                List<MapIcon> newList = new List<MapIcon>();
+
+                foreach (var item in Game.AllTraders)
+                {
+                    if (item.City == (Location)Link)
+                    {
+                        newList.Add(new MapIcon(item));
+                    }
+                }
+
+                foreach (var item in Game.AllFighters)
+                {
+                    if (item.City == (Location)Link)
+                    {
+                        newList.Add(new MapIcon(item));
+                    }
+                }
+
+                Game.LocationView.MapIcons = newList;
                 Game.Window.gameTabs.SelectedIndex = 1;
             }
             if (Link.GetType() == typeof(Fighter))

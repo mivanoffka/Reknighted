@@ -29,6 +29,7 @@ namespace Reknighted
         private void ButtonClickPlaceHolder(object sender, RoutedEventArgs e)
         {
             GameWindow gameWindow = new GameWindow();
+            Game.InitEntities();
             Game.Window = gameWindow;
             gameWindow.Show();
             

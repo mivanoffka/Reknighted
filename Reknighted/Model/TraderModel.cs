@@ -10,6 +10,9 @@ namespace Reknighted.Model
 {
     public class TraderModel : ITradeable, IMappable
     {
+
+        public Location City { get; set; }
+
         private TraderType type = TraderType.Universal;
         private string _name;
 
@@ -29,8 +32,9 @@ namespace Reknighted.Model
         private List<ItemModel?> _items = new List<ItemModel?>();
         private int _balance = 2000;
 
-        public TraderModel(TraderType type, string name, ItemModel?[] items, string pathToIcon, System.Windows.Point position)
+        public TraderModel(TraderType type, string name, ItemModel?[] items, string pathToIcon, System.Windows.Point position, Location city)
         {
+            City = city;
             ItemModel?[] copied = new ItemModel[items.Length];
             for (int i = 0; i < items.Length; i++)
             {   

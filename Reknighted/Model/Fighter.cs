@@ -9,6 +9,8 @@ namespace Reknighted.Model
 {
     public class Fighter : IFightable, IMappable
     {
+
+        public Location City { get; set; }
         public string Name { get; init; } = string.Empty;
 
         public ItemModel? Reward { get; init; }
@@ -133,8 +135,11 @@ namespace Reknighted.Model
             }
         }
 
-        public Fighter(string name, ItemModel[] equipment, ItemModel? reward, string pathToIcon, System.Windows.Point position)
+
+
+        public Fighter(string name, ItemModel[] equipment, ItemModel? reward, string pathToIcon, System.Windows.Point position, Location city)
         {
+            City = city;
             PathToIcon = pathToIcon;
             Point = position;
             Name = name;
