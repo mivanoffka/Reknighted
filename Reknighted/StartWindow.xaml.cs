@@ -43,12 +43,11 @@ namespace Reknighted
 
         private void loadGameButtom_Click(object sender, RoutedEventArgs e)
         {
+            //gameWindow.Show();
             SaveWindow saveWindow = new SaveWindow();
             saveWindow.isSaving = false;
             saveWindow.ShowDialog();
-
-            GameWindow gameWindow = new GameWindow();
-            gameWindow.Show();
+            
             this.Close();
         }
     }

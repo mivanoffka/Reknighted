@@ -64,6 +64,13 @@ namespace Reknighted
             //this.playerView.UpdateContent();
             Game.Update();
         }
+        public void LoadPlayer(PlayerModel player)
+        {
+            this.playerView.Model = player;
+            Game.PlayerModel = player;
+            
+            Game.Update();
+        }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -43,8 +43,17 @@ namespace Reknighted.Controller
             }
             else
             {
-                FileManager.LoadProgress(i);
-                Game.Update();
+                PlayerModel player = FileManager.LoadProgress(i);
+                if(player == null)
+                {
+                    return;
+                }
+
+                GameWindow gameWindow = new GameWindow();
+                Game.Window = gameWindow;
+                gameWindow.Show();
+
+                gameWindow.LoadPlayer(player);
                 this.Close();
             }
 

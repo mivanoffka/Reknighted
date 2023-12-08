@@ -19,16 +19,16 @@ namespace Reknighted.Model
             var properties = new JsonSerializerOptions()
             {
                 WriteIndented = true,
-                ReferenceHandler = ReferenceHandler.Preserve
             };
 
-            var json = JsonSerializer.Serialize <PlayerModel>(Game.PlayerModel, properties);
+            ObjectStates.Player = Game.PlayerModel;
+            var json = JsonSerializer.Serialize<PlayerModel>(Game.PlayerModel, properties);
             File.WriteAllText(path, json);
-
         }
 
-        public static void LoadProgress(int slot) 
+        public static PlayerModel LoadProgress(int slot) 
         {
+            PlayerModel? playerInfo = null;
             string path = $"Saves\\{slot}.json";
             var properties = new JsonSerializerOptions()
             {
@@ -38,10 +38,16 @@ namespace Reknighted.Model
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             };
             
-            var playerInfo = JsonSerializer.Deserialize<PlayerModel>(File.ReadAllText(path), properties);
-            Game.PlayerModel = playerInfo;
-            Game.PlayerView = new PlayerView();
-            Game.PlayerView.Model = Game.PlayerModel;
+            if(File.Exists(path))
+            {
+                playerInfo = JsonSerializer.Deserialize<PlayerModel>(File.ReadAllText(path), properties);
+            }
+            else
+            {
+                MessageBox.Show("В этом слоте ничего нет!");
+            }
+
+            return playerInfo;
         }
 
         public static Dictionary<string, ItemModel> LoadAssets(string dictName)

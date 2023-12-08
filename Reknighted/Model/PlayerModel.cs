@@ -5,11 +5,12 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
+using Reknighted.Collections;
 using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
-    [JsonDerivedType(typeof(PlayerModel))]
+    [JsonDerivedType(typeof(PlayerModel),"playerModel")]
     public class PlayerModel : IFightable, ITradeable
     {
         #region IPlayable
@@ -31,7 +32,8 @@ namespace Reknighted.Model
         #endregion
 
         #region ITradeable
-        private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };        
+        private ItemModel?[] _equippedItems = new ItemModel[3] { null, null, null };
+        [JsonPropertyName("items")]
         public List<ItemModel?> Items
         {
             get
@@ -111,6 +113,7 @@ namespace Reknighted.Model
                 _equippedItems[2] = value;
             }
         }
+        [JsonPropertyName("equipment")]
         public ItemModel?[] EquippedItems
         {
             get
@@ -290,6 +293,23 @@ namespace Reknighted.Model
             }
         }
 
+        [JsonConstructor]
+        public PlayerModel(City location, List<ItemModel?> items, int balance, ItemModel[] equippedItems, int maxHealth,
+            int currentHealth, Faction faction, int baseDamage, int baseProtection, int fortune)
+        {
+            _location = location;
+            _items = items;
+            _balance = balance;
+            _equippedItems = equippedItems;
+            _maxHealth = maxHealth;
+            _currentHealth = currentHealth;
+            Faction = faction;
+            BaseDamage = baseDamage;
+            BaseProtection = baseProtection;
+            _fortune = fortune;
+
+        }
+
         public ItemModel? this[int index]
         {
             get
@@ -302,9 +322,6 @@ namespace Reknighted.Model
                 SetItem(index, value);
             }
         }
-
-
-        
 
         private ItemModel? GetItem(int index)
         {
