@@ -12,7 +12,12 @@
     <None Remove="Images\appicon.bmp" />
     <None Remove="Images\damage_icon.png" />
     <None Remove="Images\health_icon.png" />
+    <None Remove="Properties\Settings.settings" />
     <None Remove="question_mark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,7 +30,28 @@
     <Resource Include="Images\health_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="question_mark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -394,6 +420,9 @@
     </None>
     <None Update="lang\en-EN\Weapons.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="lang\names.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="lang\ru-RU\Armors.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

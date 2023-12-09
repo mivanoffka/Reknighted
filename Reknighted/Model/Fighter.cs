@@ -1,12 +1,15 @@
 ﻿using Reknighted.Controller;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Reknighted.Model
 {
+    [JsonDerivedType(typeof(Fighter))]
     public class Fighter : IFightable, IMappable
     {
 
@@ -28,19 +31,22 @@ namespace Reknighted.Model
         public System.Windows.Point Point { get; set; } = new System.Windows.Point(0, 0);
 
         private readonly int[] _defaultStats = new int[3] { 100, 0, 5 };
-
+        
+        [JsonIgnore]
         public WeaponModel? Weapon
         {
             get => (WeaponModel?)_equippedItems[0];
             set => _equippedItems[0] = value;
         }
-
+        
+        [JsonIgnore]
         public ArmorModel? Armor
         {
             get => (ArmorModel?)_equippedItems[1];
             set => _equippedItems[1] = value;
         }
 
+        [JsonIgnore]
         public ArtefactModel? Artefact
         {
             get => (ArtefactModel?)_equippedItems[2];
@@ -65,12 +71,13 @@ namespace Reknighted.Model
             set => _currentHealth = value < MaxHealth ? value : MaxHealth;
         }
 
+        [JsonIgnore]
         public double HealthPercentage
         {
             get => (double)_currentHealth / _maxHealth;
             set => _currentHealth = (int)(value * _maxHealth);
         }
-
+        [JsonIgnore]
         public int Damage
         {
             get
@@ -87,6 +94,7 @@ namespace Reknighted.Model
                 return value;
             }
         }
+        [JsonIgnore]
         public int Protection
         {
             get
@@ -163,6 +171,21 @@ namespace Reknighted.Model
 
         }
 
-
+        [JsonConstructor]
+        public Fighter(Location city, string name, ItemModel reward, int baseDamage, int baseProtection, string pathToIcon, System.Windows.Point point, ItemModel[] equippedItems, int maxHealth, int currentHealth, int damage, int fortune, int balance)
+        {
+            City = city;
+            Name = name;
+            Reward = reward;
+            BaseDamage = baseDamage;
+            BaseProtection = baseProtection;
+            PathToIcon = pathToIcon;
+            Point = point;
+            _equippedItems = equippedItems;
+            _maxHealth = maxHealth;
+            _currentHealth = currentHealth;
+            _fortune = fortune;
+            _balance = balance;
+        }
     }
 }

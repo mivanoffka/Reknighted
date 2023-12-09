@@ -21,14 +21,14 @@ namespace Reknighted.Model
                 WriteIndented = true,
             };
 
-            ObjectStates.Player = Game.PlayerModel;
-            var json = JsonSerializer.Serialize<PlayerModel>(Game.PlayerModel, properties);
+            ObjectsState states = new ObjectsState(Game.PlayerModel, Game.AllTraders, Game.AllFighters);
+            var json = JsonSerializer.Serialize(states, properties);
             File.WriteAllText(path, json);
         }
 
-        public static PlayerModel LoadProgress(int slot) 
+        public static ObjectsState? LoadProgress(int slot) 
         {
-            PlayerModel? playerInfo = null;
+            ObjectsState? states = null;
             string path = $"Saves\\{slot}.json";
             var properties = new JsonSerializerOptions()
             {
@@ -40,14 +40,14 @@ namespace Reknighted.Model
             
             if(File.Exists(path))
             {
-                playerInfo = JsonSerializer.Deserialize<PlayerModel>(File.ReadAllText(path), properties);
+                states = JsonSerializer.Deserialize<ObjectsState>(File.ReadAllText(path), properties);
             }
             else
             {
                 MessageBox.Show("В этом слоте ничего нет!");
             }
 
-            return playerInfo;
+            return states;
         }
 
         public static Dictionary<string, ItemModel> LoadAssets(string dictName)

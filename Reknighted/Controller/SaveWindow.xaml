@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reknighted.Controller"
+        xmlns:properties="clr-namespace:Reknighted.Properties"
         mc:Ignorable="d"
         Title="Выберите слот..." Height="200" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListBox Name="saveSlots">
-            <ListBoxItem Background="LightGray" Selected="Slot_Changed">0</ListBoxItem>
-            <ListBoxItem Selected="Slot_Changed">1</ListBoxItem>
-            <ListBoxItem Background="LightGray" Selected="Slot_Changed">2</ListBoxItem>
+        <ListBox Name="saveSlots" VerticalContentAlignment="Stretch" Margin="0,6,0,-6">
+            <ListBoxItem x:Name="slot1" Content="" Background="LightGray" Selected="Slot_Changed" Height="50"></ListBoxItem>
+            <ListBoxItem x:Name="slot2" Content="" Selected="Slot_Changed" Height="50"></ListBoxItem>
+            <ListBoxItem x:Name="slot3" Content="" Background="LightGray" Selected="Slot_Changed" Height="50"></ListBoxItem>
         </ListBox>
 
     </Grid>

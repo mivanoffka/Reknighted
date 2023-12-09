@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Reknighted.Controller;
 
 namespace Reknighted.Model
 {
+    [JsonDerivedType(typeof(TraderModel))]
     public class TraderModel : ITradeable, IMappable
     {
 
@@ -32,6 +34,17 @@ namespace Reknighted.Model
         private List<ItemModel?> _items = new List<ItemModel?>();
         private int _balance = 2000;
 
+        [JsonConstructor]
+        public TraderModel(Location city, string name, TraderType type, string pathToIcon, System.Windows.Point point, List<ItemModel> items, int balance)
+        {
+            City = city;
+            _name = name;
+            this.type = type;
+            PathToIcon = pathToIcon;
+            Point = point;
+            _items = items;
+            _balance = balance;
+        }
         public TraderModel(TraderType type, string name, ItemModel?[] items, string pathToIcon, System.Windows.Point position, Location city)
         {
             City = city;

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Resources;
+using System.Reflection;
+using System.Text.Json;
+using System.IO;
+using System.Text.Json.Nodes;
+using Newtonsoft.Json.Linq;
 
 namespace Reknighted.Controller
 {
@@ -24,6 +31,11 @@ namespace Reknighted.Controller
         public SaveWindow()
         {
             InitializeComponent();
+            Dictionary<string, string> slotNames = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText("lang\\names.txt"));
+            foreach(ListBoxItem slot in saveSlots.Items)
+            {
+                slot.Content = slotNames[slot.Name];
+            }
         }
 
         private void Slot_Changed(object sender, RoutedEventArgs e)
@@ -34,17 +46,23 @@ namespace Reknighted.Controller
                 return;
             }
 
-            int i = saveSlots.Items.IndexOf(sender);
+            int i = saveSlots.Items.IndexOf(sender) + 1;
             if (isSaving)
             {
                 FileManager.Save(i);
                 MessageBox.Show($"Успешно сохранено в слот {i}");
-                //((ListBoxItem)sender).Content = $"{i} - {Game.PlayerModel.Location} - {DateTime.Now}";
+
+                var jobj = JObject.Parse(File.ReadAllText("lang\\names.txt"));
+                jobj.Remove(((ListBoxItem)sender).Name);
+                jobj.Add(new JProperty(((ListBoxItem)sender).Name, $"{i} - {Game.PlayerModel.Location} - {DateTime.Now}"));
+                File.WriteAllText("lang\\names.txt", jobj.ToString());
+                ((ListBoxItem)sender).Content = $"{i} - {Game.PlayerModel.Location} - {DateTime.Now}";
+
             }
             else
             {
-                PlayerModel player = FileManager.LoadProgress(i);
-                if(player == null)
+                ObjectsState? states = FileManager.LoadProgress(i);
+                if(states == null)
                 {
                     return;
                 }
@@ -53,7 +71,13 @@ namespace Reknighted.Controller
                 Game.Window = gameWindow;
                 gameWindow.Show();
 
-                gameWindow.LoadPlayer(player);
+
+                gameWindow.playerView.Model = states.Player;
+                Game.PlayerModel = states.Player;
+                Game.AllTraders = states.Traders;
+                Game.AllFighters = states.Fighters;
+
+                Game.Update();
                 this.Close();
             }
 

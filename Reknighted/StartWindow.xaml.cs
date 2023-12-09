@@ -45,7 +45,7 @@ namespace Reknighted
             //gameWindow.Show();
             SaveWindow saveWindow = new SaveWindow();
             saveWindow.isSaving = false;
-            saveWindow.ShowDialog();
+            if (saveWindow.ShowDialog() == false) return;
             
             this.Close();
         }
