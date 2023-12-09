@@ -28,10 +28,13 @@ namespace Reknighted.Controller
     public partial class SaveWindow : Window
     {
         public bool isSaving;
+        string strpath = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+
         public SaveWindow()
         {
             InitializeComponent();
-            Dictionary<string, string> slotNames = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText("lang\\names.txt"));
+            
+            Dictionary<string, string> slotNames = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(strpath+"\\lang\\names.txt"));
             foreach(ListBoxItem slot in saveSlots.Items)
             {
                 slot.Content = slotNames[slot.Name];
@@ -55,7 +58,7 @@ namespace Reknighted.Controller
                 var jobj = JObject.Parse(File.ReadAllText("lang\\names.txt"));
                 jobj.Remove(((ListBoxItem)sender).Name);
                 jobj.Add(new JProperty(((ListBoxItem)sender).Name, $"{i} - {Game.PlayerModel.Location} - {DateTime.Now}"));
-                File.WriteAllText("lang\\names.txt", jobj.ToString());
+                File.WriteAllText(strpath+"\\lang\\names.txt", jobj.ToString());
                 ((ListBoxItem)sender).Content = $"{i} - {Game.PlayerModel.Location} - {DateTime.Now}";
 
             }
