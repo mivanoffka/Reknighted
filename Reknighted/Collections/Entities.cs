@@ -73,12 +73,12 @@ namespace Reknighted.Collections
 
         public static Dictionary<string, Fighter> AllFightersDefaultState = new()
         {
-            {"example", new Fighter("example", new ItemModel?[3], null, Items.PathTo("red_tower"), new System.Windows.Point(10, 60), Location.ShowRoom)},
+            {"example", new Fighter("example", new List<ItemModel?>(3), null, Items.PathTo("red_tower"), new System.Windows.Point(10, 60), Location.ShowRoom)},
 
             // Червы
-            {"robber_1", new Fighter("Разбойник", new ItemModel?[3] {Items.Weapons["generic_club"], Items.Armors["leather_hat"],  null }, Items.Weapons["generic_club"], Items.PathTo("ruined_tower"), new System.Windows.Point(250, 60), Location.Hearts) },
-            {"robber_2", new Fighter("Разбойник", new ItemModel?[3] {Items.Weapons["generic_sword"], null,  null}, Items.Weapons["generic_sword"], Items.PathTo("ruined_tower"), new System.Windows.Point(90, 160), Location.Hearts) },
-            {"robber_3", new Fighter("Разбойник", new ItemModel?[3] {Items.Weapons["generic_spear"], null,  null}, Items.Weapons["generic_spear"], Items.PathTo("ruined_tower"), new System.Windows.Point(190, 180), Location.Hearts) }
+            {"robber_1", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_club"], Items.Armors["leather_hat"],  null }, new List<ItemModel?>(3){Items.Weapons["generic_club"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(250, 60), Location.Hearts) },
+            {"robber_2", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_sword"], null,  null}, new List<ItemModel?>(3){Items.Weapons["generic_sword"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(90, 160), Location.Hearts)  },
+            {"robber_3", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_spear"], null,  null}, new List<ItemModel?>(3){Items.Weapons["generic_spear"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(190, 180), Location.Hearts) }
 
 
         };

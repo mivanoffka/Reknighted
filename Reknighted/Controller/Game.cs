@@ -237,7 +237,10 @@ namespace Reknighted.Controller
             }
 
         }
-
+        public static void Error(string message)
+        {
+            MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
         public static void Message(string message, MessageType messageType = MessageType.Information)
         {
             if (Window == null)
@@ -252,10 +255,6 @@ namespace Reknighted.Controller
                 Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Green);
             }
             if (messageType == MessageType.Loose)
-            {
-                Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Red);
-            }
-            if (messageType == MessageType.Error)
             {
                 Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Red);
             }
@@ -365,6 +364,12 @@ namespace Reknighted.Controller
 
             Random random = new Random();
 
+            if (firstFighter.HealthPercentage <= 0.2 || secondFighter.HealthPercentage <= 0.2)
+            {
+                MessageBox.Show("Нельзя вступать в схватку в таком состоянии здоровья!");
+                return null;
+            }
+
             int margin = (int)(100 * Fighting.Fight(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
             int result = random.Next(0, 100);
 
@@ -373,11 +378,15 @@ namespace Reknighted.Controller
             IFightable? winner = result <= margin ? firstFighter : secondFighter;
             IFightable? looser = result <= margin ? secondFighter : firstFighter;
 
-            if (looser?.Reward != null && winner.GetType() == typeof(PlayerModel))
+            if (looser?.ItemReward != null && winner.GetType() == typeof(PlayerModel))
             {
-                var reward = looser.Reward.Copy();
+                var rewards = looser.ItemReward.Select(item => (ItemModel)item.Copy()).ToList();
                 PlayerModel player = (PlayerModel)winner;
-                player.AddItem(reward);
+                foreach ( var reward in rewards )
+                {
+                    player.AddItem(reward);
+                }
+                
             }
 
             if (winner != null && (winner != secondFighter && noChange))

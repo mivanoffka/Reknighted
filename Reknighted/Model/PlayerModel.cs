@@ -73,7 +73,7 @@ namespace Reknighted.Model
 
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
         [JsonIgnore]
-        public ItemModel? Reward { get => null; }
+        public List<ItemModel?> ItemReward { get => null; }
         [JsonIgnore]
         public WeaponModel? Weapon
         {
@@ -250,6 +250,8 @@ namespace Reknighted.Model
                 _fortune = value;
             }
         }
+
+        List<ItemModel?> IFightable.ItemReward => throw new NotImplementedException();
 
         #endregion
 

@@ -1,11 +1,6 @@
 ﻿using Reknighted.Controller;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Reknighted.Model
 {
@@ -16,13 +11,15 @@ namespace Reknighted.Model
         public Location City { get; set; }
         public string Name { get; init; } = string.Empty;
 
-        public ItemModel? Reward { get; init; }
+        public List<ItemModel?> ItemReward { get; set; }
+        public int MoneyReward { get; set; }
 
-        private ItemModel?[] _equippedItems = new ItemModel?[3];
+        private List<ItemModel?> _equippedItems = new List<ItemModel?>(3) { null, null, null };
         private int _maxHealth = 50;
         private int _currentHealth = 40;
         private int _fortune = 10;
         private int _balance = 1000;
+        private int _moneyReward = 10;
 
         public int BaseDamage { get; set; } = 1;
         public int BaseProtection { get; set; } = 1;
@@ -31,14 +28,14 @@ namespace Reknighted.Model
         public System.Windows.Point Point { get; set; } = new System.Windows.Point(0, 0);
 
         private readonly int[] _defaultStats = new int[3] { 100, 0, 5 };
-        
+
         [JsonIgnore]
         public WeaponModel? Weapon
         {
             get => (WeaponModel?)_equippedItems[0];
             set => _equippedItems[0] = value;
         }
-        
+
         [JsonIgnore]
         public ArmorModel? Armor
         {
@@ -53,9 +50,9 @@ namespace Reknighted.Model
             set => _equippedItems[2] = value;
         }
 
-        public ItemModel?[] EquippedItems
+        public List<ItemModel?> EquippedItems
         {
-            get => _equippedItems; 
+            get => _equippedItems;
             set => _equippedItems = value;
         }
 
@@ -145,17 +142,17 @@ namespace Reknighted.Model
 
 
 
-        public Fighter(string name, ItemModel[] equipment, ItemModel? reward, string pathToIcon, System.Windows.Point position, Location city)
+        public Fighter(string name, List<ItemModel?> equipment, List<ItemModel?> reward, string pathToIcon, System.Windows.Point position, Location city)
         {
             City = city;
             PathToIcon = pathToIcon;
             Point = position;
             Name = name;
 
-            if (reward != null) Reward = reward;
+            if (reward != null) ItemReward = reward;
 
             if (equipment != null)
-            {   
+            {
                 try
                 {
                     Weapon = (WeaponModel)equipment[0];
@@ -172,11 +169,11 @@ namespace Reknighted.Model
         }
 
         [JsonConstructor]
-        public Fighter(Location city, string name, ItemModel reward, int baseDamage, int baseProtection, string pathToIcon, System.Windows.Point point, ItemModel[] equippedItems, int maxHealth, int currentHealth, int damage, int fortune, int balance)
+        public Fighter(Location city, string name, List<ItemModel?> itemReward, int baseDamage, int baseProtection, string pathToIcon, System.Windows.Point point, List<ItemModel?> equippedItems, int maxHealth, int currentHealth, int damage, int fortune, int balance)
         {
             City = city;
             Name = name;
-            Reward = reward;
+            ItemReward = itemReward;
             BaseDamage = baseDamage;
             BaseProtection = baseProtection;
             PathToIcon = pathToIcon;
