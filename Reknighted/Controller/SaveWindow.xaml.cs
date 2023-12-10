@@ -55,7 +55,7 @@ namespace Reknighted.Controller
                 FileManager.Save(i);
                 MessageBox.Show($"Успешно сохранено в слот {i}");
 
-                var jobj = JObject.Parse(File.ReadAllText("lang\\names.txt"));
+                var jobj = JObject.Parse(File.ReadAllText(strpath + "\\lang\\names.txt"));
                 jobj.Remove(((ListBoxItem)sender).Name);
                 jobj.Add(new JProperty(((ListBoxItem)sender).Name, $"{i} - {Game.PlayerModel.Location} - {DateTime.Now}"));
                 File.WriteAllText(strpath+"\\lang\\names.txt", jobj.ToString());

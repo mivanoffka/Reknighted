@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Reknighted.Controller
 {
@@ -32,7 +33,7 @@ namespace Reknighted.Controller
             _enemy = enemy;
             enemyBox.Header = _enemy.Name;
             //errorLabel.Content = "";
-            Game.Error("Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%");
+            //MessageBox.Show("Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%");
             //errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
             betBox.Header = "Ставка    [ 50 ]";
 
@@ -74,7 +75,7 @@ namespace Reknighted.Controller
         }
 
         private void fightButton_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             PlayerModel? player = Game.PlayerModel;
             if (player == null)
                 return;
@@ -83,13 +84,61 @@ namespace Reknighted.Controller
             
             if (player.Balance < bet)
             {
-                Game.Error("А денежек то не хватит...");
+                Game.Message("А денежек то не хватит...", MessageType.Error);
                 Success = false;
                 return;
             }
 
+
+            if (player.HealthPercentage <= 0.2)
+            {
+                Game.Message("Нельзя сражаться в таком состоянии здоровья!", MessageType.Error);
+                Success = false;
+                return;
+            }
+
+
+            List<System.Windows.UIElement> toRemove = new List<System.Windows.UIElement>();
+
+            foreach (var item in grid.Children)
+            {
+                if (item != rect && item != label)
+                {
+                    toRemove.Add((System.Windows.UIElement)item);
+                }
+            }
+
+            foreach (var item in toRemove)
+            {
+                grid.Children.Remove(item);
+            }
+
+            this.Height = 100;
+            this.rect.Height = 40;
+
             Success = true;
-            this.Close();
+            label.Text = "Идёт бой";
+            Thread thread = new Thread(SleepThread);
+            thread.Start();
         }
+
+
+        private void SleepThread()
+        {
+            Thread.Sleep(250);
+            Dispatcher.Invoke(IterFighting);
+            Thread.Sleep(250);
+            Dispatcher.Invoke(IterFighting);
+            Thread.Sleep(250);
+            Dispatcher.Invoke(IterFighting);
+            Thread.Sleep(250);
+            Dispatcher.Invoke(Close);
+        }
+
+        public void IterFighting()
+        {
+            this.label.Text += ".";
+        }
+
     }
 }

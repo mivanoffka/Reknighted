@@ -8,12 +8,10 @@
         mc:Ignorable="d"
         Title="Противник" Height="240" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
     <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="205">
-        <Rectangle HorizontalAlignment="Center" Height="153" Stroke="#FFA4A4A4" VerticalAlignment="Top" Width="200" Fill="White" Margin="0,41,0,0"/>
+        <Rectangle x:Name="rect" HorizontalAlignment="Left" Height="181" Stroke="#FFA4A4A4" VerticalAlignment="Top" Width="200" Fill="White" Margin="10,10,0,0"/>
         <GroupBox x:Name="enemyBox" Header="GroupBox" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Foreground="Black" BorderBrush="Gray" Margin="0,13,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="141" Width="180">
             <Grid x:Name="enemyGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <GroupBox Header="Снаряжение" Margin="4,-2,0,0" BorderBrush="#FF757575" Background="#FFCECECE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Width="160">
-                    <Grid x:Name="equipmentGrid"/>
-                </GroupBox>
+                <GroupBox Header="Снаряжение" Margin="4,-2,0,0" BorderBrush="#FF757575" Background="#FFCECECE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="71" Width="160"/>
                 <GroupBox x:Name="betBox" Header="Ставка" Margin="4,68,0,0" BorderBrush="#FF757575" Background="#FFCECECE" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="160">
                     <Grid x:Name="equipmentGrid1">
                         <Slider x:Name="betSlider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="139" Minimum="5" Maximum="250" Value="50" ValueChanged="betSlider_ValueChanged" SmallChange="1"/>
@@ -22,6 +20,7 @@
             </Grid>
         </GroupBox>
         <Button x:Name="fightButton" Content="Сразиться" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="170" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Click="fightButton_Click" Height="24"/>
+        <TextBlock x:Name="label" HorizontalAlignment="Center" Margin="0,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="80" TextAlignment="Center"/>
 
     </Grid>
 </Window>

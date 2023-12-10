@@ -237,10 +237,7 @@ namespace Reknighted.Controller
             }
 
         }
-        public static void Error(string message)
-        {
-            MessageBox.Show(message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+
         public static void Message(string message, MessageType messageType = MessageType.Information)
         {
             if (Window == null)
@@ -255,6 +252,10 @@ namespace Reknighted.Controller
                 Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Green);
             }
             if (messageType == MessageType.Loose)
+            {
+                Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            if (messageType == MessageType.Error)
             {
                 Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Red);
             }
@@ -363,12 +364,6 @@ namespace Reknighted.Controller
             }
 
             Random random = new Random();
-
-            if (firstFighter.HealthPercentage <= 0.2 || secondFighter.HealthPercentage <= 0.2)
-            {
-                MessageBox.Show("Нельзя вступать в схватку в таком состоянии здоровья!");
-                return null;
-            }
 
             int margin = (int)(100 * Fighting.Fight(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
             int result = random.Next(0, 100);

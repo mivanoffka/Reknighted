@@ -164,7 +164,7 @@ namespace Reknighted.Model
                 }
                 catch
                 {
-                    Game.Error("Некорректный массив экипировки для " + name);
+                    Game.Message("Некорректный массив экипировки для " + name, MessageType.Error);
                 }
 
             }

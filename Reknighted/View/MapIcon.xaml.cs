@@ -28,7 +28,31 @@ namespace Reknighted.View
 
         private object _link;
 
-        public string Name { get; set; } = String.Empty;
+        private string? _name;
+        public string Name
+        {
+            get
+            {   
+                if (_name == null)
+                {
+                    if (Link is TraderModel)
+                    {
+                        return ((TraderModel)Link).Name;
+                    }
+                    else if (Link is Fighter)
+                    {
+                        return ((Fighter)Link).Name;
+                    }
+                    return "Undefined";
+                }
+                return _name;
+            }
+
+            set
+            {
+                _name = value;
+            }
+        }
         public string Description
         {
             get

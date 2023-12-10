@@ -166,7 +166,7 @@ namespace Reknighted.Model
             }
             catch (Exception ex)
             {
-                Game.Error(ex.Message);
+                Game.Message(ex.Message, MessageType.Error);
             }
 
         }
