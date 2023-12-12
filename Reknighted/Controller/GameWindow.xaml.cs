@@ -35,7 +35,10 @@ namespace Reknighted
         }
 
 
-        public string LocationInfo { get => locationInfoLabel.Content.ToString(); set => locationInfoLabel.Content = value; }
+        public string LocationInfo { get => locationInfoLabel.Content.ToString(); set
+            {
+                locationInfoLabel.Content = value;
+            } }
 
         public GameWindow()
         {
@@ -49,6 +52,7 @@ namespace Reknighted
             defaultTabHeight = this.gameTabs.Height;
 
             globalMap.MapIcons = Collections.Entities.GlobalMap.Values.ToList();
+            globalMap.groupBox.Header = "Карточное королевство";
         }
 
         public void LoadPlayer(Faction faction)
@@ -60,7 +64,8 @@ namespace Reknighted
             this.playerView.Model.Items[0] = Collections.Items.Food["apple_green"].Copy();
             this.playerView.Model.Items[1] = Collections.Items.Weapons["veteran_sword"].Copy();
             this.playerView.Model.Items[2] = Collections.Items.Armors["leather_hat"].Copy();
-            //this.playerView.UpdateContent();
+
+            
             Game.Update();
         }
 
@@ -70,6 +75,8 @@ namespace Reknighted
             {
                 Game.CurrentTrader = null;
             }
+
+
 
 
             List<TabItem> list = new List<TabItem>();
@@ -93,6 +100,7 @@ namespace Reknighted
 
                 Resize();
             }
+
         }
 
         public void Resize()
@@ -122,6 +130,12 @@ namespace Reknighted
                 saveWindow.ShowDialog();
                 e.Handled = true;
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            StartWindow startWindow = new StartWindow();
+            startWindow.Show();
         }
     }
 }

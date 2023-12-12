@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Navigation;
 
 namespace Reknighted.Model
-{   
+{
 
     public enum Location
     {
         Masquarade, Hearts, Clubs, Spades, Diamonds, ShowRoom
+
+
     }
     
     public enum MessageType

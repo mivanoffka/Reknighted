@@ -81,7 +81,17 @@ namespace Reknighted.View
 
             this.image.Source = new BitmapImage();
 
-            LoadImage(link.PathToIcon);
+            string path = link.PathToIcon;
+
+            if (link is Fighter)
+            {
+                if (((Fighter)link).IsDefeated)
+                {
+                    path = Collections.Items.PathTo("skull");
+                }
+            }
+
+            LoadImage(path);
             Link = link;
         }
 
@@ -120,29 +130,33 @@ namespace Reknighted.View
             if (Link.GetType() == typeof(TraderModel))
             {
                 Game.CurrentTrader = (TraderModel)Link;
+
             }
             if (Link is Location)
             {
-                List<MapIcon> newList = new List<MapIcon>();
-
-                foreach (var item in Game.AllTraders)
-                {
-                    if (item.City == (Location)Link)
+                var result = MessageBox.Show($"Путешествия нынче дорогие. Придётся выложить {Game.NextJorneyCosts[(Location)Link]} тугриков.\n\nВы уверены?", "Путешествие", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {   
+                    if (Game.PlayerModel.Balance < Game.NextJorneyCosts[(Location)Link])
                     {
-                        newList.Add(new MapIcon(item));
+                        Game.Message("Недостаточно денюжек!");
+                        return;
                     }
+
+                    Game.PlayerModel.Balance -= Game.NextJorneyCosts[(Location)Link];
+                    Game.PlayerModel.Location = (Location)Link;
+
+                    DialogLib.AwaitingMessage.ShowAwaitingMessage(Game.Window.grid, "Едем");
+                    Game.Window.location.groupBox.Header = Game.LocationString[(Location)Link];
+
+                    Game.Window.location.Update();
+                    Game.PlayerView.UpdateStats();
+                    Game.GenerateJorneyCost();
+                    
+                    Game.Window.gameTabs.SelectedIndex = 0;
+                    Game.Window.gameTabs.SelectedIndex = 1;
                 }
 
-                foreach (var item in Game.AllFighters)
-                {
-                    if (item.City == (Location)Link)
-                    {
-                        newList.Add(new MapIcon(item));
-                    }
-                }
-
-                Game.LocationView.MapIcons = newList;
-                Game.Window.gameTabs.SelectedIndex = 1;
             }
             if (Link.GetType() == typeof(Fighter))
             {

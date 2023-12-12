@@ -9,11 +9,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Reknighted.Model;
 using Reknighted.View;
+using System.Reflection;
+using System.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace Reknighted.Controller
 {
     // Статический класс, служащий связующим звеном между всеми компонентами игры.
-    public class Game
+    public static class Game
     {
         #region Поля и свойства
 
@@ -159,6 +162,7 @@ namespace Reknighted.Controller
                 var gw = _window as GameWindow;
                 PlayerView = gw!.playerView;
                 LocationView = gw!.location;
+                DialogLib.AwaitingMessage.foreignLabel = _window.locationInfoLabel;
             
             }
         }
@@ -180,6 +184,21 @@ namespace Reknighted.Controller
                     Scale = d / 45;
                 }
             }
+        }
+
+        // Цена путешествия
+        private const int MIN_JORNEY_CONST = 25;
+        private const int MAX_JORNEY_CONST = 125;
+        //public static int NextJorneyCost { get; private set; } = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
+        public static Dictionary<Location, int> NextJorneyCosts = new Dictionary<Location, int>() { { Location.ShowRoom, 0 }, { Location.Hearts, 0 }, { Location.Clubs, 0 }, { Location.Spades, 0 }, { Location.Diamonds, 0 } };
+        public static void GenerateJorneyCost()
+        {
+            NextJorneyCosts[Location.Hearts] = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
+            NextJorneyCosts[Location.Clubs] = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
+            NextJorneyCosts[Location.Spades] = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
+            NextJorneyCosts[Location.Diamonds] = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
+
+            //NextJorneyCost = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
         }
 
         #endregion
@@ -218,6 +237,12 @@ namespace Reknighted.Controller
             if (PlayerView != null)
             {
                 PlayerView.UpdateStats();
+                
+            }
+
+            if (Window != null)
+            {
+                Window.location.Update();
             }
 
             try
@@ -233,7 +258,7 @@ namespace Reknighted.Controller
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -247,6 +272,16 @@ namespace Reknighted.Controller
             {
                 return;
             }
+
+
+            //if (message == "")
+            //{
+            //    Window.quitButton.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    Window.quitButton.Visibility = Visibility.Collapsed;
+            //}
 
             Window.locationInfoLabel.Foreground = new SolidColorBrush(Colors.Gray);
 
@@ -370,7 +405,7 @@ namespace Reknighted.Controller
                 return null;
             }
 
-            int margin = (int)(100 * Fighting.Fight(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
+            int margin = (int)(100 * CallFightFromLib(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
             int result = random.Next(0, 100);
 
             //MessageBox.Show(result + ", " + margin);
@@ -391,7 +426,7 @@ namespace Reknighted.Controller
 
             if (winner != null && (winner != secondFighter && noChange))
             {
-                winner.CurrentHealth -= looser.Damage / 2;
+                winner.CurrentHealth -= looser.Damage / 4;
                 if (winner.Weapon != null) winner.Weapon.CurrentDurability -= looser.Damage;
                 if (winner.Armor != null) winner.Armor.CurrentDurability -= looser.Damage;
                 winner.Balance += bet;
@@ -399,10 +434,16 @@ namespace Reknighted.Controller
 
             if (looser != null && (looser != secondFighter && noChange))
             {
-                looser.CurrentHealth -= winner.Damage;
+                looser.CurrentHealth -= winner.Damage / 2;
                 if (looser.Weapon != null) looser.Weapon.CurrentDurability -= looser.Damage;
                 if (looser.Armor != null) looser.Armor.CurrentDurability -= looser.Damage;
                 looser.Balance -= bet;
+            }
+
+            if (looser is Fighter)
+            {
+                Game.AllFighters.Remove((Fighter)looser);
+                Game.LocationView.RemoveEntity((IMappable)looser);
             }
 
             return winner;
@@ -424,6 +465,10 @@ namespace Reknighted.Controller
                 return;
             }
 
+            //ShowLoading("Идёт бой");
+            DialogLib.AwaitingMessage.foreignLabel = Game.Window.locationInfoLabel;
+            DialogLib.AwaitingMessage.ShowAwaitingMessage(Window.grid, "Идёт бой");
+            
             IFightable? winner = Game.Fight(PlayerModel, fighter, enemyWindow.Bet);
             string message = winner == PlayerModel ? "Победа!" : "Поражение...";
             MessageType messageType = winner == PlayerModel ? MessageType.Win : MessageType.Loose;
@@ -434,6 +479,31 @@ namespace Reknighted.Controller
             Game.Update();
         }
 
+        public static double CallFightFromLib(double[] first, double[] second)
+        {   
+            try
+            {
+                double result = 0;
+
+                Assembly assembly = Assembly.LoadFrom("FightingLib.dll");
+
+                Object fighting = assembly.CreateInstance("Fighting");
+                Type type = assembly.GetType("Fighting");
+                MethodInfo method = type.GetMethod("Fight");
+
+                double[][] args = new double[][] { first, second };
+
+                result = (double)method.Invoke(fighting, args);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return 0;
+            }
+
+        }
 
         #endregion
 
@@ -449,6 +519,8 @@ namespace Reknighted.Controller
                 throw;
             }
         }
+
+        public static Dictionary<Location, string> LocationString = new() { { Location.Hearts, "Червы" }, { Location.Clubs, "Трефы" }, { Location.Diamonds, "Бубны" }, { Location.Spades, "Пики" }, { Location.ShowRoom, "Шоурум" } };
 
         public static void InitEntities()
         {

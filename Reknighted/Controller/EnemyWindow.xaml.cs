@@ -21,10 +21,13 @@ namespace Reknighted.Controller
     /// </summary>
     public partial class EnemyWindow : Window
     {
+        private readonly Color blue = Color.FromRgb(181, 198, 202);
+        private readonly Color yellow = Color.FromRgb(202, 200, 181);
+        private readonly Color red = Color.FromRgb(199, 158, 158);
+
         Fighter _enemy;
         public bool success = false;
-
-        public int Bet { get => (int)betSlider.Value;  }
+        public int Bet { get => (int)betSlider.Value; }
         public bool Success { get; set;  } = false;
 
         public EnemyWindow(Fighter enemy)
@@ -33,9 +36,24 @@ namespace Reknighted.Controller
             _enemy = enemy;
             enemyBox.Header = _enemy.Name;
             //errorLabel.Content = "";
-            //MessageBox.Show("Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%");
-            //errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
-            betBox.Header = "Ставка    [ 50 ]";
+            label2.Visibility = Visibility.Collapsed;
+
+            if (enemy.MoneyReward > -1)
+            {
+                enemyGrid.Children.Remove(betBox);
+                label2.Visibility = Visibility.Visible;
+                betSlider.Value = 0;
+            }
+            
+            if (enemy.MoneyReward > 700)
+            {
+                label2.Text = "Страшно, вырубай...";
+            }
+
+            //int chance = ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage })));
+           //MessageBox.Show("Шанс победы: " + ((int)(100 * Game.CallFightFromLib(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%");
+                //errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
+                betBox.Header = "Ставка    [ 50 ]";
 
             CreateAndPlace();
         }
@@ -117,9 +135,10 @@ namespace Reknighted.Controller
             this.rect.Height = 40;
 
             Success = true;
-            label.Text = "Идёт бой";
-            Thread thread = new Thread(SleepThread);
-            thread.Start();
+            Close();
+            //label.Text = "Идёт бой";
+            //Thread thread = new Thread(SleepThread);
+            //thread.Start();
         }
 
 

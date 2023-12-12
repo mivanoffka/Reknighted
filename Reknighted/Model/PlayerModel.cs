@@ -15,7 +15,7 @@ namespace Reknighted.Model
     {
         #region IPlayable
 
-        private Location _location = Location.Masquarade;
+        private Location _location = Location.Hearts;
         public Location Location
         {
             get
@@ -42,7 +42,7 @@ namespace Reknighted.Model
             }
         }
         private List<ItemModel?> _items = new List<ItemModel?>();
-        private int _balance = 10000;
+        private int _balance = 120;
 
         public int Balance
         {
@@ -251,7 +251,7 @@ namespace Reknighted.Model
             }
         }
 
-        List<ItemModel?> IFightable.ItemReward => throw new NotImplementedException();
+        List<ItemModel?> IFightable.ItemReward { get { return null; } }
 
         #endregion
 
@@ -288,6 +288,10 @@ namespace Reknighted.Model
         public PlayerModel(Faction faction)
         {
             Faction = faction;
+            if (faction == Faction.Diamonds)
+            {
+                Balance = 540;
+            }
             for (int i = 0; i < MaxIventorySize; i++)
             {
                 this.Items.Add(null);

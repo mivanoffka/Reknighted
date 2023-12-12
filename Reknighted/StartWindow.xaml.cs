@@ -25,6 +25,8 @@ namespace Reknighted
             InitializeComponent();
             Items.Initialize();
             Entities.Initialize();
+
+            Game.GenerateJorneyCost();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace Reknighted
         }
 
         private void loadGameButtom_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             //gameWindow.Show();
             SaveWindow saveWindow = new SaveWindow();
             saveWindow.isSaving = false;

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Reknighted"
         xmlns:View="clr-namespace:Reknighted.View" x:Class="Reknighted.GameWindow"
         mc:Ignorable="d"
-        Title="ReKnighted by Drystal Systems Inc." Height="390" Width="515" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp" KeyDown="Window_KeyDown">
+        Title="ReKnighted by Drystal Systems Inc." Height="390" Width="515" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" Width="500" Height="355" VerticalAlignment="Top">
         <TabControl x:Name="gameTabs" Margin="10,10,15,11" SelectionChanged="TabControl_SelectionChanged">
             <TabControl.FocusVisualStyle>

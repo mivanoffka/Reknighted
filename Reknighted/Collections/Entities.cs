@@ -65,10 +65,10 @@ namespace Reknighted.Collections
 
 
             // Червы
-            {"peter", new TraderModel(TraderType.Food, "Садовод Пётр", peters, Items.PathTo("green_houses"), new System.Windows.Point(60, 10), Location.Hearts)},
-            {"patrick", new TraderModel(TraderType.Food, "Мясник Патрик", patricks, Items.PathTo("three_houses"), new System.Windows.Point(100, 60), Location.Hearts)},
-            {"beniamin", new TraderModel(TraderType.Armor, "Бронник Вениамин", beniamins, Items.PathTo("chimney_house"), new System.Windows.Point(200, 140), Location.Hearts)},
-            {"johans", new TraderModel(TraderType.Weapon, "Оружейник Иоанн", johans, Items.PathTo("tiny_house"), new System.Windows.Point(130, 180), Location.Hearts)}
+            {"peter", new TraderModel(TraderType.Food, "Садовод Пётр", peters, Items.PathTo("green_houses"), new System.Windows.Point(70, 20), Location.Hearts)},
+            {"patrick", new TraderModel(TraderType.Food, "Мясник Патрик", patricks, Items.PathTo("three_houses"), new System.Windows.Point(340, 90), Location.Hearts)},
+            {"beniamin", new TraderModel(TraderType.Armor, "Бронник Вениамин", beniamins, Items.PathTo("chimney_house"), new System.Windows.Point(220, 110), Location.Hearts)},
+            {"johans", new TraderModel(TraderType.Weapon, "Оружейник Иоанн", johans, Items.PathTo("tiny_house"), new System.Windows.Point(90, 100), Location.Hearts)}
         };
 
         public static Dictionary<string, Fighter> AllFightersDefaultState = new()
@@ -76,11 +76,37 @@ namespace Reknighted.Collections
             {"example", new Fighter("example", new List<ItemModel?>(3), null, Items.PathTo("red_tower"), new System.Windows.Point(10, 60), Location.ShowRoom)},
 
             // Червы
-            {"robber_1", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_club"], Items.Armors["leather_hat"],  null }, new List<ItemModel?>(3){Items.Weapons["generic_club"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(250, 60), Location.Hearts) },
-            {"robber_2", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_sword"], null,  null}, new List<ItemModel?>(3){Items.Weapons["generic_sword"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(90, 160), Location.Hearts)  },
-            {"robber_3", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_spear"], null,  null}, new List<ItemModel?>(3){Items.Weapons["generic_spear"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(190, 180), Location.Hearts) }
+            {"hearts_robber_1", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_club"], Items.Armors["leather_hat"],  null }, new List<ItemModel?>(3){Items.Weapons["generic_club"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(270, 40), Location.Hearts, 100) },
+            {"hearts_robber_2", new Fighter("Разбойник", new List<ItemModel?>(3) {Items.Weapons["generic_sword"], null,  null}, new List<ItemModel?>(3){Items.Weapons["generic_sword"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(75, 180), Location.Hearts, 100)  },
+            {"hearts_robber_3", new Fighter("Разбойник",
+                new List<ItemModel?>(3) {Items.Weapons["generic_spear"], null,  null}, new List<ItemModel?>(3){Items.Weapons["generic_spear"] }, Items.PathTo("ruined_tower"), new System.Windows.Point(290, 180), Location.Hearts, 100) },
 
+            {"hearts_knight_1", new Fighter("Рыцарь",
+                new List<ItemModel?>(3) {Items.Weapons["two_handed_sword"], Items.Armors["generic_helmet"], null},
+                new List<ItemModel?>(2) {Items.Armors["generic_helmet"], Items.Potions["health_potion"]},
+                Items.PathTo("green_tower"),
+                new System.Windows.Point(165, 210),
+                Location.Hearts)},
 
+            {"hearts_knight_2", new Fighter("Рыцарь",
+                new List<ItemModel?>(3) {Items.Weapons["veteran_sword"], Items.Armors["cross_helmet"], null},
+                new List<ItemModel?>(2) {Items.Armors["cross_helmet"], },
+                Items.PathTo("green_tower"),
+                new System.Windows.Point(230, 10),
+                Location.Hearts)},
+
+            {"hearts_knight_3", new Fighter("Рыцарь",
+                new List<ItemModel?>(3) {Items.Weapons["regular_sword"], Items.Armors["regular_helmet"], Items.Artefacts["ruby_ring"]},
+                new List<ItemModel?>(1) {Items.Artefacts["ruby_ring"]},
+                Items.PathTo("green_tower"),
+                new System.Windows.Point(140, 45),
+                Location.Hearts)},
+
+            {"hearts_ace", new Fighter("Червовый Туз",
+                new List<ItemModel?>(3) {Items.Weapons["hearts_sword"], Items.Armors["elite_helmet"], Items.Artefacts["sapphire_necklace"] },
+                new List<ItemModel?>() {Items.Weapons["hearts_sword"], Items.Armors["elite_helmet"], Items.Artefacts["sapphire_necklace"], Items.Potions["protection_potion"], Items.Potions["protection_potion"] },
+                Items.PathTo("red_gates"), new System.Windows.Point(150, 150), Location.Hearts, 1000)
+            }
         };
 
         public static void Initialize()

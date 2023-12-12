@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Reknighted.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Reknighted.Controller.Game;
 
 namespace Reknighted.View
 {
@@ -21,6 +24,39 @@ namespace Reknighted.View
     public partial class LocationView : UserControl
     {   
         private List<MapIcon?> mapIcons;
+
+        public void Update()
+        {
+            List<MapIcon> lst = new();
+            foreach (var item in Controller.Game.AllTraders)
+            {
+                if (item.City == Controller.Game.PlayerModel.Location)
+                {
+                    lst.Add(new MapIcon((IMappable)item));
+                }
+            }
+            foreach (var item in Controller.Game.AllFighters)
+            {
+                if (item.City == Controller.Game.PlayerModel.Location)
+                {
+                    lst.Add(new MapIcon((IMappable)item));
+                }
+            }
+
+            MapIcons = lst;
+        }
+
+        public void RemoveEntity(IMappable entity)
+        {
+            foreach (var item in mapIcons)
+            {
+                if (item.Link == entity)
+                {
+                    grid.Children.Remove(item);
+                }
+            }
+        }
+
 
         public List<MapIcon?> MapIcons { get { return mapIcons; } 
             set
@@ -38,8 +74,9 @@ namespace Reknighted.View
                 if (mapIcons is not null)
                 {
                     foreach (var icon in mapIcons)
-                    {
-                        grid.Children.Add(icon);
+                    {   
+                        if (!grid.Children.Contains(icon))
+                            grid.Children.Add(icon);
                     }
 
                 }

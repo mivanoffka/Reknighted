@@ -40,6 +40,8 @@ namespace Reknighted
 
         public void UpdateStats()
         {
+            if (Model == null) return;
+
             try
             {
                 damageLabel.Text = Model.Damage.ToString();
@@ -160,6 +162,8 @@ namespace Reknighted
                     {
                         itemModel = _playerModel.EquippedItems[i-27];
                     }
+
+                     
 
                     if (itemModel != null)
                     {

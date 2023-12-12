@@ -1,7 +1,8 @@
-﻿namespace FightingDynamicLib
+
+namespace DialogLib
 {
     public class Class1
     {
-
     }
+
 }

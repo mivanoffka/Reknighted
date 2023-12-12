@@ -7,7 +7,7 @@ namespace Reknighted.Model
     [JsonDerivedType(typeof(Fighter))]
     public class Fighter : IFightable, IMappable
     {
-
+        static readonly double Difficulty = 1.75; 
         public Location City { get; set; }
         public string Name { get; init; } = string.Empty;
 
@@ -19,7 +19,11 @@ namespace Reknighted.Model
         private int _currentHealth = 40;
         private int _fortune = 10;
         private int _balance = 1000;
-        private int _moneyReward = 10;
+        private int _moneyReward = -1;
+
+
+
+        public bool IsDefeated { get; set; } = false;
 
         public int BaseDamage { get; set; } = 1;
         public int BaseProtection { get; set; } = 1;
@@ -82,7 +86,7 @@ namespace Reknighted.Model
                 int value = BaseDamage;
                 if (Weapon != null)
                 {
-                    value += 2 * Weapon.Damage;
+                    value += (int)(Difficulty * Weapon.Damage);
                     if (Artefact != null && Artefact.Buff == Buff.Damage)
                     {
                         value = (int)(value * Artefact.Multiplier);
@@ -99,7 +103,7 @@ namespace Reknighted.Model
                 int value = BaseProtection;
                 if (Armor != null)
                 {
-                    value += 2 * Armor.Protection;
+                    value += (int)(Difficulty * Armor.Protection);
                     if (Artefact != null && Artefact.Buff == Buff.Protection)
                     {
                         value = (int)(value * Artefact.Multiplier);
@@ -142,14 +146,15 @@ namespace Reknighted.Model
 
 
 
-        public Fighter(string name, List<ItemModel?> equipment, List<ItemModel?> reward, string pathToIcon, System.Windows.Point position, Location city)
+        public Fighter(string name, List<ItemModel?> equipment, List<ItemModel?> itemReward, string pathToIcon, System.Windows.Point position, Location city, int moneyReward = -1)
         {
             City = city;
             PathToIcon = pathToIcon;
             Point = position;
             Name = name;
+            MoneyReward = moneyReward;
 
-            if (reward != null) ItemReward = reward;
+            if (itemReward != null) ItemReward = itemReward;
 
             if (equipment != null)
             {

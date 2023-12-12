@@ -66,30 +66,45 @@ namespace Reknighted.Model
         {
             get
             {
-                int value = _price;
-                if (Game.PlayerModel.Faction == Faction.Diamonds)
+                if (IsPossessed)
                 {
-                    if (IsPossessed)
-                    {
-                        value = (int)(value * 0.8);
-                    }
-                    else
-                    {
-                        value = (int)(value * 0.9);
-                    }
+                    return SellPrice;
                 }
                 else
                 {
-                    if (IsPossessed)
-                    {
-                        value = (int)(value * 0.7);
-                    }
+                    return BuyPrice;
                 }
-                _price = value;
-
-                return _price;
             }
+        }
 
+        public int SellPrice
+        {
+            get
+            {
+                int value = _price;
+                value = (int)(value * 0.8);
+                if (Game.PlayerModel.Faction == Faction.Diamonds)
+                {
+                    value = (int)(value * 1.1);
+                }
+
+                return value;
+            }
+        }
+
+        public int BuyPrice
+        {
+            get
+            {
+                int value = _price;
+                value = (int)(value * 1.2);
+                if (Game.PlayerModel.Faction == Faction.Diamonds)
+                {
+                    value = (int)(value * 0.9);
+                }
+
+                return value;
+            }
         }
 
         [JsonIgnore]
@@ -183,22 +198,6 @@ namespace Reknighted.Model
 
         public virtual void SellTo(ITradeable buyer, bool showWarning = true)
         {
-            //bool isConfirmed = true;
-            //if (showWarning)
-            //{
-            //    string caption = this.IsPossessed ? "Продажа" : "Покупка";
-            //    string text = this.IsPossessed ? "Вы уверены, что хотите продать [ " + this.Name + " ] за " + this.Price + " тугриков?"
-            //                                   : "Вы уверены, что хотите купить [ " + this.Name + " ] за " + this.Price + " тугриков?";
-
-            //    var result = MessageBox.Show(text, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //    isConfirmed = result == MessageBoxResult.Yes;
-            //}
-
-            //if (!isConfirmed)
-            //{   
-            //    return;
-            //}
-
             ITradeable? customer = IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
             ITradeable? seller = IsPossessed ?  Game.PlayerModel : Game.CurrentTrader;
 
@@ -208,13 +207,17 @@ namespace Reknighted.Model
                 {
                     seller.RemoveItem(this);
                     this.IsPossessed = !this.IsPossessed;
-                    customer.AddItem(this); ;
-                    customer.Balance -= this.Price;
-                    seller.Balance += this.Price;
+                    customer.AddItem(this);
+
+                    int price = customer == Game.PlayerModel ? this.BuyPrice : this.SellPrice;
+
+                    customer.Balance -= price;
+                    seller.Balance += price;
                 }
                 else
                 {
-                    MessageBox.Show("А денежек то у нас и не хватает!" + "\n\n" + customer.Balance + "/" + this.Price, "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //MessageBox.Show("А денежек то у нас и не хватает!" + "\n\n" + customer.Balance + "/" + this.Price, "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Game.Message("А денежек-то не хватит...", MessageType.Error);
                 }
 
             }

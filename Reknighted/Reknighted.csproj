@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DialogLib\DialogLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\appicon.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -55,6 +59,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="FightingLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\apple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -305,6 +312,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Icons\ruined_tower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Icons\skull.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Icons\spades.png">

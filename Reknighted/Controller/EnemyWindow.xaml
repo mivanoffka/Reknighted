@@ -7,7 +7,7 @@
         xmlns:Reknighted="clr-namespace:Reknighted" x:Class="Reknighted.Controller.EnemyWindow"
         mc:Ignorable="d"
         Title="Противник" Height="240" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Images/appicon.bmp">
-    <Grid x:Name="grid" Background="#FFD0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="205">
+    <Grid x:Name="grid" Background="#FFB9B9B9" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="205">
         <Rectangle x:Name="rect" HorizontalAlignment="Left" Height="181" Stroke="#FFA4A4A4" VerticalAlignment="Top" Width="200" Fill="White" Margin="10,10,0,0"/>
         <GroupBox x:Name="enemyBox" Header="GroupBox" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Foreground="Black" BorderBrush="Gray" Margin="0,13,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="141" Width="180">
             <Grid x:Name="enemyGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -21,6 +21,7 @@
         </GroupBox>
         <Button x:Name="fightButton" Content="Сразиться" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="170" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Click="fightButton_Click" Height="24"/>
         <TextBlock x:Name="label" HorizontalAlignment="Center" Margin="0,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="80" TextAlignment="Center"/>
+        <TextBlock x:Name="label2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="120" TextAlignment="Center" Margin="0,106,0,0" Text="Такого человека и ограбить не стыдно!" Foreground="#FF848484"/>
 
     </Grid>
 </Window>
