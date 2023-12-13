@@ -214,7 +214,7 @@ namespace Reknighted.Model
                         value = (int)(value * 1.5);
                     }
                 }
-                return value;
+                return 100 * value;
             }
         }
         [JsonIgnore]

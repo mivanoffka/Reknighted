@@ -302,6 +302,9 @@
     <None Update="Images\Icons\nameless_tower.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\Icons\pink_houses.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\Icons\red_gates.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

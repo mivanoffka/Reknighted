@@ -65,7 +65,7 @@ namespace Reknighted
             this.playerView.Model.Items[1] = Collections.Items.Weapons["veteran_sword"].Copy();
             this.playerView.Model.Items[2] = Collections.Items.Armors["leather_hat"].Copy();
 
-            
+            location.groupBox.Header = Game.LocationString[Game.PlayerModel.Location];
             Game.Update();
         }
 

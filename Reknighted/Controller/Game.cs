@@ -187,8 +187,8 @@ namespace Reknighted.Controller
         }
 
         // Цена путешествия
-        private const int MIN_JORNEY_CONST = 25;
-        private const int MAX_JORNEY_CONST = 125;
+        private const int MIN_JORNEY_CONST = 15;
+        private const int MAX_JORNEY_CONST = 75;
         //public static int NextJorneyCost { get; private set; } = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
         public static Dictionary<Location, int> NextJorneyCosts = new Dictionary<Location, int>() { { Location.ShowRoom, 0 }, { Location.Hearts, 0 }, { Location.Clubs, 0 }, { Location.Spades, 0 }, { Location.Diamonds, 0 } };
         public static void GenerateJorneyCost()

@@ -133,7 +133,12 @@ namespace Reknighted.View
 
             }
             if (Link is Location)
-            {
+            {   
+                if ((Location)Link == Game.PlayerModel.Location)
+                {
+                    return;
+                }
+
                 var result = MessageBox.Show($"Путешествия нынче дорогие. Придётся выложить {Game.NextJorneyCosts[(Location)Link]} тугриков.\n\nВы уверены?", "Путешествие", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {   

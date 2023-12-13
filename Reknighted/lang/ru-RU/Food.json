@@ -1,4 +1,15 @@
-{
+{	
+	"watermelon":{
+	  "$type": "food",
+	  "Satiety": 20,
+	  "Name": "\u0410\u0440\u0431\u0443\u0437",
+	  "Description": "-",
+	  "Price": 17,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\watermelon.png"
+	},
+
 	"strawberry":{
 	  "$type": "food",
 	  "Satiety": 10,
