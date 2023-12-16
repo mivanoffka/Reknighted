@@ -26,7 +26,7 @@ namespace FightServer
 
         static void Main()
         {
-            Console.WriteLine("Хотите ввести IP и порт? Y/N");
+            Console.WriteLine("Do you want to enter IP and Port? Y/N");
             bool enterIp = GetUserConfirmation(); // получаем подтверждение на изменение IP с портом
             if (enterIp) GetIpAndPort(); // вводим Ip и порт
             TcpListener server = new(ServerIP, ServerPort);
@@ -34,8 +34,7 @@ namespace FightServer
             {
                 // Инициализируем сервер
                 server.Start();
-                Console.WriteLine("Сервер запущен");
-                CallFightFromLib(new double[] { 5, 5, 5 }, new double[] { 5, 5, 5 });
+                Console.WriteLine("Server is online");
                 // Принимаем каждого пользователя в отдельном потоке
                 while (true)
                 {
@@ -46,7 +45,7 @@ namespace FightServer
             }
             catch(Exception ex)
             {
-                Console.WriteLine($"Что-то пошло не так {ex}");
+                Console.WriteLine($"Something went wrong: {ex}");
             }
             finally
             {
@@ -89,7 +88,7 @@ namespace FightServer
         {
             bool exitBool = false;
 
-            Console.WriteLine("Введите IP адрес и порт в таком виде: '127.0.0.1:12345'");
+            Console.WriteLine("Enter IP and Port like this: '127.0.0.1:12345'");
 
             while (!exitBool)
             {
@@ -106,18 +105,18 @@ namespace FightServer
                     {
                         ServerIP = IPaddr;
                         ServerPort = port;
-                        Console.WriteLine($"Введен IP: {IPaddr}");
-                        Console.WriteLine($"Введен порт: {port}");
+                        Console.WriteLine($"IP: {IPaddr}");
+                        Console.WriteLine($"Port: {port}");
                         exitBool = true;
                     }
                     else
                     {
-                        Console.WriteLine("Ошибка: Введите IP адрес и порт в правильном формате.");
+                        Console.WriteLine("Error: Enter IP and Port in a correct format");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка: Введите непустое значение IP адреса и порта.");
+                    Console.WriteLine("Error: Enter something.");
                 }
             }
         }
@@ -130,6 +129,8 @@ namespace FightServer
                 // Получаем сетевые потоки для чтения и записи
                 NetworkStream stream = tcpClient.GetStream();
 
+                Console.WriteLine("Received connection from client");
+                
                 // Читаем данные от клиента
                 byte[] data = new byte[1024];
                 int bytesRead = stream.Read(data, 0, data.Length);
@@ -137,20 +138,25 @@ namespace FightServer
 
                 // Обработка данных (просто сравниваем два массива)
                 string[] receivedArrays = receivedData.Split(';');
-                double[] array1 = Array.ConvertAll(receivedArrays[0].Split(','), Double.Parse);
-                double[] array2 = Array.ConvertAll(receivedArrays[1].Split(','), Double.Parse);
+                double[] array1 = Array.ConvertAll(receivedArrays[0].Split('_'), Double.Parse);
+                double[] array2 = Array.ConvertAll(receivedArrays[1].Split('_'), Double.Parse);
+
+                Console.WriteLine("Statistics");
+                Console.WriteLine($"Player: {string.Join(" ", array1)}");
+                Console.WriteLine($"Enemy: {string.Join(" ", array2)}");
 
                 double response = CallFightFromLib(array1, array2);
 
                 byte[] responseData = BitConverter.GetBytes(response);
                 stream.Write(responseData, 0, responseData.Length);
 
-                // Закрываем соединение
+                // Закрываем соединение          
                 tcpClient.Close();
+                Console.WriteLine("The client has disconnected");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка при обработке клиента: " + ex.Message);
+                Console.WriteLine("Error within client: " + ex.Message);
             }
         }
 
@@ -174,7 +180,7 @@ namespace FightServer
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Что-то пошло не так: {ex}");
+                Console.WriteLine($"Something went wrong: {ex}");
                 return 0;
             }
 

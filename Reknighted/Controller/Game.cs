@@ -14,6 +14,7 @@ using System.Threading;
 using Newtonsoft.Json.Linq;
 using System.Net.Sockets;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Reknighted.Controller
 {
@@ -451,6 +452,43 @@ namespace Reknighted.Controller
             return winner;
         }
 
+        #region Обработка сервера
+        public static double ServerFight(double[] first, double[] second)
+        {
+            try
+            {
+
+                string serverIp = "127.0.0.1";
+                int port = 12345;
+
+                TcpClient client = new TcpClient();
+
+                client.ReceiveTimeout = 1000; // сколько ждём ответа от сервера
+
+                client.Connect(serverIp, port); // подключаемся
+
+                NetworkStream stream = client.GetStream(); 
+
+                // конвертируем в байты и отправляем данные
+                string sendData = $"{string.Join("_", first)};{string.Join("_", second)}";
+                byte[] data = Encoding.ASCII.GetBytes(sendData);
+                stream.Write(data, 0, data.Length);
+
+                // получаем ответ
+                data = new byte[8];
+                int bytesRead = stream.Read(data, 0, data.Length);
+                double responseData = BitConverter.ToDouble(data, 0);
+                client.Close();
+                return responseData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Server is not responding, using local calculation", "Error", MessageBoxButton.OK);
+                return CallFightFromLib(first, second);
+            }
+        }
+        #endregion
+
         public static void FightWith(Fighter fighter)
         {   
             if (Window == null)
@@ -481,37 +519,6 @@ namespace Reknighted.Controller
             Game.Update();
         }
 
-        public static double ServerFight(double[] first, double[] second)
-        {
-            try {
-                string serverIp = "127.0.0.1";
-                int port = 12345;
-
-                TcpClient client = new TcpClient();
-
-                client.ReceiveTimeout = 2000; 
-
-                client.Connect(serverIp, port);
-               
-                NetworkStream stream = client.GetStream();
-
-                string sendData = $"{string.Join(",", first)};{string.Join(",", second)}";
-                byte[] data = Encoding.ASCII.GetBytes(sendData);
-                stream.Write(data, 0, data.Length);
-
-                data = new byte[8];
-                int bytesRead = stream.Read(data, 0, data.Length);
-                double responseData = BitConverter.ToDouble(data, 0);
-                client.Close();
-                return responseData;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Server is not responding, using local calculation", "Error", MessageBoxButton.OK);
-                return CallFightFromLib(first, second);
-            }
-        }
-
         public static double CallFightFromLib(double[] first, double[] second)
         {   
             try
@@ -520,7 +527,7 @@ namespace Reknighted.Controller
 
                 Assembly assembly = Assembly.LoadFrom("FightingLib.dll");
 
-                Object fighting = assembly.CreateInstance("Fighting");
+                object fighting = assembly.CreateInstance("Fighting");
                 Type type = assembly.GetType("Fighting");
                 MethodInfo method = type.GetMethod("Fight");
 
