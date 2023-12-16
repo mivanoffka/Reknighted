@@ -505,7 +505,7 @@ namespace Reknighted.Controller
                 client.Close();
                 return responseData;
             }
-            catch (Exception ex) when (ex is System.IO.IOException || ex is SocketException)
+            catch (Exception ex)
             {
                 MessageBox.Show("Server is not responding, using local calculation", "Error", MessageBoxButton.OK);
                 return CallFightFromLib(first, second);
