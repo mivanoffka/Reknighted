@@ -24,26 +24,33 @@ namespace FightServer
             set { serverIP = value; }
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Хотите ввести IP и порт? Y/N");
-            bool enterIp = GetUserConfirmation();
-            if (enterIp) GetIpAndPort();
+            bool enterIp = GetUserConfirmation(); // получаем подтверждение на изменение IP с портом
+            if (enterIp) GetIpAndPort(); // вводим Ip и порт
+            TcpListener server = new(ServerIP, ServerPort);
             try
             {
-                TcpListener server = new TcpListener(ServerIP, ServerPort);
+                // Инициализируем сервер
                 server.Start();
                 Console.WriteLine("Сервер запущен");
+                CallFightFromLib(new double[] { 5, 5, 5 }, new double[] { 5, 5, 5 });
+                // Принимаем каждого пользователя в отдельном потоке
                 while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
-                    Thread clientThread = new Thread(HandleClient);
+                    Thread clientThread = new(HandleClient);
                     clientThread.Start(client);
                 }
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"Что-то пошло не так {ex}");
+            }
+            finally
+            {
+                server?.Stop();
             }
 
 
@@ -88,15 +95,18 @@ namespace FightServer
             {
                 string ipport = Console.ReadLine();
 
-                if (!string.IsNullOrWhiteSpace(ipport))
+                if (!string.IsNullOrWhiteSpace(ipport)) // проверяем на пустоту
                 {
-                    string[] parts = ipport.Split(':');
+                    string[] parts = ipport.Split(':'); // делим для получения пары IP + порт
 
-                    if (parts.Length == 2 && int.TryParse(parts[1], out int port))
+                    // Парсим оба значения и если всё хорошо заносим в переменные
+                    if (parts.Length == 2 
+                        && int.TryParse(parts[1], out int port) 
+                        && IPAddress.TryParse(parts[0], out IPAddress IPaddr))
                     {
-                        ServerIP = IPAddress.Parse(parts[0]);
+                        ServerIP = IPaddr;
                         ServerPort = port;
-                        Console.WriteLine($"Введен IP: {parts[0]}");
+                        Console.WriteLine($"Введен IP: {IPaddr}");
                         Console.WriteLine($"Введен порт: {port}");
                         exitBool = true;
                     }
@@ -114,7 +124,7 @@ namespace FightServer
         static void HandleClient(object clientObj)
         {
             TcpClient tcpClient = (TcpClient)clientObj;
-
+            
             try
             {
                 // Получаем сетевые потоки для чтения и записи
@@ -127,14 +137,12 @@ namespace FightServer
 
                 // Обработка данных (просто сравниваем два массива)
                 string[] receivedArrays = receivedData.Split(';');
-                string array1 = receivedArrays[0];
-                string array2 = receivedArrays[1];
+                double[] array1 = Array.ConvertAll(receivedArrays[0].Split(','), Double.Parse);
+                double[] array2 = Array.ConvertAll(receivedArrays[1].Split(','), Double.Parse);
 
-                bool arraysMatch = array1.Equals(array2);
+                double response = CallFightFromLib(array1, array2);
 
-                // Отправляем результат клиенту
-                string response = arraysMatch ? "true" : "false";
-                byte[] responseData = Encoding.ASCII.GetBytes(response);
+                byte[] responseData = BitConverter.GetBytes(response);
                 stream.Write(responseData, 0, responseData.Length);
 
                 // Закрываем соединение
@@ -145,6 +153,7 @@ namespace FightServer
                 Console.WriteLine("Ошибка при обработке клиента: " + ex.Message);
             }
         }
+
         public static double CallFightFromLib(double[] first, double[] second)
         {
             try

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Debug&quot; (&#xA;    copy &quot;$(SolutionDir)FightingLib\bin\Debug\net7.0\FightingLib.dll&quot; &quot;$(SolutionDir)FightServer\bin\Debug\net6.0\&quot;&#xD;&#xA;    copy &quot;$(SolutionDir)FightingLib\bin\Debug\net7.0\FightingLib.dll&quot; &quot;$(SolutionDir)Reknighted\bin\Debug\net7.0-windows\&quot;&#xA;) else (&#xA;    copy &quot;$(SolutionDir)FightingLib\bin\Release\net7.0\FightingLib.dll&quot; &quot;$(SolutionDir)FightServer\bin\Release\net6.0\&quot;&#xD;&#xA;    copy &quot;$(SolutionDir)FightingLib\bin\Release\net7.0\FightingLib.dll&quot; &quot;$(SolutionDir)Reknighted\bin\Release\net7.0-windows\&quot;&#xA;)&#xA;" />
+  </Target>
+
 </Project>

@@ -12,6 +12,8 @@ using Reknighted.View;
 using System.Reflection;
 using System.Threading;
 using Newtonsoft.Json.Linq;
+using System.Net.Sockets;
+using System.Text;
 
 namespace Reknighted.Controller
 {
@@ -405,7 +407,7 @@ namespace Reknighted.Controller
                 return null;
             }
 
-            int margin = (int)(100 * CallFightFromLib(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
+            int margin = (int)(100 * ServerFight(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
             int result = random.Next(0, 100);
 
             //MessageBox.Show(result + ", " + margin);
@@ -477,6 +479,37 @@ namespace Reknighted.Controller
 
             Game.PlayerView.UpdateStats();
             Game.Update();
+        }
+
+        public static double ServerFight(double[] first, double[] second)
+        {
+            try {
+                string serverIp = "127.0.0.1";
+                int port = 12345;
+
+                TcpClient client = new TcpClient();
+
+                client.ReceiveTimeout = 2000; 
+
+                client.Connect(serverIp, port);
+               
+                NetworkStream stream = client.GetStream();
+
+                string sendData = $"{string.Join(",", first)};{string.Join(",", second)}";
+                byte[] data = Encoding.ASCII.GetBytes(sendData);
+                stream.Write(data, 0, data.Length);
+
+                data = new byte[8];
+                int bytesRead = stream.Read(data, 0, data.Length);
+                double responseData = BitConverter.ToDouble(data, 0);
+                client.Close();
+                return responseData;
+            }
+            catch (Exception ex) when (ex is System.IO.IOException || ex is SocketException)
+            {
+                MessageBox.Show("Server is not responding, using local calculation", "Error", MessageBoxButton.OK);
+                return CallFightFromLib(first, second);
+            }
         }
 
         public static double CallFightFromLib(double[] first, double[] second)
