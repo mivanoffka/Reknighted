@@ -84,14 +84,14 @@ namespace Reknighted
             {
                 damageLabel.Text = "+" + ((WeaponModel)itemModel).Damage.ToString();
                 if (itemModel.IsPossessed)
-                    InfoBox.Header = itemModel.Name + " [" + Math.Round((itemModel as DurableItem).DurabilityPercentage * 100) + "% прочности ]";
+                    InfoBox.Header = itemModel.Name + $" [  {Math.Round((itemModel as DurableItem).DurabilityPercentage * 100)}  % {Game.app.FindResource("durabilityPercent")} ]";
             }
 
             if (itemModel.GetType() == typeof(ArmorModel))
             {
                 armorLabel.Text = "+" + ((ArmorModel)itemModel).Protection.ToString();
                 if (itemModel.IsPossessed)
-                    InfoBox.Header = itemModel.Name + " [" + Math.Round((itemModel as DurableItem).DurabilityPercentage * 100) + "% прочности ]";
+                    InfoBox.Header = itemModel.Name + $" [  {Math.Round((itemModel as DurableItem).DurabilityPercentage * 100)}  % {Game.app.FindResource("durabilityPercent")} ]";
             }
 
             balanceLabel.Text = itemModel.Price.ToString();

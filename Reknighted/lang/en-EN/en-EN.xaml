@@ -92,6 +92,8 @@
     <v:String x:Key="foodHint">Press RMB to [EAT]</v:String>
     <v:String x:Key="armorHint">You can move that to [ARMOR]</v:String>
     <v:String x:Key="weaponHint">You can move that to [WEAPON]</v:String>
+    <v:String x:Key="durabilityPercent">durability</v:String>
+    <v:String x:Key="nShowroom">Шоурум</v:String>
 
     <v:String x:Key="nRobber">Robber</v:String>
     <v:String x:Key="nKnight">Knight</v:String>

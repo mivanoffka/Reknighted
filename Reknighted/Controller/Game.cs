@@ -561,7 +561,7 @@ namespace Reknighted.Controller
             }
         }
 
-        public static Dictionary<Location, string> LocationString = new() { { Location.Hearts, "Червы" }, { Location.Clubs, "Трефы" }, { Location.Diamonds, "Бубны" }, { Location.Spades, "Пики" }, { Location.ShowRoom, "Шоурум" } };
+        public static Dictionary<Location, string> LocationString = new() { { Location.Hearts, $"{Game.app.FindResource("btnHearts")}" }, { Location.Clubs, $"{Game.app.FindResource("btnClubs")}" }, { Location.Diamonds, $"{Game.app.FindResource("btnDiamonds")}" }, { Location.Spades, $"{Game.app.FindResource("btnSpades")}" }, { Location.ShowRoom, $"{Game.app.FindResource("nShowroom")}" } };
 
         public static void InitEntities()
         {

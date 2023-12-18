@@ -53,7 +53,6 @@ namespace Reknighted.Controller
             //int chance = ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage })));
            //MessageBox.Show("Шанс победы: " + ((int)(100 * Game.CallFightFromLib(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%");
                 //errorLabel.Content = "Шанс победы: " + ((int)(100 * Fighting.Fight(new double[] { Game.PlayerModel.Damage, Game.PlayerModel.Protection, Game.PlayerModel.HealthPercentage }, new double[] { enemy.Damage, enemy.Protection, enemy.HealthPercentage }))).ToString() + "%";
-                betBox.Header = "Ставка    [ 50 ]";
 
             CreateAndPlace();
         }
@@ -87,7 +86,7 @@ namespace Reknighted.Controller
         {
             if (betBox != null && betSlider != null)
             {
-                betBox.Header = "Ставка    [ " + Math.Round(betSlider.Value).ToString() + " ]";
+                betBox.Header = $"{Game.app.FindResource("betBox")}  {Math.Round(betSlider.Value).ToString()} ]";
 
             }
         }
@@ -102,7 +101,7 @@ namespace Reknighted.Controller
             
             if (player.Balance < bet)
             {
-                Game.Message("А денежек то не хватит...", MessageType.Error);
+                Game.Message($"{Game.app.FindResource("msgNoMoney")}", MessageType.Error);
                 Success = false;
                 return;
             }
@@ -110,7 +109,7 @@ namespace Reknighted.Controller
 
             if (player.HealthPercentage <= 0.2)
             {
-                Game.Message("Нельзя сражаться в таком состоянии здоровья!", MessageType.Error);
+                Game.Message($"{Game.app.FindResource("lowHealthMessage")}", MessageType.Error);
                 Success = false;
                 return;
             }

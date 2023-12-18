@@ -94,6 +94,8 @@
     <v:String x:Key="foodHint">Нажмите правую кнопку мыши, чтобы [СЪЕСТЬ]</v:String>
     <v:String x:Key="armorHint">Можно перенести в слот [БРОНЯ]</v:String>
     <v:String x:Key="weaponHint">Можно перенести в слот [ОРУЖИЕ]</v:String>
+    <v:String x:Key="durabilityPercent">прочности</v:String>
+    <v:String x:Key="nShowroom">Шоурум</v:String>
 
     <v:String x:Key="nRobber">Разбойник</v:String>
     <v:String x:Key="nKnight">Рыцарь</v:String>
