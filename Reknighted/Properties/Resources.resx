@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="slot1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="slot2" xml:space="preserve">
-    <value />
-  </data>
-  <data name="slot3" xml:space="preserve">
-    <value />
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>ru-RU</value>
   </data>
 </root>

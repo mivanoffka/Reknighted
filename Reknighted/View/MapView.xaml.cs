@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reknighted.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +24,12 @@ namespace Reknighted
         {
             InitializeComponent();
 
-            masqueradeButton.ToolTip = "Столица Карточного Королевства\nи резиденция великой династии\nАрлекинов. Вернее, того, что от\nнеё осталось...";
+            masqueradeButton.ToolTip = Game.app.FindResource("masqueradeTip");
         }
 
         public void Travel()
         {
-            var result = MessageBox.Show("На дорогу вам придётся потратить 100 тугриков. Вы готовы?", "Путешествие", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-
+            var result = MessageBox.Show($"{Game.app.FindResource("travelPromt")}", $"{Game.app.FindResource("travelHeader")}", MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
     }
 }

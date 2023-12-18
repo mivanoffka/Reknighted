@@ -71,17 +71,16 @@ namespace Reknighted.Model
 
             result += editedDescription;
 
-            result += "\n\nЗащита: " + _protection;
-            result += "\nПрочность: " + Math.Round(DurabilityPercentage * 100) + "%";
-            result += "\nЦена: " + _price;
-
+            result += $"\n\n{Game.app.FindResource("lbProtection")}: " + _protection;
+            result += $"\n{Game.app.FindResource("lbDurability")}: " + Math.Round(DurabilityPercentage * 100) + "%";
+            result += $"\n{Game.app.FindResource("lbPrice")}: " + _price;
 
             return result;
         }
 
         public override string Help()
         {
-            return "Можно перенести в слот [БРОНЯ]";
+            return $"{Game.app.FindResource("armorHint")}";
         }
     }
 }

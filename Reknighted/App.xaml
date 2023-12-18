@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Reknighted"
              StartupUri="StartWindow.xaml">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="lang/ru-RU/ru-RU.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -11,5 +11,8 @@
     <Setting Name="slot3" Type="System.String" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
+    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ru-RU</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

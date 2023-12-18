@@ -23,6 +23,8 @@ namespace Reknighted.Controller
     {
         #region Поля и свойства
 
+        public static Application app = Application.Current;
+
         #region Контейнеры интерактивных элементов
 
         #region Представления предметов
@@ -104,7 +106,7 @@ namespace Reknighted.Controller
                     if (value != null)
                     {
                         gw.gameTabs.SelectedIndex = 0;
-                        gw.knightTabButton.Header = "Торговля";
+                        //gw.knightTabButton.Header = "Торговля";
 
                         gw.traderView.Model = _currentTrader;
                         gw.traderView.UpdateContent();
@@ -113,7 +115,6 @@ namespace Reknighted.Controller
                     }
                     else
                     {
-                        gw.knightTabButton.Header = "Рыцарь";
                         gw.gameTabs.SelectedIndex = gw.gameTabs.SelectedIndex;
                         //gw.traderView.UpdateContent();
 
@@ -404,7 +405,7 @@ namespace Reknighted.Controller
 
             if (firstFighter.HealthPercentage <= 0.2 || secondFighter.HealthPercentage <= 0.2)
             {
-                MessageBox.Show("Нельзя вступать в схватку в таком состоянии здоровья!");
+                MessageBox.Show((string)app.FindResource("lowHealthMessage"));
                 return null;
             }
 
@@ -483,7 +484,7 @@ namespace Reknighted.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Server is not responding, using local calculation", "Error", MessageBoxButton.OK);
+                MessageBox.Show((string)app.FindResource("serverError"), "Error", MessageBoxButton.OK);
                 return CallFightFromLib(first, second);
             }
         }
@@ -507,10 +508,10 @@ namespace Reknighted.Controller
 
             //ShowLoading("Идёт бой");
             DialogLib.AwaitingMessage.foreignLabel = Game.Window.locationInfoLabel;
-            DialogLib.AwaitingMessage.ShowAwaitingMessage(Window.grid, "Идёт бой");
+            DialogLib.AwaitingMessage.ShowAwaitingMessage(Window.grid, $"{app.FindResource("ongoingBattle")}");
             
             IFightable? winner = Game.Fight(PlayerModel, fighter, enemyWindow.Bet);
-            string message = winner == PlayerModel ? "Победа!" : "Поражение...";
+            string message = winner == PlayerModel ? $"{app.FindResource("victoryMessage")}" : $"{app.FindResource("defeatMessage")}";
             MessageType messageType = winner == PlayerModel ? MessageType.Win : MessageType.Loose;
 
             Message(message, messageType);

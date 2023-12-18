@@ -52,7 +52,7 @@ namespace Reknighted
             defaultTabHeight = this.gameTabs.Height;
 
             globalMap.MapIcons = Collections.Entities.GlobalMap.Values.ToList();
-            globalMap.groupBox.Header = "Карточное королевство";
+            globalMap.groupBox.Header = Game.app.FindResource("mapTitle");
         }
 
         public void LoadPlayer(Faction faction)
@@ -75,9 +75,6 @@ namespace Reknighted
             {
                 Game.CurrentTrader = null;
             }
-
-
-
 
             List<TabItem> list = new List<TabItem>();
             list.Add(mapTabButton);

@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Reknighted"
              mc:Ignorable="d" HorizontalAlignment="Left" VerticalAlignment="Top" Width="465" Height="310">
-    <GroupBox Header="Персонаж" Background="#FFE2E2E2" BorderBrush="#FF6B6B6B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="453" Margin="7,0,0,0" Height="300">
+    <GroupBox Header="{DynamicResource characterHeader}" Background="#FFE2E2E2" BorderBrush="#FF6B6B6B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="453" Margin="7,0,0,0" Height="300">
         <Grid Height="280" HorizontalAlignment="Left" VerticalAlignment="Top" Width="553">
-            <GroupBox x:Name="equipmentBox" Header="Снаряжение" Margin="10,201,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="68" VerticalAlignment="Top" HorizontalAlignment="Left" Width="157">
+            <GroupBox x:Name="equipmentBox" Header="{DynamicResource equipmentHeader}" Margin="10,201,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="68" VerticalAlignment="Top" HorizontalAlignment="Left" Width="157">
                 <Grid x:Name="equipmentGrid" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </GroupBox>
-            <GroupBox x:Name="inventoryGroupBox" Header="Инвентарь" Margin="10,31,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="170" VerticalAlignment="Top" HorizontalAlignment="Left" Width="423">
+            <GroupBox x:Name="inventoryGroupBox" Header="{DynamicResource inventoryHeader}" Margin="10,31,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="170" VerticalAlignment="Top" HorizontalAlignment="Left" Width="423">
                 <Grid x:Name="inventoryGrid" Margin="0,-1,0,1"/>
             </GroupBox>
             <GroupBox x:Name="InfoBox" Header="" Margin="172,201,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="68" VerticalAlignment="Top" HorizontalAlignment="Left" Width="261">
-                <TextBlock x:Name="InfoLabel" TextWrapping="Wrap" Text="Пусто..." Margin="5,0,5,0" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" LineHeight="4" TextAlignment="Justify" FontSize="10"/>
+                <TextBlock x:Name="InfoLabel" TextWrapping="Wrap" Text="{DynamicResource txtInfo}" Margin="5,0,5,0" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" LineHeight="4" TextAlignment="Justify" FontSize="10"/>
             </GroupBox>
             <GroupBox x:Name="equipmentBox_Copy" Header="" Margin="10,-3,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" MouseEnter="healthLabel_MouseEnter" MouseLeave="healthLabel_MouseLeave">
                 <Grid MouseLeave="Grid_MouseLeave">
@@ -23,7 +23,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="healthLabel" HorizontalAlignment="Left" Margin="36,-4,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="#FF2BA91A" Height="16" Width="50" TextAlignment="Right" Grid.ColumnSpan="2" MouseEnter="healthLabel_MouseEnter"/>
-                    <TextBlock x:Name="label" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Здравье" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
+                    <TextBlock x:Name="label" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{DynamicResource lbHealth}" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
                 </Grid>
             </GroupBox>
             <GroupBox x:Name="equipmentBox_Copy1" Header="" Margin="117,-3,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100">
@@ -32,7 +32,7 @@
                         <ColumnDefinition Width="0*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="label1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Деньги" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
+                    <TextBlock x:Name="label1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{DynamicResource lbMoney}" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
                     <TextBlock x:Name="balanceLabel" HorizontalAlignment="Left" Margin="37,-4,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="#FFBD8F11" Height="16" Width="51" TextAlignment="Right" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>
@@ -42,7 +42,7 @@
                         <ColumnDefinition Width="0*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="label3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Защита" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
+                    <TextBlock x:Name="label3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{DynamicResource lbProtection}" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
                     <TextBlock x:Name="armorLabel" HorizontalAlignment="Left" Margin="36,-4,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="#FF2C8FCE" Height="16" Width="50" TextAlignment="Right" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>
@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="0*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="label4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Урон" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
+                    <TextBlock x:Name="label4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{DynamicResource lbDamage}" VerticalAlignment="Top" Foreground="Black" Width="78" Height="16" Grid.ColumnSpan="2" Margin="0,-4,0,0"/>
                     <TextBlock x:Name="damageLabel" HorizontalAlignment="Left" Margin="38,-4,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="#FFCE2C2C" Height="16" Width="49" TextAlignment="Right" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>

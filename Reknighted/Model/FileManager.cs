@@ -1,5 +1,6 @@
 ﻿using Reknighted.Controller;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -44,7 +45,7 @@ namespace Reknighted.Model
             }
             else
             {
-                MessageBox.Show("В этом слоте ничего нет!");
+                MessageBox.Show(Application.Current.FindResource("msgNoSlotInfo").ToString());
             }
 
             return states;
@@ -52,7 +53,8 @@ namespace Reknighted.Model
 
         public static Dictionary<string, ItemModel> LoadAssets(string dictName)
         {
-            string path = $"lang\\ru-RU\\{dictName}.json";
+            CultureInfo currLang = App.Language;
+            string path = $"lang\\{currLang}\\{dictName}.json";
 
             if (!File.Exists(path))
             {

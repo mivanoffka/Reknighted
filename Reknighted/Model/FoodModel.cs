@@ -74,8 +74,8 @@ namespace Reknighted.Model
 
             result += editedDescription;
 
-            result += "\n\nСытность: " + _satiety;
-            result += "\nЦена: " + _price;
+            result += $"\n\n{Game.app.FindResource("lbSatiety")}: " + _satiety;
+            result += $"\n {Game.app.FindResource("lbPrice")}: " + _price;
 
             return result;
         }
@@ -84,7 +84,7 @@ namespace Reknighted.Model
         {
             StringBuilder result = new StringBuilder();
 
-            result.Append("Нажмите правую кнопку мыши, чтобы [СЪЕСТЬ]");
+            result.Append($"{Game.app.FindResource("foodHint")}");
 
             return result.ToString();
         }

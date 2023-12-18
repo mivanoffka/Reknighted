@@ -106,15 +106,15 @@ namespace Reknighted
                 }
                 if (_filter == typeof(WeaponModel))
                 {
-                    indicator.Text = "Оружие";
+                    indicator.Text = $"{Game.app.FindResource("nWeapon")}";
                 }
                 if (_filter == typeof(ArmorModel))
                 {
-                    indicator.Text = "Броня";
+                    indicator.Text = $"{Game.app.FindResource("nArmor")}";
                 }
                 if (_filter == typeof(ArtefactModel))
                 {
-                    indicator.Text = "Артефакт";
+                    indicator.Text = $"{Game.app.FindResource("nArtefact")}";
                 }
             }
         }

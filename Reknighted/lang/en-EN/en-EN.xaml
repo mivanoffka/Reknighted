@@ -1,5 +1,129 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
-    
+
+    <!--#region Start Window -->
+    <v:String x:Key="btnNewGame">♥ New Game ♥</v:String>
+    <v:String x:Key="btnSettings">♦ Settings ♦</v:String>
+    <v:String x:Key="btnLoad">♠ Load ♠</v:String>
+    <v:String x:Key="btnExit">♣ Exit ♣</v:String>
+    <!--#endregion-->
+
+    <!--#region Settings Window -->
+    <v:String x:Key="settingsTitle">Settings</v:String>
+    <v:String x:Key="lbLanguage">Language</v:String>
+    <!--#endregion-->
+
+    <!--#region Save Window -->
+    <v:String x:Key="saveScreenTitle">Select a slot...</v:String>
+    <!--#endregion-->
+
+    <!--#region Selection Window -->
+    <v:String x:Key="txtHearts">Knights of Hearts are distinguished not only by their ardent feelings and big hearts, but also by their bogatyr health.</v:String>
+    <v:String x:Key="txtDiamonds">Not for the first century the lands of Diamonds are famous for their riches. To those born there, money is drawn to them as if to a magnet.</v:String>
+    <v:String x:Key="txtSpades">The emblem of the Tref dynasty is the clover, a symbol of good luck. Legends say that the first Lady of clubs was called Fortuna.</v:String>
+    <v:String x:Key="txtClubs">No one has ever surpassed the Soldiers of Spades in the ability to forge and handle weapons.</v:String>
+    <v:String x:Key="txtLore">This describes an extremely interesting lore....</v:String>
+    <v:String x:Key="selectionScreenTitle">Selection</v:String>
+    <!--#endregion-->
+
+    <!--#region Enemy Window -->
+    <v:String x:Key="btnFight">Fight</v:String>
+    <v:String x:Key="lbEquipment">Equipment</v:String>
+    <v:String x:Key="betBox">Bet</v:String>
+    <v:String x:Key="txtFightMessage">That's a man you could rob!"</v:String>
+    <v:String x:Key="enemyScreenTitle">The Enemy</v:String>
+    <!--#endregion-->
+
+    <!--#region Game Window -->
+     <v:String x:Key="knightTabHeader">Knight</v:String>
+     <v:String x:Key="locationTabHeader">Location</v:String>
+     <v:String x:Key="mapTabHeader">Map</v:String>
+     <!--#endregion-->
+
+    <!--#region Player View-->
+    <v:String x:Key="characterHeader">Character</v:String>
+    <v:String x:Key="equipmentHeader">Equipment</v:String>
+    <v:String x:Key="txtInfo">Empty...</v:String>
+    <v:String x:Key="lbHealth">Health</v:String>
+    <v:String x:Key="lbMoney">Money</v:String>
+    <v:String x:Key="lbProtection">Protection</v:String>
+    <v:String x:Key="lbDamage">Damage</v:String>
+    <!--#endregion-->
+
+    <!--#region Trader Screen-->
+    <v:String x:Key="traderHeader">Trader</v:String>
+    <v:String x:Key="btnLeave">Leave trader</v:String>
+    <v:String x:Key="buyHint">Hover your mouse over the item and press RCM to perform the act of buying and selling.</v:String>
+    <!--#endregion-->
+
+    <!--#region Map View-->
+    <v:String x:Key="btnMasquerade">Masquerade</v:String>
+    <v:String x:Key="btnDiamonds">Diamonds</v:String>
+    <v:String x:Key="btnClubs">Clubs</v:String>
+    <v:String x:Key="btnSpades">Spades</v:String>
+    <v:String x:Key="btnHearts">Hearts</v:String>
+    <v:String x:Key="mapTitle">Kingdom Of Cards</v:String>
+    <v:String x:Key="msgTravelCost">Nowadays travels are expensive. You'll have to pay</v:String>
+    <v:String x:Key="msgRide">Riding</v:String>
+    <v:String x:Key="masqueradeTip">The capital of the Kingdom of Cards and the seat of the great Harlequin dynasty. Or rather, what's left of it...</v:String>
+    <v:String x:Key="travelPromt">You'll have to pay 100 tugr</v:String>
+    <!--#endregion-->
+
+    <v:String x:Key="inventoryHeader">Inventory</v:String>
+
+    <!--#region In-Game Hints and labels-->
+    <v:String x:Key="lowHealthMessage">You can't fight in this state!</v:String>
+    <v:String x:Key="serverError">Server doesn't respond, using local computing</v:String>
+    <v:String x:Key="victoryMessage">Victory!</v:String>
+    <v:String x:Key="defeatMessage">Defeat...</v:String>
+    <v:String x:Key="ongoingBattle">Fighting</v:String>
+    <v:String x:Key="msgNoSlotInfo">No data in this slot!</v:String>
+    <v:String x:Key="msgNoMoney">Not enough money!</v:String>
+    <v:String x:Key="travelHeader">Travel</v:String>
+    <v:String x:Key="valuta">tugr</v:String>
+    <v:String x:Key="msgConfirmation">Are you sure?</v:String>
+    <v:String x:Key="msgConfirmAction">Press RMB to confirm</v:String>
+    <v:String x:Key="txtBuy">buy</v:String>
+    <v:String x:Key="txtSell">sell</v:String>
+    <v:String x:Key="lbDurability">Durability</v:String>
+    <v:String x:Key="lbPrice">Price</v:String>
+    <v:String x:Key="lbSatiety">Satiety</v:String>
+    <v:String x:Key="foodHint">Press RMB to [EAT]</v:String>
+    <v:String x:Key="armorHint">You can move that to [ARMOR]</v:String>
+    <v:String x:Key="weaponHint">You can move that to [WEAPON]</v:String>
+
+    <v:String x:Key="nRobber">Robber</v:String>
+    <v:String x:Key="nKnight">Knight</v:String>
+    <v:String x:Key="nSpadesAce">Spades ace</v:String>
+    <v:String x:Key="nDiamondsAce">Diamonds ace</v:String>
+    <v:String x:Key="nClubsAce">Clubs ace</v:String>
+    <v:String x:Key="nHeartsAce">Hearts ace</v:String>
+
+    <v:String x:Key="nFood">Food</v:String>
+    <v:String x:Key="nWeapon">Weapon</v:String>
+    <v:String x:Key="nArmor">Armor</v:String>
+    <v:String x:Key="nArtefact">Artefacts</v:String>
+    <v:String x:Key="nPotion">Potions</v:String>
+
+    <v:String x:Key="nPeter">Gardener Peter</v:String>
+    <v:String x:Key="nPatrick">Butcher Patrick</v:String>
+    <v:String x:Key="nBeniamin">Bronnik Veniamin</v:String>
+    <v:String x:Key="nJohans">Weaponsmith John</v:String>
+    <v:String x:Key="nBeatrice">Beatrice's Pastry Shop</v:String>
+    <v:String x:Key="nAlexander">Alexander's Dairy</v:String>
+    <v:String x:Key="nFrank">Frank's Gunsmith</v:String>
+    <v:String x:Key="nEdward">Eduard Armourer</v:String>
+    <v:String x:Key="nJoshua">Yoshua the Butcher</v:String>
+    <v:String x:Key="nBenedict">Benedict's Jewellery Shop</v:String>
+    <v:String x:Key="nDaniel">Daniel's Orchard</v:String>
+    <v:String x:Key="nWalters">Walter the Gunsmith</v:String>
+    <v:String x:Key="nEugene">Armourer Eugene</v:String>
+    <v:String x:Key="nLuka">Gardener Luke</v:String>
+    <v:String x:Key="nArthur">Butcher Arthur</v:String>
+    <v:String x:Key="nWitch">Witch Doctor</v:String>
+    <v:String x:Key="nWilson">Weaponsmith Wilson</v:String>
+    <v:String x:Key="nStephen">Armourer Stephen</v:String>
+    <!--#endregion-->
+
 </ResourceDictionary>

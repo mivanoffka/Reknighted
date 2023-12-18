@@ -61,29 +61,11 @@ namespace Reknighted.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .
+        ///   Ищет локализованную строку, похожую на ru-RU.
         /// </summary>
-        public static string slot1 {
+        public static string DefaultLanguage {
             get {
-                return ResourceManager.GetString("slot1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на .
-        /// </summary>
-        public static string slot2 {
-            get {
-                return ResourceManager.GetString("slot2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на .
-        /// </summary>
-        public static string slot3 {
-            get {
-                return ResourceManager.GetString("slot3", resourceCulture);
+                return ResourceManager.GetString("DefaultLanguage", resourceCulture);
             }
         }
     }

@@ -1,5 +1,131 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <!--#region Start Window -->
+    <v:String x:Key="btnNewGame">♥ Новая игра ♥</v:String>
+    <v:String x:Key="btnSettings">♦ Настройки ♦</v:String>
+    <v:String x:Key="btnLoad">♠ Загрузить ♠</v:String>
+    <v:String x:Key="btnExit">♣ Выход ♣</v:String>
+    <!--#endregion-->
+
+    <!--#region Settings Window -->
+    <v:String x:Key="settingsTitle">Настройки</v:String>
+    <v:String x:Key="lbLanguage">Язык</v:String>
+    <!--#endregion-->
+
+    <!--#region Save Window -->
+    <v:String x:Key="saveScreenTitle">Выберите слот...</v:String>
+    <!--#endregion-->
+
+    <!--#region Selection Window -->
+    <v:String x:Key="txtHearts">Рыцари Червей отличаются не только своими пылкими чувствами и большим сердцем, но и богатырским здоровьем.</v:String>
+    <v:String x:Key="txtDiamonds">Не первое столетие земли Бубен славятся своими богатствами. К рождённым там деньги тянутся, будто к магниту.</v:String>
+    <v:String x:Key="txtSpades">Герб династии Трефов – клевер, символ удачи. Легенды гласят, что первую Даму Трефов звали Фортуной.</v:String>
+    <v:String x:Key="txtClubs">Ещё никому не удалось превзойти Пиковых солдат в умении ковать оружие и обращаться с ним.</v:String>
+    <v:String x:Key="txtLore">Здесь описан крайне интересный лор....</v:String>
+    <v:String x:Key="selectionScreenTitle">Выбор</v:String>
+    <!--#endregion-->
+
+    <!--#region Enemy Window -->
+    <v:String x:Key="btnFight">Сразиться</v:String>
+    <v:String x:Key="lbEquipment">Снаряжение</v:String>
+    <v:String x:Key="betBox">Ставка</v:String>
+    <v:String x:Key="txtFightMessage">Такого человека и ограбить не стыдно!</v:String>
+    <v:String x:Key="enemyScreenTitle">Противник</v:String>
+    <!--#endregion-->
+
+    <!--#region Game Window -->
+    <v:String x:Key="knightTabHeader">Рыцарь</v:String>
+    <v:String x:Key="locationTabHeader">Локация</v:String>
+    <v:String x:Key="mapTabHeader">Карта</v:String>
+    <!--#endregion-->
+
+    <!--#region Player View-->
+    <v:String x:Key="characterHeader">Персонаж</v:String>
+    <v:String x:Key="equipmentHeader">Снаряжение</v:String>
+    <v:String x:Key="txtInfo">Пусто...</v:String>
+    <v:String x:Key="lbHealth">Здравье</v:String>
+    <v:String x:Key="lbMoney">Деньги</v:String>
+    <v:String x:Key="lbProtection">Защита</v:String>
+    <v:String x:Key="lbDamage">Урон</v:String>
+    <!--#endregion-->
     
+    <!--#region Trader Screen-->
+    <v:String x:Key="traderHeader">Торговец</v:String>
+    <v:String x:Key="btnLeave">Покинуть торговца</v:String>
+    <v:String x:Key="buyHint">Наведите мышкой на предмет и нажмите ПКМ, чтобы совершить акт купли-продажи.</v:String>
+    <!--#endregion-->
+
+    <!--#region Map View-->
+    <v:String x:Key="btnMasquerade">Маскарад</v:String>
+    <v:String x:Key="btnDiamonds">Бубны</v:String>
+    <v:String x:Key="btnClubs">Трефы</v:String>
+    <v:String x:Key="btnSpades">Пики</v:String>
+    <v:String x:Key="btnHearts">Червы</v:String>
+    <v:String x:Key="mapTitle">Карточное королество</v:String>
+    <v:String x:Key="msgRide">Едем</v:String>
+    <v:String x:Key="masqueradeTip">Столица Карточного Королевства\nи резиденция великой династии\nАрлекинов. Вернее, того, что от\nнеё осталось...</v:String>
+    <v:String x:Key="travelPromt">На дорогу вам придётся потратить 100 тугриков. Вы готовы?</v:String>
+    <v:String x:Key="msgTravelCost">Путешествия нынче дорогие. Придётся выложить</v:String>
+    <!--#endregion-->
+    
+    <!--#region General-->
+    <v:String x:Key="inventoryHeader">Инвентарь</v:String>
+    <!--#endregion-->
+    
+    <!--#region In-Game Hints and labels-->
+    <v:String x:Key="lowHealthMessage">Нельзя вступать в схватку в таком состоянии здоровья!</v:String>
+    <v:String x:Key="serverError">Сервер не отвечает, используются локальные вычисления</v:String>
+    <v:String x:Key="victoryMessage">Победа!</v:String>
+    <v:String x:Key="defeatMessage">Поражение...</v:String>
+    <v:String x:Key="ongoingBattle">Идёт бой</v:String>
+    <v:String x:Key="msgNoSlotInfo">В этом слоте ничего нет!</v:String>
+    <v:String x:Key="msgNoMoney">Недостаточно денюжек!</v:String>
+    <v:String x:Key="travelHeader">Путешествие</v:String>
+    <v:String x:Key="valuta">тугр.</v:String>
+    <v:String x:Key="msgConfirmation">Вы уверены?</v:String>
+    <v:String x:Key="msgConfirmAction">Чтобы подтвердить действие, снова нажмите ПКМ</v:String>
+    <v:String x:Key="txtBuy">купить</v:String>
+    <v:String x:Key="txtSell">продать</v:String>
+    <v:String x:Key="lbDurability">Прочность</v:String>
+    <v:String x:Key="lbPrice">Цена</v:String>
+    <v:String x:Key="lbSatiety">Сытность</v:String>
+    <v:String x:Key="foodHint">Нажмите правую кнопку мыши, чтобы [СЪЕСТЬ]</v:String>
+    <v:String x:Key="armorHint">Можно перенести в слот [БРОНЯ]</v:String>
+    <v:String x:Key="weaponHint">Можно перенести в слот [ОРУЖИЕ]</v:String>
+
+    <v:String x:Key="nRobber">Разбойник</v:String>
+    <v:String x:Key="nKnight">Рыцарь</v:String>
+    <v:String x:Key="nSpadesAce">Пиковый туз</v:String>
+    <v:String x:Key="nDiamondsAce">Бубновый туз</v:String>
+    <v:String x:Key="nClubsAce">Трефовый туз</v:String>
+    <v:String x:Key="nHeartsAce">Червовый туз</v:String>
+
+    <v:String x:Key="nFood">Еда</v:String>
+    <v:String x:Key="nWeapon">Оружие</v:String>
+    <v:String x:Key="nArmor">Броня</v:String>
+    <v:String x:Key="nArtefact">Артефакты</v:String>
+    <v:String x:Key="nPotion">Зелья</v:String>
+
+    <v:String x:Key="nPeter">Садовод Пётр</v:String>
+    <v:String x:Key="nPatrick">Мясник Патрик</v:String>
+    <v:String x:Key="nBeniamin">Бронник Вениамин</v:String>
+    <v:String x:Key="nJohans">Оружейник Иоанн</v:String>
+    <v:String x:Key="nBeatrice">Кондитерская Беатрис</v:String>
+    <v:String x:Key="nAlexander">Молочная ферма Александра</v:String>
+    <v:String x:Key="nFrank">Оружейник Фрэнк</v:String>
+    <v:String x:Key="nEdward">"Бронник Эдуард</v:String>
+    <v:String x:Key="nJoshua">Мясник Йошуа</v:String>
+    <v:String x:Key="nBenedict">Ювелирная лавка Бенедикта</v:String>
+    <v:String x:Key="nDaniel">Фруктовый сад Даниэля</v:String>
+    <v:String x:Key="nWalters">Оружейник Вальтер</v:String>
+    <v:String x:Key="nEugene">Бронник Юджин</v:String>
+    <v:String x:Key="nLuka">Огородник Лука</v:String>
+    <v:String x:Key="nArthur">Мясник Артур</v:String>
+    <v:String x:Key="nWitch">Знахарка</v:String>
+    <v:String x:Key="nWilson">Оружейник Вильсон</v:String>
+    <v:String x:Key="nStephen">Броник Стефан</v:String>
+    <!--#endregion-->
+
 </ResourceDictionary>

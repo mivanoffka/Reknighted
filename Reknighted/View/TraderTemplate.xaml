@@ -7,13 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <GroupBox x:Name="groupBox" Header="Торговец" Background="#FFE2E2E2" BorderBrush="#FF6B6B6B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="453" Margin="7,0,0,0" Height="235">
+        <GroupBox x:Name="groupBox" Header="{DynamicResource traderHeader}" Background="#FFE2E2E2" BorderBrush="#FF6B6B6B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="453" Margin="7,0,0,0" Height="235">
             <Grid Height="250" HorizontalAlignment="Left" VerticalAlignment="Top" Width="553">
-                <GroupBox x:Name="inventoryGroupBox" Header="Инвентарь" Margin="10,0,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="170" VerticalAlignment="Top" HorizontalAlignment="Left" Width="423">
+                <GroupBox x:Name="inventoryGroupBox" Header="{DynamicResource inventoryHeader}" Margin="10,0,0,0" BorderBrush="#FF525252" Background="#FFCECECE" Height="170" VerticalAlignment="Top" HorizontalAlignment="Left" Width="423">
                     <Grid x:Name="inventoryGrid" Margin="0,-1,0,1"/>
                 </GroupBox>
-                <Button x:Name="leaveButton" Content="Покинуть торговца" HorizontalAlignment="Left" Margin="17,175,0,0" VerticalAlignment="Top" Background="#FFCECECE" Width="195" Height="26" Click="leaveButton_Click"/>
-                <TextBlock HorizontalAlignment="Left" Margin="222,174,0,0" TextWrapping="Wrap" Text="Наведите мышкой на предмет и нажмите ПКМ, чтобы совершить акт купли-продажи." VerticalAlignment="Top" FontSize="10" Width="211" Foreground="#FF6D6D6D"/>
+                <Button x:Name="leaveButton" Content="{DynamicResource btnLeave}" HorizontalAlignment="Left" Margin="17,175,0,0" VerticalAlignment="Top" Background="#FFCECECE" Width="195" Height="26" Click="leaveButton_Click"/>
+                <TextBlock HorizontalAlignment="Left" Margin="222,174,0,0" TextWrapping="Wrap" Text="{DynamicResource buyHint}" VerticalAlignment="Top" FontSize="10" Width="211" Foreground="#FF6D6D6D"/>
             </Grid>
         </GroupBox>
 

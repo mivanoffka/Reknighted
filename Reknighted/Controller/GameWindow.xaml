@@ -12,19 +12,19 @@
             <TabControl.FocusVisualStyle>
                 <Style/>
             </TabControl.FocusVisualStyle>
-            <TabItem x:Name="knightTabButton" Header="Рыцарь" Background="#FFCC7676">
+            <TabItem x:Name="knightTabButton" Header="{DynamicResource knightTabHeader}" Background="#FFCC7676">
                 <Grid x:Name="knightGrid" Background="White" OpacityMask="Black" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <local:PlayerView x:Name="playerView" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <View:TraderTemplate x:Name="traderView" HorizontalAlignment="Left" Margin="0,301,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="locationTabButton" Header="Локация" Background="#FFCC7676">
+            <TabItem x:Name="locationTabButton" Header="{DynamicResource locationTabHeader}" Background="#FFCC7676">
                 <Grid Background="White">
                     <Image Margin="286,68,137,167" Source="/icon_134.png" Stretch="Fill"/>
                     <View:LocationView x:Name="location" HorizontalAlignment="Center" VerticalAlignment="Top" Height="296" Width="449"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="mapTabButton" HorizontalAlignment="Center" Height="20" Header="Карта" VerticalAlignment="Center" Width="54" Background="#FFCC7676">
+            <TabItem x:Name="mapTabButton" HorizontalAlignment="Center" Height="20" Header="{DynamicResource mapTabHeader}" VerticalAlignment="Center" Width="54" Background="#FFCC7676">
                 <Grid Background="White">
                     <View:LocationView x:Name="globalMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="449" Height="296"/>
                 </Grid>

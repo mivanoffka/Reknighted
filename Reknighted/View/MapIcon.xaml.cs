@@ -139,19 +139,19 @@ namespace Reknighted.View
                     return;
                 }
 
-                var result = MessageBox.Show($"Путешествия нынче дорогие. Придётся выложить {Game.NextJorneyCosts[(Location)Link]} тугриков.\n\nВы уверены?", "Путешествие", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var result = MessageBox.Show($"{Game.app.FindResource("msgTravelCost")} {Game.NextJorneyCosts[(Location)Link]} {Game.app.FindResource("valuta")}.\n\n{Game.app.FindResource("msgConfirmation")}", $"{Game.app.FindResource("travelHeader")}", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {   
                     if (Game.PlayerModel.Balance < Game.NextJorneyCosts[(Location)Link])
                     {
-                        Game.Message("Недостаточно денюжек!");
+                        Game.Message((string)Game.app.FindResource("msgNoMoney"));
                         return;
                     }
 
                     Game.PlayerModel.Balance -= Game.NextJorneyCosts[(Location)Link];
                     Game.PlayerModel.Location = (Location)Link;
 
-                    DialogLib.AwaitingMessage.ShowAwaitingMessage(Game.Window.grid, "Едем");
+                    DialogLib.AwaitingMessage.ShowAwaitingMessage(Game.Window.grid, $"{Game.app.FindResource("msgRide")}");
                     Game.Window.location.groupBox.Header = Game.LocationString[(Location)Link];
 
                     Game.Window.location.Update();

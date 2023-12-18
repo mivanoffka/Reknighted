@@ -45,7 +45,6 @@ namespace Reknighted
             this.image.Source = itemInfo.Image.Source;
         }
 
-
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Game.PlayerView.HideInfo();
@@ -65,7 +64,7 @@ namespace Reknighted
                     else
                     {
                         Game._productItem = this;
-                        Game.Message("Чтобы подтвердить действие, снова нажмите ПКМ");
+                        Game.Message($"{Game.app.FindResource("msgConfirmAction")}");
                     }
                 }
                 else
@@ -87,13 +86,10 @@ namespace Reknighted
         {
 
         }
-
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {   
 
         }
-
-        
 
         public void PlaceToCell(Cell newCell)
         {   
@@ -137,8 +133,8 @@ namespace Reknighted
             string message = string.Empty;
             if (Game.CurrentTrader != null)
             {
-                string word = Model.IsPossessed ? "продать" : "купить";
-                message = "Можно " + word + " за " + Model.Price + " тугриков.";
+                string word = Model.IsPossessed ? $"{Game.app.FindResource("txtSell")}" : $"{Game.app.FindResource("txtBuy")}";
+                message = Model.Price + $" {Game.app.FindResource("valuta")}";
             }
             else
             {

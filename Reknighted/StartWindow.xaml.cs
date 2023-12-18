@@ -51,5 +51,11 @@ namespace Reknighted
             
             this.Close();
         }
+
+        private void settingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
+        }
     }
 }

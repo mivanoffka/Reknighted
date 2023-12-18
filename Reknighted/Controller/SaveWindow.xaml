@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Reknighted.Controller"
         xmlns:properties="clr-namespace:Reknighted.Properties"
         mc:Ignorable="d"
-        Title="Выберите слот..." Height="200" Width="400" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource saveScreenTitle}" Height="200" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <ListBox Name="saveSlots" VerticalContentAlignment="Stretch" Margin="0,6,0,-6">
             <ListBoxItem x:Name="slot1" Content="" Background="LightGray" Selected="Slot_Changed" Height="50"></ListBoxItem>

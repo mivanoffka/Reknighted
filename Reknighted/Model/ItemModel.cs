@@ -217,7 +217,7 @@ namespace Reknighted.Model
                 else
                 {
                     //MessageBox.Show("А денежек то у нас и не хватает!" + "\n\n" + customer.Balance + "/" + this.Price, "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Game.Message("А денежек-то не хватит...", MessageType.Error);
+                    Game.Message($"{Game.app.FindResource("msgNoMoney")}", MessageType.Error);
                 }
 
             }

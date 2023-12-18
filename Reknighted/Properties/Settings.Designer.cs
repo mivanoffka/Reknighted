@@ -58,5 +58,20 @@ namespace Reknighted.Properties {
                 this["slot3"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ru-RU")]
+        public global::System.Globalization.CultureInfo DefaultLanguage
+        {
+            get
+            {
+                return ((global::System.Globalization.CultureInfo)(this["DefaultLanguage"]));
+            }
+            set
+            {
+                this["DefaultLanguage"] = value;
+            }
+        }
     }
 }

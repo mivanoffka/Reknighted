@@ -8,13 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <GroupBox Header="Карточное Королевство" Background="#FFE2E2E2" BorderBrush="#FF6B6B6B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="453" Margin="7,0,0,0" Height="270">
+        <GroupBox Header="{DynamicResource mapTitle}" Background="#FFE2E2E2" BorderBrush="#FF6B6B6B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="453" Margin="7,0,0,0" Height="270">
             <Grid x:Name="mapGrid" Height="245" HorizontalAlignment="Left" VerticalAlignment="Top" Width="443">
-                <RadioButton x:Name="masqueradeButton" Content="Маскарад 🤡" HorizontalAlignment="Left" Margin="167,108,0,0" VerticalAlignment="Top" Foreground="Black"/>
-                <RadioButton x:Name="diamondsButton" Content="Бубны ♦" HorizontalAlignment="Left" Margin="308,173,0,0" VerticalAlignment="Top" Foreground="#FFBD1717"/>
-                <RadioButton x:Name="clubsButton" Content="Трефы ♣" HorizontalAlignment="Left" Margin="72,169,0,0" VerticalAlignment="Top" Foreground="Black"/>
-                <RadioButton x:Name="spadesButton" Content="Пики ♠" HorizontalAlignment="Left" Margin="302,78,0,0" VerticalAlignment="Top" Foreground="Black"/>
-                <RadioButton x:Name="heartsButton" Content="Червы ♥" HorizontalAlignment="Left" Margin="52,56,0,0" VerticalAlignment="Top" Foreground="#FFBD1717" IsChecked="True"/>
+                <RadioButton x:Name="masqueradeButton" Content="{DynamicResource btnMasquerade}" HorizontalAlignment="Left" Margin="167,108,0,0" VerticalAlignment="Top" Foreground="Black"/>
+                <RadioButton x:Name="diamondsButton" Content="{DynamicResource btnDiamonds}" HorizontalAlignment="Left" Margin="308,173,0,0" VerticalAlignment="Top" Foreground="#FFBD1717"/>
+                <RadioButton x:Name="clubsButton" Content="{DynamicResource btnClubs}" HorizontalAlignment="Left" Margin="72,169,0,0" VerticalAlignment="Top" Foreground="Black"/>
+                <RadioButton x:Name="spadesButton" Content="{DynamicResource btnSpades}" HorizontalAlignment="Left" Margin="302,78,0,0" VerticalAlignment="Top" Foreground="Black"/>
+                <RadioButton x:Name="heartsButton" Content="{DynamicResource btnHearts}" HorizontalAlignment="Left" Margin="52,56,0,0" VerticalAlignment="Top" Foreground="#FFBD1717" IsChecked="True"/>
             </Grid>
         </GroupBox>
     </Grid>

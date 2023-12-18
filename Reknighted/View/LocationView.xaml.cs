@@ -75,13 +75,11 @@ namespace Reknighted.View
                 {
                     foreach (var icon in mapIcons)
                     {   
-                        if (!grid.Children.Contains(icon))
-                            grid.Children.Add(icon);
+                        if (!grid.Children.Contains(icon)) 
+                           grid.Children.Add(icon);
                     }
 
                 }
-
-
             } 
         }
 
