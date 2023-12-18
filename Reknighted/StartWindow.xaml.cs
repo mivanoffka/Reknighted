@@ -20,6 +20,7 @@ namespace Reknighted
 {
     public partial class StartWindow : Window
     {
+
         public StartWindow()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace Reknighted
 
             this.Close();
         }
+
 
         private void loadGameButtom_Click(object sender, RoutedEventArgs e)
         {   

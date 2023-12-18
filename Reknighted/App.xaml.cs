@@ -13,6 +13,7 @@ namespace Reknighted
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+
     public partial class App : Application
     {
         private static List<CultureInfo> m_Languages = new List<CultureInfo>();
