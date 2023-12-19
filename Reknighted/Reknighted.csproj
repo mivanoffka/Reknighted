@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog" Version="5.2.7" />
+    <PackageReference Include="NLog.Config" Version="4.7.15" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,6 +67,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="C:\Users\mivan\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="FightingLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

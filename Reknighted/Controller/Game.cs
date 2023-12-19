@@ -19,6 +19,7 @@ using System.Net;
 using Reknighted.Model.Items;
 using Reknighted.Model.Entities;
 using Reknighted.Controller.Collections;
+using NLog;
 
 namespace Reknighted.Controller
 {
@@ -216,6 +217,9 @@ namespace Reknighted.Controller
 
             //NextJorneyCost = (new Random()).Next(MIN_JORNEY_CONST, MAX_JORNEY_CONST);
         }
+
+        // Логгер
+        public static Logger Logger { get; } = LogManager.GetCurrentClassLogger();
 
         #endregion
 

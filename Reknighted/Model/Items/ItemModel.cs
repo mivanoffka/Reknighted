@@ -15,6 +15,7 @@ using Reknighted.Controller;
 using System.Text;
 using System.Text.Json.Serialization;
 using Reknighted.Model.Entities;
+using System.Xml.Linq;
 
 namespace Reknighted.Model.Items
 {
@@ -183,6 +184,7 @@ namespace Reknighted.Model.Items
             catch (Exception ex)
             {
                 Game.Message(ex.Message, MessageType.Error);
+                Game.Logger.Error("Error." + ex.Message);
             }
 
         }
@@ -198,30 +200,40 @@ namespace Reknighted.Model.Items
         }
 
         public virtual void SellTo(ITradeable buyer, bool showWarning = true)
-        {
-            ITradeable? customer = IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
-            ITradeable? seller = IsPossessed ? Game.PlayerModel : Game.CurrentTrader;
-
-            if (customer != null)
+        {   
+            try
             {
-                if (customer.Balance >= Price)
-                {
-                    seller.RemoveItem(this);
-                    IsPossessed = !IsPossessed;
-                    customer.AddItem(this);
+                ITradeable? customer = IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
+                ITradeable? seller = IsPossessed ? Game.PlayerModel : Game.CurrentTrader;
+                int price = customer == Game.PlayerModel ? BuyPrice : SellPrice;
 
-                    int price = customer == Game.PlayerModel ? BuyPrice : SellPrice;
-
-                    customer.Balance -= price;
-                    seller.Balance += price;
-                }
-                else
+                if (customer != null)
                 {
-                    //MessageBox.Show("А денежек то у нас и не хватает!" + "\n\n" + customer.Balance + "/" + this.Price, "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Game.Message($"{Game.app.FindResource("msgNoMoney")}", MessageType.Error);
+                    if (customer.Balance >= Price)
+                    {
+                        seller.RemoveItem(this);
+                        IsPossessed = !IsPossessed;
+                        customer.AddItem(this);
+
+
+
+                        customer.Balance -= price;
+                        seller.Balance += price;
+                    }
+                    else
+                    {
+                        //MessageBox.Show("А денежек то у нас и не хватает!" + "\n\n" + customer.Balance + "/" + this.Price, "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Game.Message($"{Game.app.FindResource("msgNoMoney")}", MessageType.Error);
+                    }
+
                 }
+                Game.Logger.Info(this.Name + " sold for " + price);
+            }
+            catch
+            {
 
             }
+
         }
 
         public void Dispose()

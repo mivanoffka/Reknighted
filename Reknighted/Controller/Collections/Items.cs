@@ -24,12 +24,22 @@ namespace Reknighted.Controller.Collections
         public static Dictionary<string, ArmorModel> Armors = new Dictionary<string, ArmorModel>();
 
         public static void Initialize()
-        {
-            Food = FileManager.LoadAssets("Food").ToDictionary(kv => kv.Key, kv => (FoodModel)kv.Value);
-            Artefacts = FileManager.LoadAssets("Artefacts").ToDictionary(kv => kv.Key, kv => (ArtefactModel)kv.Value);
-            Weapons = FileManager.LoadAssets("Weapons").ToDictionary(kv => kv.Key, kv => (WeaponModel)kv.Value);
-            Potions = FileManager.LoadAssets("Potions").ToDictionary(kv => kv.Key, kv => (PotionModel)kv.Value);
-            Armors = FileManager.LoadAssets("Armors").ToDictionary(kv => kv.Key, kv => (ArmorModel)kv.Value);
+        {   
+            try
+            {
+                Food = FileManager.LoadAssets("Food").ToDictionary(kv => kv.Key, kv => (FoodModel)kv.Value);
+                Artefacts = FileManager.LoadAssets("Artefacts").ToDictionary(kv => kv.Key, kv => (ArtefactModel)kv.Value);
+                Weapons = FileManager.LoadAssets("Weapons").ToDictionary(kv => kv.Key, kv => (WeaponModel)kv.Value);
+                Potions = FileManager.LoadAssets("Potions").ToDictionary(kv => kv.Key, kv => (PotionModel)kv.Value);
+                Armors = FileManager.LoadAssets("Armors").ToDictionary(kv => kv.Key, kv => (ArmorModel)kv.Value);
+
+                Game.Logger.Info("Assets successfuly loaded");
+            }
+            catch (Exception ex) 
+            {
+                Game.Logger.Error("Cannot load assets. " + ex.Message);
+            }
+ 
         }
 
         public static string PathTo(string name)
@@ -41,6 +51,7 @@ namespace Reknighted.Controller.Collections
             catch
             {
                 MessageBox.Show("Файл не найден. " + name);
+                Game.Logger.Error("Файл не найден. " + name);
                 throw;
             }
         }

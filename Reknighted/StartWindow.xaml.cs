@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NLog;
 using Reknighted.Controller;
 using Reknighted.Controller.Collections;
 using Reknighted.Model;
@@ -26,6 +27,10 @@ namespace Reknighted
             InitializeComponent();
             Items.Initialize();
             Entities.Initialize();
+
+            NLog.LogManager.Setup().LoadConfiguration(builder => {
+                builder.ForLogger().FilterMinLevel(LogLevel.Debug).WriteToFile(fileName: "logs.txt");
+            });
 
             Game.GenerateJorneyCost();
         }

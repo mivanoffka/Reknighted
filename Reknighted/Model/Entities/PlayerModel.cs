@@ -331,40 +331,59 @@ namespace Reknighted.Model.Entities
         }
 
         private ItemModel? GetItem(int index)
-        {
-            int max = Items.Count;
+        {   
+            try
+            {
+                int max = Items.Count;
 
-            if (index >= 0 && index < max)
-            {
-                return Items[index];
+                if (index >= 0 && index < max)
+                {
+                    return Items[index];
+                }
+                else if (index >= max && index < max + 3)
+                {
+                    return EquippedItems[index - max];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
-            else if (index >= max && index < max + 3)
+            catch (Exception ex)
             {
-                return EquippedItems[index - max];
+                Game.Logger.Error("Cannot get item." + ex.Message);
+                throw;
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+
         }
 
         private void SetItem(int index, ItemModel? item)
-        {
-            int max = Items.Count;
+        {   
+            try
+            {
+                int max = Items.Count;
 
-            if (index >= 0 && index < max)
-            {
-                Items[index] = item;
+                if (index >= 0 && index < max)
+                {
+                    Items[index] = item;
+                }
+                else if (index >= max && index < max + 3)
+                {
+                    EquippedItems[index - max] = item;
+                    Game.PlayerView.UpdateStats();
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
-            else if (index >= max && index < max + 3)
+            catch (Exception ex)
             {
-                EquippedItems[index - max] = item;
-                Game.PlayerView.UpdateStats();
+                Game.Logger.Error("Cannot set item." + ex.Message);
+                throw;
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+
+
         }
 
 
