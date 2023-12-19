@@ -267,14 +267,10 @@ namespace Reknighted.Model.Entities
         public void RemoveItem(ItemModel? item, bool testMode = false)
         {
             for (int i = 0; i < Items.Count; i++)
-            {   
-                if (Items[i] != null && item != null)
+            {
+                if (Items[i] == item)
                 {
-                    if (Items[i].Name == item.Name)
-                    {
-                        Items[i] = null;
-
-                    }
+                    Items[i] = null;
                 }
 
             }

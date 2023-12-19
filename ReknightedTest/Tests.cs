@@ -70,14 +70,12 @@ namespace ReknightedTest
         public void InventoryCheck_3()
         {
             FoodModel item = new FoodModel("test", "test", 0, 0, "test");
-            string expected = "null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null";
+            string expected = "null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, ";
 
             PlayerModel player = new PlayerModel(Reknighted.Model.Faction.Hearts);
-            player.AddItem(item.Copy(), true);
-            player.RemoveItem(item.Copy(), true);
+            player.AddItem(item, true);
+            player.RemoveItem(item, true);
             string actual = ItemsToString(player.Items);
-
-            MessageBox.Show(actual + "\n\n\n" + expected);
 
             Assert.Equal(actual, expected);
         }
