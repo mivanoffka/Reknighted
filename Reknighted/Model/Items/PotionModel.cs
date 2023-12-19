@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Reknighted.Controller;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Items
 {
     internal class PotionModel : ItemModel
     {
@@ -32,10 +32,10 @@ namespace Reknighted.Model
 
         public PotionModel(string name, string description, int cost, int addition, Buff buff, string imageSource) : base(name, description, cost, imageSource)
         {
-            this._addition = addition;
-            this._buff = buff;
+            _addition = addition;
+            _buff = buff;
         }
-        public PotionModel(){}
+        public PotionModel() { }
 
         [JsonConstructor]
         public PotionModel(int addition, Buff buff, string pathToImage, string name, string description, int price,
@@ -44,25 +44,25 @@ namespace Reknighted.Model
             _addition = addition;
             _buff = buff;
         }
-        
+
         public override ItemModel Copy()
         {
-            return new PotionModel(this._name, this._description, this._price, this._addition, _buff, _pathToImage);
+            return new PotionModel(_name, _description, _price, _addition, _buff, _pathToImage);
         }
 
         public override void Use()
         {
             if (Buff == Buff.Health)
             {
-                Game.PlayerModel!.MaxHealth += this.Addition;
+                Game.PlayerModel!.MaxHealth += Addition;
             }
             if (Buff == Buff.Protection)
             {
-                Game.PlayerModel!.BaseProtection += this.Addition;
+                Game.PlayerModel!.BaseProtection += Addition;
             }
             if (Buff == Buff.Damage)
             {
-                Game.PlayerModel!.BaseDamage += this.Addition;
+                Game.PlayerModel!.BaseDamage += Addition;
             }
 
             Game.PlayerModel!.RemoveItem(this);

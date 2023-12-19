@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Reknighted.Model.Entities;
 
-namespace Reknighted.Model
+namespace Reknighted.Controller.Serialization
 {
     [JsonDerivedType(typeof(ObjectsState))]
     public class ObjectsState

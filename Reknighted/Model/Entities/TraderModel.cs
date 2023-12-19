@@ -6,8 +6,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Reknighted.Controller;
+using Reknighted.Model.Items;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Entities
 {
     [JsonDerivedType(typeof(TraderModel))]
     public class TraderModel : ITradeable, IMappable
@@ -50,7 +51,7 @@ namespace Reknighted.Model
             City = city;
             ItemModel?[] copied = new ItemModel[items.Length];
             for (int i = 0; i < items.Length; i++)
-            {   
+            {
                 if (items[i] != null)
                 {
                     copied[i] = items[i].Copy();
@@ -67,7 +68,7 @@ namespace Reknighted.Model
 
             for (int i = 0; i < 27; i++)
             {
-                this.Items.Add(null);
+                Items.Add(null);
             }
 
             for (int i = 0; i < items.Length; i++)

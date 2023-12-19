@@ -1,4 +1,5 @@
 ﻿using Reknighted.Controller;
+using Reknighted.Controller.Collections;
 using Reknighted.Model;
 using System;
 using System.Collections.Generic;
@@ -51,19 +52,19 @@ namespace Reknighted
             defaultGridHeight = this.grid.Height;
             defaultTabHeight = this.gameTabs.Height;
 
-            globalMap.MapIcons = Collections.Entities.GlobalMap.Values.ToList();
+            globalMap.MapIcons = Entities.GlobalMap.Values.ToList();
             globalMap.groupBox.Header = Game.app.FindResource("mapTitle");
         }
 
         public void LoadPlayer(Faction faction)
         {
-            var player = new PlayerModel(faction);
+            var player = new Model.Entities.PlayerModel(faction);
             this.playerView.Model = player;
             Game.PlayerModel = player;
 
-            this.playerView.Model.Items[0] = Collections.Items.Food["apple_green"].Copy();
-            this.playerView.Model.Items[1] = Collections.Items.Weapons["veteran_sword"].Copy();
-            this.playerView.Model.Items[2] = Collections.Items.Armors["leather_hat"].Copy();
+            this.playerView.Model.Items[0] = Items.Food["apple_green"].Copy();
+            this.playerView.Model.Items[1] = Items.Weapons["veteran_sword"].Copy();
+            this.playerView.Model.Items[2] = Items.Armors["leather_hat"].Copy();
 
             location.groupBox.Header = Game.LocationString[Game.PlayerModel.Location];
             Game.Update();

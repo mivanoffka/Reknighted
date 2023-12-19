@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Reknighted.Model;
+using Reknighted.Controller.Serialization;
+using Reknighted.Model.Items;
 
-namespace Reknighted.Collections
+namespace Reknighted.Controller.Collections
 {
     class Items
     {
@@ -32,7 +33,7 @@ namespace Reknighted.Collections
         }
 
         public static string PathTo(string name)
-        {   
+        {
             try
             {
                 return Directory.GetFiles("Images", $"{name}.png", SearchOption.AllDirectories)[0];
@@ -42,6 +43,6 @@ namespace Reknighted.Collections
                 MessageBox.Show("Файл не найден. " + name);
                 throw;
             }
-        } 
+        }
     }
 }

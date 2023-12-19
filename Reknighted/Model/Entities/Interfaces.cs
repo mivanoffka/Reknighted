@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Reknighted.Model.Items;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Entities
 {
     public interface IFightable
     {

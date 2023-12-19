@@ -1,5 +1,7 @@
 ﻿using Reknighted.Controller;
+using Reknighted.Controller.Collections;
 using Reknighted.Model;
+using Reknighted.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,7 +89,7 @@ namespace Reknighted.View
             {
                 if (((Fighter)link).IsDefeated)
                 {
-                    path = Collections.Items.PathTo("skull");
+                    path = Items.PathTo("skull");
                 }
             }
 

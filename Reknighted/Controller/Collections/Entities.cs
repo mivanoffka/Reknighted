@@ -1,4 +1,6 @@
 ﻿using Reknighted.Model;
+using Reknighted.Model.Entities;
+using Reknighted.Model.Items;
 using Reknighted.View;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Windows;
 using Point = System.Windows.Point;
 
 
-namespace Reknighted.Collections
+namespace Reknighted.Controller.Collections
 {
     public class Entities
     {
@@ -154,32 +156,32 @@ namespace Reknighted.Collections
         public static Dictionary<string, MapIcon> GlobalMap = new()
         {
             //{"showroom", new MapIcon("Шоурум", Location.ShowRoom, Items.PathTo("red_apple"), new System.Windows.Point(50, 50))},
-            {"hearts", new MapIcon($"{app.FindResource("btnHearts")}", Location.Hearts, Items.PathTo("hearts"), new System.Windows.Point(10, 10))},
-            {"spades", new MapIcon($"{app.FindResource("btnSpades")}", Location.Spades, Items.PathTo("spades"), new System.Windows.Point(60, 10))},
-            {"diamonds", new MapIcon($"{app.FindResource("btnDiamonds")}", Location.Diamonds, Items.PathTo("diamonds"), new System.Windows.Point(110, 10))},
-            {"clubs", new MapIcon($"{app.FindResource("btnClubs")}", Location.Clubs, Items.PathTo("clubs"), new System.Windows.Point(160, 10))},
+            {"hearts", new MapIcon($"{app.FindResource("btnHearts")}", Location.Hearts, Items.PathTo("hearts"), new Point(10, 10))},
+            {"spades", new MapIcon($"{app.FindResource("btnSpades")}", Location.Spades, Items.PathTo("spades"), new Point(60, 10))},
+            {"diamonds", new MapIcon($"{app.FindResource("btnDiamonds")}", Location.Diamonds, Items.PathTo("diamonds"), new Point(110, 10))},
+            {"clubs", new MapIcon($"{app.FindResource("btnClubs")}", Location.Clubs, Items.PathTo("clubs"), new Point(160, 10))},
         };
 
 
         public static Dictionary<string, TraderModel> AllTradersDefaultState = new()
         {
-            {"food", new TraderModel(TraderType.Food, $"{app.FindResource("nFood")}", Items.Food.Values.ToArray(), Items.PathTo("green_houses"), new System.Windows.Point(10, 10), Location.ShowRoom)},
-            {"weapons", new TraderModel(TraderType.Weapon, $"{app.FindResource("nWeapon")}", Items.Weapons.Values.ToArray(), Items.PathTo("green_houses"), new System.Windows.Point(60, 10), Location.ShowRoom)},
-            {"armor", new TraderModel(TraderType.Armor, $"{app.FindResource("nArmor")}", Items.Armors.Values.ToArray(), Items.PathTo("green_houses"), new System.Windows.Point(110, 10), Location.ShowRoom)},
-            {"artefacts", new TraderModel(TraderType.Artefact, $"{app.FindResource("nArtefact")}", Items.Artefacts.Values.ToArray(), Items.PathTo("green_houses"), new System.Windows.Point(160, 10), Location.ShowRoom)},
-            {"potions", new TraderModel(TraderType.Universal, $"{app.FindResource("nPotion")}", Items.Potions.Values.ToArray(), Items.PathTo("green_houses"), new System.Windows.Point(210, 10), Location.ShowRoom)},
+            {"food", new TraderModel(TraderType.Food, $"{app.FindResource("nFood")}", Items.Food.Values.ToArray(), Items.PathTo("green_houses"), new Point(10, 10), Location.ShowRoom)},
+            {"weapons", new TraderModel(TraderType.Weapon, $"{app.FindResource("nWeapon")}", Items.Weapons.Values.ToArray(), Items.PathTo("green_houses"), new Point(60, 10), Location.ShowRoom)},
+            {"armor", new TraderModel(TraderType.Armor, $"{app.FindResource("nArmor")}", Items.Armors.Values.ToArray(), Items.PathTo("green_houses"), new Point(110, 10), Location.ShowRoom)},
+            {"artefacts", new TraderModel(TraderType.Artefact, $"{app.FindResource("nArtefact")}", Items.Artefacts.Values.ToArray(), Items.PathTo("green_houses"), new Point(160, 10), Location.ShowRoom)},
+            {"potions", new TraderModel(TraderType.Universal, $"{app.FindResource("nPotion")}", Items.Potions.Values.ToArray(), Items.PathTo("green_houses"), new Point(210, 10), Location.ShowRoom)},
 
             // Червы
-            {"peter", new TraderModel(TraderType.Food, $"{app.FindResource("nPeter")}", peters, Items.PathTo("green_houses"), new System.Windows.Point(70, 20), Location.Hearts)},
-            {"patrick", new TraderModel(TraderType.Food, $"{app.FindResource("nPatrick")}", patricks, Items.PathTo("three_houses"), new System.Windows.Point(340, 90), Location.Hearts)},
-            {"beniamin", new TraderModel(TraderType.Armor, $"{app.FindResource("nBeniamin")}", beniamins, Items.PathTo("chimney_house"), new System.Windows.Point(220, 110), Location.Hearts)},
-            {"johans", new TraderModel(TraderType.Weapon, $"{app.FindResource("nJohans")}", johans, Items.PathTo("tiny_house"), new System.Windows.Point(90, 100), Location.Hearts)},
+            {"peter", new TraderModel(TraderType.Food, $"{app.FindResource("nPeter")}", peters, Items.PathTo("green_houses"), new Point(70, 20), Location.Hearts)},
+            {"patrick", new TraderModel(TraderType.Food, $"{app.FindResource("nPatrick")}", patricks, Items.PathTo("three_houses"), new Point(340, 90), Location.Hearts)},
+            {"beniamin", new TraderModel(TraderType.Armor, $"{app.FindResource("nBeniamin")}", beniamins, Items.PathTo("chimney_house"), new Point(220, 110), Location.Hearts)},
+            {"johans", new TraderModel(TraderType.Weapon, $"{app.FindResource("nJohans")}", johans, Items.PathTo("tiny_house"), new Point(90, 100), Location.Hearts)},
 
             // Пики
-            {"beatrice", new TraderModel(TraderType.Food, $"{app.FindResource("nBeatrice")}", beatrices, Items.PathTo("pink_houses"), new System.Windows.Point(300, 215), Location.Spades)},
-            {"alexander", new TraderModel(TraderType.Food, $"{app.FindResource("nAlexander")}", alexanders, Items.PathTo("big_old_house"), new System.Windows.Point(200, 25), Location.Spades)},
-            {"frank", new TraderModel(TraderType.Weapon, $"{app.FindResource("nFrank")}", franks, Items.PathTo("long_house_left"), new System.Windows.Point(50, 100), Location.Spades)},
-            {"edward", new TraderModel(TraderType.Armor, $"{app.FindResource("nEdward")}", edwards, Items.PathTo("long_house_right"), new System.Windows.Point(140, 200), Location.Spades)},
+            {"beatrice", new TraderModel(TraderType.Food, $"{app.FindResource("nBeatrice")}", beatrices, Items.PathTo("pink_houses"), new Point(300, 215), Location.Spades)},
+            {"alexander", new TraderModel(TraderType.Food, $"{app.FindResource("nAlexander")}", alexanders, Items.PathTo("big_old_house"), new Point(200, 25), Location.Spades)},
+            {"frank", new TraderModel(TraderType.Weapon, $"{app.FindResource("nFrank")}", franks, Items.PathTo("long_house_left"), new Point(50, 100), Location.Spades)},
+            {"edward", new TraderModel(TraderType.Armor, $"{app.FindResource("nEdward")}", edwards, Items.PathTo("long_house_right"), new Point(140, 200), Location.Spades)},
 
             // Бубны
             {"joshua", new TraderModel(TraderType.Food, $"{app.FindResource("nJoshua")}", joshuas, Items.PathTo("yellow_houses"), new Point(300, 60), Location.Diamonds)},
@@ -198,13 +200,13 @@ namespace Reknighted.Collections
 
         public static Dictionary<string, Fighter> AllFightersDefaultState = new()
         {
-            {"example", new Fighter("example", new List<ItemModel?>(3), null, Items.PathTo("red_tower"), new System.Windows.Point(10, 60), Location.ShowRoom)},
+            {"example", new Fighter("example", new List<ItemModel?>(3), null, Items.PathTo("red_tower"), new Point(10, 60), Location.ShowRoom)},
 
             // Червы
             {"hearts_robber_1", new Fighter($"{app.FindResource("nRobber")}",
                 new List<ItemModel?>(3) {Items.Weapons["generic_club"], Items.Armors["leather_hat"],  null },
                 new List<ItemModel?>(3){Items.Weapons["generic_club"] },
-                Items.PathTo("ruined_tower"), new System.Windows.Point(270, 40), Location.Hearts, 100) },
+                Items.PathTo("ruined_tower"), new Point(270, 40), Location.Hearts, 100) },
 
             {"hearts_robber_2", new Fighter($"{app.FindResource("nRobber")}", new List<ItemModel?>(3) {Items.Weapons["generic_sword"], null,  null},
                 new List<ItemModel?>(3){Items.Weapons["generic_sword"] },
@@ -213,33 +215,33 @@ namespace Reknighted.Collections
             {"hearts_robber_3", new Fighter($"{app.FindResource("nRobber")}",
                 new List<ItemModel?>(3) {Items.Weapons["generic_spear"], null,  null},
                 new List<ItemModel?>(3){Items.Weapons["generic_spear"] },
-                Items.PathTo("ruined_tower"), new System.Windows.Point(290, 180), Location.Hearts, 100) },
+                Items.PathTo("ruined_tower"), new Point(290, 180), Location.Hearts, 100) },
 
             {"hearts_knight_1", new Fighter($"{app.FindResource("nKnight")}",
                 new List<ItemModel?>(3) {Items.Weapons["two_handed_sword"], Items.Armors["generic_helmet"], null},
                 new List<ItemModel?>(2) {Items.Armors["generic_helmet"], Items.Potions["health_potion"]},
                 Items.PathTo("green_tower"),
-                new System.Windows.Point(165, 210),
+                new Point(165, 210),
                 Location.Hearts)},
 
             {"hearts_knight_2", new Fighter($"{app.FindResource("nKnight")}",
                 new List<ItemModel?>(3) {Items.Weapons["veteran_sword"], Items.Armors["cross_helmet"], null},
                 new List<ItemModel?>(2) {Items.Armors["cross_helmet"], },
                 Items.PathTo("green_tower"),
-                new System.Windows.Point(230, 10),
+                new Point(230, 10),
                 Location.Hearts)},
 
             {"hearts_knight_3", new Fighter($"{app.FindResource("nKnight")}",
                 new List<ItemModel?>(3) {Items.Weapons["regular_sword"], Items.Armors["regular_helmet"], Items.Artefacts["ruby_ring"]},
                 new List<ItemModel?>(1) {Items.Artefacts["ruby_ring"]},
                 Items.PathTo("green_tower"),
-                new System.Windows.Point(140, 45),
+                new Point(140, 45),
                 Location.Hearts)},
 
             {"hearts_ace", new Fighter($"{app.FindResource("nHeartsAce")}",
                 new List<ItemModel?>(3) {Items.Weapons["hearts_sword"], Items.Armors["elite_helmet"], Items.Artefacts["sapphire_necklace"] },
                 new List<ItemModel?>() {Items.Weapons["hearts_sword"], Items.Armors["elite_helmet"], Items.Artefacts["sapphire_necklace"], Items.Potions["protection_potion"], Items.Potions["protection_potion"] },
-                Items.PathTo("red_gates"), new System.Windows.Point(150, 150), Location.Hearts, 1000)
+                Items.PathTo("red_gates"), new Point(150, 150), Location.Hearts, 1000)
             },
 
             // Пики 

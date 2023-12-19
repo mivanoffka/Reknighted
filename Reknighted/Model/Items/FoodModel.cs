@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Reknighted.Controller;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Items
 {
     internal class FoodModel : ItemModel
     {
@@ -22,12 +22,12 @@ namespace Reknighted.Model
 
         public FoodModel(string name, string description, int cost, int satiety, string imageSource) : base(name, description, cost, imageSource)
         {
-            this._satiety = satiety;
+            _satiety = satiety;
         }
 
         [JsonConstructor]
         public FoodModel(string name, string description, int price, bool isPossessed, Cell cell, string pathToImage, int satiety) :
-            base(name,description,price, isPossessed, cell, pathToImage)
+            base(name, description, price, isPossessed, cell, pathToImage)
         {
             _satiety = satiety;
         }
@@ -35,16 +35,16 @@ namespace Reknighted.Model
 
         public override ItemModel Copy()
         {
-            return new FoodModel(this._name, this._description, this._price, this._satiety, _pathToImage);
+            return new FoodModel(_name, _description, _price, _satiety, _pathToImage);
         }
 
         public FoodModel(FoodModel foodModel)
-        {   
-            this._name = foodModel.Name;
-            this._description = foodModel.Description;
-            this._price = foodModel.Price;
-            this._satiety = foodModel.Satiety;
-            this._image = foodModel.Image;
+        {
+            _name = foodModel.Name;
+            _description = foodModel.Description;
+            _price = foodModel.Price;
+            _satiety = foodModel.Satiety;
+            _image = foodModel.Image;
 
         }
 
@@ -91,7 +91,7 @@ namespace Reknighted.Model
 
         public override void Use()
         {
-            Game.PlayerModel!.CurrentHealth += this.Satiety;
+            Game.PlayerModel!.CurrentHealth += Satiety;
             Game.PlayerModel!.RemoveItem(this);
         }
     }

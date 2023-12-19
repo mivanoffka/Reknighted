@@ -1,5 +1,6 @@
 ﻿using Reknighted.Controller;
-using Reknighted.Model;
+using Reknighted.Model.Entities;
+using Reknighted.Model.Items;
 using Reknighted.View;
 using System;
 using System.Collections.Generic;

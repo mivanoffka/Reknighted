@@ -1,4 +1,4 @@
-﻿using Reknighted.Controller;
+﻿using Reknighted.Model.Items;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows;
 
-namespace Reknighted.Model
+namespace Reknighted.Controller.Serialization
 {
     public static class FileManager
     {
@@ -27,7 +27,7 @@ namespace Reknighted.Model
             File.WriteAllText(path, json);
         }
 
-        public static ObjectsState? LoadProgress(int slot) 
+        public static ObjectsState? LoadProgress(int slot)
         {
             ObjectsState? states = null;
             string path = $"Saves\\{slot}.json";
@@ -38,8 +38,8 @@ namespace Reknighted.Model
                 AllowTrailingCommas = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             };
-            
-            if(File.Exists(path))
+
+            if (File.Exists(path))
             {
                 states = JsonSerializer.Deserialize<ObjectsState>(File.ReadAllText(path), properties);
             }

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using Reknighted.Model;
+using Reknighted.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

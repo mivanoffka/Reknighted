@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Reknighted.Controller.Game;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Items
 {
     public class ArtefactModel : DurableItem
     {
@@ -17,13 +17,13 @@ namespace Reknighted.Model
 
         public Buff Buff
         {
-            get => this._buff;
+            get => _buff;
         }
         public double Multiplier
         {
             get
             {
-                double value = this._multiplier;
+                double value = _multiplier;
 
                 if (Game.PlayerModel.Faction == Faction.Clubs && IsPossessed)
                 {
@@ -36,7 +36,7 @@ namespace Reknighted.Model
 
         public override ItemModel Copy()
         {
-            return new ArtefactModel(this._name, this._description, this._price, this._maxDurability, this._multiplier, this.Buff, _pathToImage);
+            return new ArtefactModel(_name, _description, _price, _maxDurability, _multiplier, Buff, _pathToImage);
         }
 
         public ArtefactModel(string name, string description, int cost, int durability, double multiplier, Buff buff, string imageSource) : base(name, description, cost, durability, imageSource)
@@ -57,8 +57,8 @@ namespace Reknighted.Model
 
         public override void Use()
         {
-            MoveToCell(Game.EquipmentCells[0]);
-            Game.Update();
+            MoveToCell(EquipmentCells[0]);
+            Update();
         }
     }
 }

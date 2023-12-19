@@ -5,12 +5,13 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
-using Reknighted.Collections;
+using Reknighted.Controller.Collections;
 using Reknighted.Controller;
+using Reknighted.Model.Items;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Entities
 {
-    [JsonDerivedType(typeof(PlayerModel),"playerModel")]
+    [JsonDerivedType(typeof(PlayerModel), "playerModel")]
     public class PlayerModel : IFightable, ITradeable
     {
         #region IPlayable
@@ -52,7 +53,7 @@ namespace Reknighted.Model
             }
 
             set
-            {   
+            {
                 if (value < 0)
                 {
                     value = 0;
@@ -69,7 +70,7 @@ namespace Reknighted.Model
 
         private int _maxHealth = 50;
         private int _currentHealth = 40;
-        private int _fortune =  10;
+        private int _fortune = 10;
 
         private int[] _defaultStats = new int[3] { 100, 0, 5 };
         [JsonIgnore]
@@ -164,10 +165,10 @@ namespace Reknighted.Model
 
 
                 if (value < MaxHealth)
-                {   
+                {
                     if (value >= 0)
                         _currentHealth = value;
-                    else 
+                    else
                         _currentHealth = 1;
                 }
                 else
@@ -181,9 +182,9 @@ namespace Reknighted.Model
         public double HealthPercentage
         {
             get
-            {   
+            {
 
-                return (double)_currentHealth / (double)MaxHealth;
+                return _currentHealth / (double)MaxHealth;
             }
 
             set
@@ -204,7 +205,7 @@ namespace Reknighted.Model
                 int value = BaseDamage;
                 if (Weapon != null)
                 {
-                    value += Weapon.Damage; 
+                    value += Weapon.Damage;
                     if (Artefact != null && Artefact.Buff == Buff.Damage)
                     {
                         value = (int)(value * Artefact.Multiplier);
@@ -269,7 +270,7 @@ namespace Reknighted.Model
                 if (Items[i] == item)
                 {
                     Items[i] = null;
-                    
+
                 }
             }
 
@@ -294,7 +295,7 @@ namespace Reknighted.Model
             }
             for (int i = 0; i < MaxIventorySize; i++)
             {
-                this.Items.Add(null);
+                Items.Add(null);
 
             }
         }
@@ -339,7 +340,7 @@ namespace Reknighted.Model
             }
             else if (index >= max && index < max + 3)
             {
-                return EquippedItems[index-max];
+                return EquippedItems[index - max];
             }
             else
             {

@@ -1,13 +1,14 @@
 ﻿using Reknighted.Controller;
+using Reknighted.Model.Items;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Entities
 {
     [JsonDerivedType(typeof(Fighter))]
     public class Fighter : IFightable, IMappable
     {
-        static readonly double Difficulty = 1.75; 
+        static readonly double Difficulty = 1.75;
         public Location City { get; set; }
         public string Name { get; init; } = string.Empty;
 

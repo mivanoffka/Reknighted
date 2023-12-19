@@ -16,10 +16,13 @@ using System.Net.Sockets;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Net;
+using Reknighted.Model.Items;
+using Reknighted.Model.Entities;
+using Reknighted.Controller.Collections;
 
 namespace Reknighted.Controller
 {
-    
+
     public static class IPaddr
     {
         public static IPAddress IP = IPAddress.Parse("127.0.0.1");
@@ -547,8 +550,8 @@ namespace Reknighted.Controller
 
         public static void InitEntities()
         {
-            AllTraders = Collections.Entities.AllTradersDefaultState.Values.ToList();
-            AllFighters = Collections.Entities.AllFightersDefaultState.Values.ToList();
+            AllTraders = Entities.AllTradersDefaultState.Values.ToList();
+            AllFighters = Entities.AllFightersDefaultState.Values.ToList();
         }
 
         #endregion

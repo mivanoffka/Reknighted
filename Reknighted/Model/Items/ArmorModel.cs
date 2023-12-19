@@ -1,49 +1,48 @@
-﻿using Reknighted.Controller;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using System.Windows.Media;
+using System.Windows;
+using Reknighted.Controller;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Items
 {
-    public class WeaponModel : DurableItem
+    public class ArmorModel : DurableItem
     {
-        private int _damage;
+        private int _protection;
 
-        public int Damage
+        public int Protection
         {
             get
             {
-                return (int)(_damage * Math.Sqrt(DurabilityPercentage));
+                return (int)(_protection * Math.Sqrt(DurabilityPercentage));
             }
         }
 
-        public WeaponModel(string name, string description, int cost, int maxDurability, int damage, string imageSource) : base(name, description, cost, maxDurability, imageSource)
+        public ArmorModel(string name, string description, int cost, int maxDurability, int protection, string imageSource) : base(name, description, cost, maxDurability, imageSource)
         {
-            this._damage = damage;
+            _protection = protection;
         }
-        public WeaponModel() { }
+        public ArmorModel() { }
 
         [JsonConstructor]
-        public WeaponModel(int damage, int maxDurability, int currentDurability, string pathToImage, string name,
-            string description, int price, bool isPossessed, Cell cell)
+        public ArmorModel(int protection, int maxDurability, int currentDurability,
+            string pathToImage, string name, string description, int price, bool isPossessed, Cell cell)
             : base(maxDurability, currentDurability, pathToImage, name, description, price, isPossessed, cell)
         {
-            _damage = damage;
-            _maxDurability = maxDurability;
+            _protection = protection;
         }
 
         public override ItemModel Copy()
         {
-            return new WeaponModel(_name, _description, _price, _maxDurability, _damage, _pathToImage);
+            return new ArmorModel(_name, _description, _price, _maxDurability, _protection, _pathToImage);
         }
 
         public override void Use()
         {
-            MoveToCell(Game.EquipmentCells[0]);
+            MoveToCell(Game.EquipmentCells[1]);
             Game.Update();
         }
 
@@ -68,12 +67,11 @@ namespace Reknighted.Model
                     editedDescription += Description[i];
                 }
                 counter++;
-
             }
 
             result += editedDescription;
 
-            result += $"\n\n{Game.app.FindResource("lbDamage")}: " + _damage;
+            result += $"\n\n{Game.app.FindResource("lbProtection")}: " + _protection;
             result += $"\n{Game.app.FindResource("lbDurability")}: " + Math.Round(DurabilityPercentage * 100) + "%";
             result += $"\n{Game.app.FindResource("lbPrice")}: " + _price;
 
@@ -82,7 +80,7 @@ namespace Reknighted.Model
 
         public override string Help()
         {
-            return $"{Game.app.FindResource("weaponHint")}";
+            return $"{Game.app.FindResource("armorHint")}";
         }
     }
 }

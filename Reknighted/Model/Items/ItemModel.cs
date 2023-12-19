@@ -14,8 +14,9 @@ using System.Runtime.CompilerServices;
 using Reknighted.Controller;
 using System.Text;
 using System.Text.Json.Serialization;
+using Reknighted.Model.Entities;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Items
 {
     [JsonDerivedType(typeof(ItemModel))]
     [JsonDerivedType(typeof(DurableItem))]
@@ -39,15 +40,15 @@ namespace Reknighted.Model
         private Cell? _cell = null;
         [JsonInclude]
         public string _pathToImage;
-        public string PathToImage 
-        { 
+        public string PathToImage
+        {
             get { return _pathToImage; }
             set
             {
                 _pathToImage = value;
                 if (_pathToImage == "" || _pathToImage == null)
                 {
-                    _pathToImage = Images.Sources.QuestionMark;
+                    _pathToImage = Sources.QuestionMark;
                 }
                 _image = new Image();
 
@@ -61,7 +62,7 @@ namespace Reknighted.Model
         }
 
         public string Name { get { return _name; } }
-        public string Description { get { return "   " + _description;} }
+        public string Description { get { return "   " + _description; } }
         public int Price
         {
             get
@@ -113,7 +114,7 @@ namespace Reknighted.Model
         public bool IsPossessed
         {
             get => _isPossessed;
-            set =>_isPossessed=value;
+            set => _isPossessed = value;
         }
         [JsonIgnore]
         public Cell? Cell { get => _cell; set => _cell = value; }
@@ -125,10 +126,10 @@ namespace Reknighted.Model
             _price = basePrice;
             PathToImage = imageSource;
         }
-        public ItemModel(ItemModel itemModel) 
+        public ItemModel(ItemModel itemModel)
         {
             _name = itemModel.Name;
-            _description= itemModel.Description;
+            _description = itemModel.Description;
             _price = itemModel.Price;
             _image = itemModel.Image;
         }
@@ -150,21 +151,21 @@ namespace Reknighted.Model
 
 
         public void MoveToCell(Cell newCell)
-        {   
+        {
 
-            if (this.GetType() != newCell.Filter && newCell.Filter != null)
+            if (GetType() != newCell.Filter && newCell.Filter != null)
             {
                 return;
             }
 
-            if (newCell?.ContentItem == this || this.IsPossessed != newCell?.IsPossessed)
+            if (newCell?.ContentItem == this || IsPossessed != newCell?.IsPossessed)
             {
-                return;   
+                return;
             }
 
             try
             {
-                var oldCell = this._cell;
+                var oldCell = _cell;
                 var bufferItem = newCell.ContentItem;
 
                 int oldIndex = Game.InventoryCells.IndexOf(oldCell);
@@ -177,7 +178,7 @@ namespace Reknighted.Model
 
                 int newIndex = Game.InventoryCells.IndexOf(newCell);
                 Game.PlayerView!.Model![newIndex] = this;
-                this.Cell = newCell;
+                Cell = newCell;
             }
             catch (Exception ex)
             {
@@ -199,17 +200,17 @@ namespace Reknighted.Model
         public virtual void SellTo(ITradeable buyer, bool showWarning = true)
         {
             ITradeable? customer = IsPossessed ? Game.CurrentTrader : Game.PlayerModel;
-            ITradeable? seller = IsPossessed ?  Game.PlayerModel : Game.CurrentTrader;
+            ITradeable? seller = IsPossessed ? Game.PlayerModel : Game.CurrentTrader;
 
             if (customer != null)
             {
-                if (customer.Balance >= this.Price)
+                if (customer.Balance >= Price)
                 {
                     seller.RemoveItem(this);
-                    this.IsPossessed = !this.IsPossessed;
+                    IsPossessed = !IsPossessed;
                     customer.AddItem(this);
 
-                    int price = customer == Game.PlayerModel ? this.BuyPrice : this.SellPrice;
+                    int price = customer == Game.PlayerModel ? BuyPrice : SellPrice;
 
                     customer.Balance -= price;
                     seller.Balance += price;
@@ -225,7 +226,7 @@ namespace Reknighted.Model
 
         public void Dispose()
         {
-            
+
         }
 
         public abstract ItemModel Copy();

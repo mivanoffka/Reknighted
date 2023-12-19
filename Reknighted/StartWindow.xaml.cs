@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Reknighted.Collections;
 using Reknighted.Controller;
+using Reknighted.Controller.Collections;
 using Reknighted.Model;
 
 namespace Reknighted

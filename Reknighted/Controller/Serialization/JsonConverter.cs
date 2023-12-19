@@ -5,8 +5,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Reknighted.Model.Items;
 
-namespace Reknighted.Model
+namespace Reknighted.Controller.Serialization
 {
     public class ItemModelConverter : JsonConverter<ItemModel>
     {

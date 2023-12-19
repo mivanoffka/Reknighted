@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Reknighted.Controller.Game;
 
-namespace Reknighted.Model
+namespace Reknighted.Model.Items
 {
     public abstract class DurableItem : ItemModel
     {
@@ -35,7 +35,7 @@ namespace Reknighted.Model
             set
             {
                 if (value < MaxDurability)
-                {   
+                {
                     if (value > 0)
                     {
                         _currentDurability = value;
@@ -43,8 +43,8 @@ namespace Reknighted.Model
                     else
                     {
                         _currentDurability = 0;
-                        Reknighted.Controller.Game.PlayerModel.RemoveItem(this);
-                        Reknighted.Controller.Game.Update();
+                        Controller.Game.PlayerModel.RemoveItem(this);
+                        Update();
                     }
                 }
                 else
@@ -59,7 +59,7 @@ namespace Reknighted.Model
         {
             get
             {
-                return (double)_currentDurability / (double)_maxDurability;
+                return _currentDurability / (double)_maxDurability;
             }
 
             set
@@ -72,7 +72,7 @@ namespace Reknighted.Model
         public DurableItem() : base() { }
 
         public DurableItem(string name, string description, int basePrice, int maxDurability, string imageSource = "") : base(name, description, basePrice, imageSource)
-        { 
+        {
             _maxDurability = maxDurability;
             _currentDurability = _maxDurability;
         }
