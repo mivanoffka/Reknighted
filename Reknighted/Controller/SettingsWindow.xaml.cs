@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +27,7 @@ namespace Reknighted.Controller
             App.LanguageChanged += LanguageChanged;
 
             CultureInfo currLang = App.Language;
-
+            ServerPort.Text = IPaddr.IP + ":" + IPaddr.Port;
             //Заполняем меню смены языка:
             cmbLanguage.Items.Clear();
             foreach (var lang in App.Languages)
@@ -63,6 +64,18 @@ namespace Reknighted.Controller
                     App.Language = lang;
                 }
             }
+        }
+
+        private void buttonIP_Click(object sender, RoutedEventArgs e)
+        {
+            string[] iptext = ServerPort.Text.Split(":");
+            if (iptext.Length != 2 || !IPAddress.TryParse(iptext[0], out var ip) || iptext[1].Length != 5)
+            {
+                MessageBox.Show("Incorrect IP and Port format!");
+                return;
+            }
+            IPaddr.IP = IPAddress.Parse(iptext[0]);
+            IPaddr.Port = int.Parse(iptext[1]);
         }
     }
 }

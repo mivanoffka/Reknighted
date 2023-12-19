@@ -15,9 +15,18 @@ using Newtonsoft.Json.Linq;
 using System.Net.Sockets;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net;
 
 namespace Reknighted.Controller
 {
+    
+    public static class IPaddr
+    {
+        public static IPAddress IP = IPAddress.Parse("127.0.0.1");
+        public static int Port = 12345; 
+    }
+
+    
     // Статический класс, служащий связующим звеном между всеми компонентами игры.
     public static class Game
     {
@@ -458,15 +467,13 @@ namespace Reknighted.Controller
         {
             try
             {
-
-                string serverIp = "127.0.0.1";
-                int port = 12345;
+                
 
                 TcpClient client = new TcpClient();
 
                 client.ReceiveTimeout = 1000; // сколько ждём ответа от сервера
 
-                client.Connect(serverIp, port); // подключаемся
+                client.Connect(IPaddr.IP, IPaddr.Port); // подключаемся
 
                 NetworkStream stream = client.GetStream(); 
 
@@ -485,7 +492,7 @@ namespace Reknighted.Controller
             catch (Exception ex)
             {
                 MessageBox.Show((string)app.FindResource("serverError"), "Error", MessageBoxButton.OK);
-                return CallFightFromLib(first, second);
+                return 1;
             }
         }
         #endregion
@@ -520,31 +527,6 @@ namespace Reknighted.Controller
             Game.Update();
         }
 
-        public static double CallFightFromLib(double[] first, double[] second)
-        {   
-            try
-            {
-                double result = 0;
-
-                Assembly assembly = Assembly.LoadFrom("FightingLib.dll");
-
-                object fighting = assembly.CreateInstance("Fighting");
-                Type type = assembly.GetType("Fighting");
-                MethodInfo method = type.GetMethod("Fight");
-
-                double[][] args = new double[][] { first, second };
-
-                result = (double)method.Invoke(fighting, args);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return 0;
-            }
-
-        }
 
         #endregion
 
