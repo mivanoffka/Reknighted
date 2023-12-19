@@ -425,7 +425,15 @@ namespace Reknighted.Controller
                 return null;
             }
 
+
             int margin = (int)(100 * ServerFight(new double[] { firstFighter.Damage, firstFighter.Protection, firstFighter.HealthPercentage }, new double[] { secondFighter.Damage, secondFighter.Protection, secondFighter.HealthPercentage }));
+            if (margin < 0)
+            {
+                MessageBox.Show((string)app.FindResource("serverError"), "Error", MessageBoxButton.OK);
+                Message((string)app.FindResource("serverError"), MessageType.Error);
+                return null;
+            }
+            
             int result = random.Next(0, 100);
 
             //MessageBox.Show(result + ", " + margin);
@@ -482,6 +490,9 @@ namespace Reknighted.Controller
 
                 client.Connect(IPaddr.IP, IPaddr.Port); // подключаемся
 
+                DialogLib.AwaitingMessage.foreignLabel = Game.Window.locationInfoLabel;
+                DialogLib.AwaitingMessage.ShowAwaitingMessage(Window.grid, $"{app.FindResource("ongoingBattle")}");
+
                 NetworkStream stream = client.GetStream(); 
 
                 // конвертируем в байты и отправляем данные
@@ -498,8 +509,7 @@ namespace Reknighted.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show((string)app.FindResource("serverError"), "Error", MessageBoxButton.OK);
-                return 1;
+                return -1;
             }
         }
         #endregion
@@ -521,10 +531,14 @@ namespace Reknighted.Controller
             }
 
             //ShowLoading("Идёт бой");
-            DialogLib.AwaitingMessage.foreignLabel = Game.Window.locationInfoLabel;
-            DialogLib.AwaitingMessage.ShowAwaitingMessage(Window.grid, $"{app.FindResource("ongoingBattle")}");
             
             IFightable? winner = Game.Fight(PlayerModel, fighter, enemyWindow.Bet);
+
+            if (winner == null)
+            {
+                return;
+            }
+
             string message = winner == PlayerModel ? $"{app.FindResource("victoryMessage")}" : $"{app.FindResource("defeatMessage")}";
             MessageType messageType = winner == PlayerModel ? MessageType.Win : MessageType.Loose;
 

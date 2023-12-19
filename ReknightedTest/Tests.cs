@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace ReknightedTest
 {
-    public class UnitTest1
+    public class Tests
     {
         [Fact]
         [STAThread]
@@ -34,5 +34,6 @@ namespace ReknightedTest
             thread.SetApartmentState(ApartmentState.STA);
 
         }
+
     }
 }
