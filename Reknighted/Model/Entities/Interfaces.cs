@@ -31,9 +31,9 @@ namespace Reknighted.Model.Entities
         public List<ItemModel?> Items { get; }
         public int Balance { get; set; }
 
-        public void AddItem(ItemModel item);
+        public void AddItem(ItemModel item, bool testMode = false);
 
-        public void RemoveItem(ItemModel item);
+        public void RemoveItem(ItemModel item, bool testMode = false);
         public ItemModel? this[int index] { get; set; }
     }
 

@@ -256,22 +256,27 @@ namespace Reknighted.Model.Entities
 
         #endregion
 
-        public void AddItem(ItemModel? newItem)
+        public void AddItem(ItemModel? newItem, bool testMode = false)
         {
             int index = Items.IndexOf(null);
             Items[index] = newItem;
+            if (testMode) return;
             Game.Update();
         }
 
-        public void RemoveItem(ItemModel? item)
+        public void RemoveItem(ItemModel? item, bool testMode = false)
         {
             for (int i = 0; i < Items.Count; i++)
-            {
-                if (Items[i] == item)
+            {   
+                if (Items[i] != null && item != null)
                 {
-                    Items[i] = null;
+                    if (Items[i].Name == item.Name)
+                    {
+                        Items[i] = null;
 
+                    }
                 }
+
             }
 
             for (int i = 0; i < EquippedItems.Count(); i++)
@@ -281,6 +286,8 @@ namespace Reknighted.Model.Entities
                     EquippedItems[i] = null;
                 }
             }
+
+            if (testMode) return;
             Game.Update();
         }
 

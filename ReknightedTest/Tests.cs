@@ -1,5 +1,7 @@
 using Reknighted;
 using Reknighted.Controller;
+using Reknighted.Model.Entities;
+using Reknighted.Model.Items;
 using System.Globalization;
 using System.Windows;
 
@@ -35,5 +37,87 @@ namespace ReknightedTest
 
         }
 
+        [Fact]
+        [STAThread]
+        public void InventoryCheck_1()
+        {
+            string expected = "null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, ";
+
+            PlayerModel player = new PlayerModel(Reknighted.Model.Faction.Hearts);
+            string actual = ItemsToString(player.Items);
+
+
+            Assert.Equal(actual, expected);
+        }
+
+        [Fact]
+        [STAThread]
+        public void InventoryCheck_2()
+        {
+            FoodModel item = new FoodModel("test", "test", 0, 0, "test");
+            string expected = "test, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, ";
+
+
+            PlayerModel player = new PlayerModel(Reknighted.Model.Faction.Hearts);
+            player.AddItem(item.Copy(), true);
+            string actual = ItemsToString(player.Items);
+
+
+            Assert.Equal(actual, expected);
+        }
+
+        [Fact]
+        public void InventoryCheck_3()
+        {
+            FoodModel item = new FoodModel("test", "test", 0, 0, "test");
+            string expected = "null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null";
+
+            PlayerModel player = new PlayerModel(Reknighted.Model.Faction.Hearts);
+            player.AddItem(item.Copy(), true);
+            player.RemoveItem(item.Copy(), true);
+            string actual = ItemsToString(player.Items);
+
+            MessageBox.Show(actual + "\n\n\n" + expected);
+
+            Assert.Equal(actual, expected);
+        }
+
+        [Fact]
+        public void InventoryCheck_4()
+        {
+            FoodModel item = new FoodModel("test", "test", 0, 0, "test");
+            string expected = "test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, ";
+
+            PlayerModel player = new PlayerModel(Reknighted.Model.Faction.Hearts);
+            for (int i = 0; i < 27; i++)
+            {
+                player.AddItem(item.Copy(), true);
+            }
+
+            string actual = ItemsToString(player.Items);
+
+
+            Assert.Equal(actual, expected);
+        }
+
+        private string ItemsToString(List<Reknighted.Model.Items.ItemModel?> lst)
+        {
+            string names = "";
+
+            foreach (var i in lst)
+            {   
+                if (i != null)
+                {
+                    names += i.Name + ", ";
+                }
+                else
+                {
+                    names += "null, ";
+                }
+
+            }
+
+            return names;
+        }
     }
 }

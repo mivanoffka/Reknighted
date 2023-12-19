@@ -11,7 +11,7 @@ using Reknighted.Model.Items;
 
 namespace Reknighted.Controller.Collections
 {
-    class Items
+    public class Items
     {
         public static Dictionary<string, FoodModel> Food;
 
@@ -33,11 +33,27 @@ namespace Reknighted.Controller.Collections
                 Potions = FileManager.LoadAssets("Potions").ToDictionary(kv => kv.Key, kv => (PotionModel)kv.Value);
                 Armors = FileManager.LoadAssets("Armors").ToDictionary(kv => kv.Key, kv => (ArmorModel)kv.Value);
 
-                Game.Logger.Info("Assets successfuly loaded");
+                try
+                {
+                    Game.Logger.Info("Assets successfuly loaded");
+                }
+                catch
+                {
+
+                }
+
             }
             catch (Exception ex) 
             {
-                Game.Logger.Error("Cannot load assets. " + ex.Message);
+                try
+                {
+                    Game.Logger.Error("Cannot load assets. " + ex.Message);
+                }
+                catch
+                {
+
+                }
+
             }
  
         }

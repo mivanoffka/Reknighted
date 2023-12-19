@@ -8,7 +8,7 @@ using Reknighted.Controller;
 
 namespace Reknighted.Model.Items
 {
-    internal class FoodModel : ItemModel
+    public class FoodModel : ItemModel
     {
         private int _satiety;
 

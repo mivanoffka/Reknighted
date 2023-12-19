@@ -8,7 +8,7 @@ using Reknighted.Controller;
 
 namespace Reknighted.Model.Items
 {
-    internal class PotionModel : ItemModel
+    public class PotionModel : ItemModel
     {
         private int _addition;
         private Buff _buff;

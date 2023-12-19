@@ -16,6 +16,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Reknighted.Model.Entities;
 using System.Xml.Linq;
+using System.Net.WebSockets;
 
 namespace Reknighted.Model.Items
 {
@@ -45,7 +46,13 @@ namespace Reknighted.Model.Items
         {
             get { return _pathToImage; }
             set
-            {
+            {   
+                if (value == "test")
+                {
+                    _pathToImage = value;
+                    return;
+                }
+
                 _pathToImage = value;
                 if (_pathToImage == "" || _pathToImage == null)
                 {

@@ -108,14 +108,14 @@ namespace Reknighted.Model.Entities
             }
         }
 
-        public void AddItem(ItemModel? newItem)
+        public void AddItem(ItemModel? newItem, bool testMode = false)
         {
             int index = Items.IndexOf(null);
             Items[index] = newItem;
             Game.Update();
         }
 
-        public void RemoveItem(ItemModel? item)
+        public void RemoveItem(ItemModel? item, bool testMode = false)
         {
             for (int i = 0; i < Items.Count; i++)
             {
