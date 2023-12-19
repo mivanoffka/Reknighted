@@ -7,14 +7,19 @@
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <NeutralLanguage>ru-RU</NeutralLanguage>
+    <PackageIcon>appicon.png</PackageIcon>
+    <ApplicationIcon>Images\appicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\appicon.bmp" />
     <None Remove="Images\damage_icon.png" />
     <None Remove="Images\health_icon.png" />
     <None Remove="Properties\Settings.settings" />
     <None Remove="question_mark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\appicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,6 +77,14 @@
     </None>
     <None Update="FightingLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\appicon.bmp">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Images\appicon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
     <None Update="Images\apple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
