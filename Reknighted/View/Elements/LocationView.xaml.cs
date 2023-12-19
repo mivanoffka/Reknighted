@@ -74,7 +74,17 @@ namespace Reknighted.View
                 if (mapIcons is not null)
                 {
                     foreach (var icon in mapIcons)
-                    {   
+                    {
+                        Grid parent = (Grid)icon.Parent;
+                        if (parent != null)
+                        {
+                            if (parent.Children.Contains(icon))
+                            {
+                                parent.Children.Remove(icon);
+                            }
+                        }
+
+
                         if (!grid.Children.Contains(icon)) 
                            grid.Children.Add(icon);
                     }

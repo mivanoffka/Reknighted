@@ -573,5 +573,22 @@ namespace Reknighted.Controller
         }
 
         #endregion
+
+        public static void Restore()
+        {
+            Game.PlayerModel = null;
+            PlayerView = null;
+            Game.CurrentTrader = null;
+            Game.AllTraders = null;
+            Game.AllFighters = null;
+            _allCells = new();
+            _allItemViews = new();
+            TraderItems = new();
+            _inventoryCells = new();
+            _equipmentCells = new();
+            _traderCells = new();
+
+
+        }
     }
 }

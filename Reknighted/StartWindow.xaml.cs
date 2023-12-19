@@ -32,6 +32,9 @@ namespace Reknighted
                 builder.ForLogger().FilterMinLevel(LogLevel.Debug).WriteToFile(fileName: "logs.txt");
             });
 
+
+
+            Game.Restore();
             Game.GenerateJorneyCost();
         }
 
