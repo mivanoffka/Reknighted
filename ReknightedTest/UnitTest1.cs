@@ -21,5 +21,18 @@ namespace ReknightedTest
             thread.SetApartmentState(ApartmentState.STA);
 
         }
+
+        [Fact]
+        [STAThread]
+        public void IPCheck()
+        {
+            Thread thread = new Thread(() =>
+            {
+                StartWindow startWindow = new StartWindow();
+                Assert.Equal(12345, IPaddr.Port);
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+
+        }
     }
 }
