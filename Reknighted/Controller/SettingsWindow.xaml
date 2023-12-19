@@ -9,9 +9,9 @@
     <Grid Margin="0,0,10,-6">
         <Label x:Name="lbLanguage" Content="{DynamicResource lbLanguage}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="71"/>
         <ComboBox x:Name="cmbLanguage" HorizontalAlignment="Left" Margin="77,12,0,0" VerticalAlignment="Top" Width="227" SelectionChanged="ChangeLanguageClick"/>
-        <Label x:Name="lbIPserver" Content="Сервер" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="7,42,0,0" Height="27"/>
+        <Label x:Name="lbIPserver" Content="{DynamicResource lbServer}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="7,42,0,0" Height="27"/>
         <TextBox x:Name="ServerPort" HorizontalAlignment="Left" Margin="77,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="20"/>
-        <Button x:Name="buttonIP" Content="Сохранить" HorizontalAlignment="Left" Margin="242,45,0,0" VerticalAlignment="Top" Height="20" Click="buttonIP_Click" Width="62"/>
+        <Button x:Name="buttonIP" Content="{DynamicResource btnSaveServer}" HorizontalAlignment="Left" Margin="242,45,0,0" VerticalAlignment="Top" Height="20" Click="buttonIP_Click" Width="62"/>
 
     </Grid>
 </Window>

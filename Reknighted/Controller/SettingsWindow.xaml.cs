@@ -71,7 +71,7 @@ namespace Reknighted.Controller
             string[] iptext = ServerPort.Text.Split(":");
             if (iptext.Length != 2 || !IPAddress.TryParse(iptext[0], out var ip) || iptext[1].Length != 5)
             {
-                MessageBox.Show("Incorrect IP and Port format!");
+                MessageBox.Show(Game.app.FindResource("msgIPParseError").ToString());
                 return;
             }
             IPaddr.IP = IPAddress.Parse(iptext[0]);

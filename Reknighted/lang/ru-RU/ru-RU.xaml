@@ -12,6 +12,9 @@
     <!--#region Settings Window -->
     <v:String x:Key="settingsTitle">Настройки</v:String>
     <v:String x:Key="lbLanguage">Язык</v:String>
+    <v:String x:Key="lbServer">Сервер</v:String>
+    <v:String x:Key="btnSaveServer">Сохранить</v:String>
+    <v:String x:Key="msgIPParseError">Неверный формат адреса!</v:String>
     <!--#endregion-->
 
     <!--#region Save Window -->
