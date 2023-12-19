@@ -480,4 +480,8 @@
     </Page>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (&#xA;    copy &quot;$(SolutionDir)Reknighted\bin\Release\net7.0-windows\&quot; &quot;$(SolutionDir)Shipped\Knight&quot;&#xA;)&#xA;" />
+  </Target>
+
 </Project>

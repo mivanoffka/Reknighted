@@ -1,0 +1,35 @@
+{
+  "health_potion": {
+	  "$type":"potion",
+    "Addition": 10,
+    "Buff": 0,
+    "PathToImage": "Images\\Potions\\health_potion.png",
+    "Name": "Bottle With Green Liquid",
+    "Description": "Only god knows what happens if you drink it.",
+    "Price": 500,
+    "IsPossessed": true,
+    "Cell": null,
+  },
+  "protection_potion": {
+	  "$type":"potion",
+    "Addition": 10,
+    "Buff": 1,
+    "PathToImage": "Images\\Potions\\protection_potion.png",
+    "Name": "Bottle With Green Liquid",
+    "Description": "Only god knows what happens if you drink it.",
+    "Price": 500,
+    "IsPossessed": true,
+    "Cell": null,
+  },
+  "damage_potion": {
+	  "$type":"potion",
+    "Addition": 10,
+    "Buff": 2,
+    "PathToImage": "Images\\Potions\\damage_potion.png",
+    "Name": "Bottle With Red Liquid",
+    "Description": "Only god knows what happens if you drink it.",
+    "Price": 500,
+    "IsPossessed": true,
+    "Cell": null,
+  }
+}

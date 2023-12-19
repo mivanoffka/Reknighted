@@ -79,7 +79,7 @@
     
     <!--#region In-Game Hints and labels-->
     <v:String x:Key="lowHealthMessage">Нельзя вступать в схватку в таком состоянии здоровья!</v:String>
-    <v:String x:Key="serverError">Сервер не отвечает, используются локальные вычисления</v:String>
+    <v:String x:Key="serverError">Сервер не отвечает</v:String>
     <v:String x:Key="victoryMessage">Победа!</v:String>
     <v:String x:Key="defeatMessage">Поражение...</v:String>
     <v:String x:Key="ongoingBattle">Идёт бой</v:String>

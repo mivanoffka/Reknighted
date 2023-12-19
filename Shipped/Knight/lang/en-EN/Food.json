@@ -1,0 +1,277 @@
+{
+	"watermelon":{
+	  "$type": "food",
+	  "Satiety": 20,
+	  "Name": "-",
+	  "Description": "-",
+	  "Price": 17,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\watermelon.png"
+	},
+	
+	"strawberry":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Strawberry",
+	  "Description": "Sometimes you just want some strawberries, don't you?",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\strawberry.png"
+	},
+	
+	"eggs":{
+	  "$type": "food",
+	  "Satiety": 20,
+	  "Name": "Eggs",
+	  "Description": "Eggstremely tasty",
+	  "Price": 17,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\eggs.png"
+	},
+	
+	"bacon":{
+	  "$type": "food",
+	  "Satiety": 90,
+	  "Name": "Bacon",
+	  "Description": "Absolutely not bourgeoisie",
+	  "Price": 52,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\bacon.png"
+	},
+	
+	"jam":{
+	  "$type": "food",
+	  "Satiety": 60,
+	  "Name": "Jam",
+	  "Description": "Not the fate berries dreamed about",
+	  "Price": 35,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\jam.png"
+	},
+	
+	"waffles":{
+	  "$type": "food",
+	  "Satiety": 24,
+	  "Name": "Waffles",
+	  "Description": "-",
+	  "Price": 21,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\waffles.png"
+	},
+	
+	"cherry":{
+	  "$type": "food",
+	  "Satiety": 4,
+	  "Name": "Cherry",
+	  "Description": "A pity it's not on a pie",
+	  "Price": 3,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\cherry.png"
+	},
+	
+	"steak":{
+	  "$type": "food",
+	  "Satiety": 120,
+	  "Name": "Beef Steak",
+	  "Description": "Medium-well? No, blin, physic-bad",
+	  "Price": 70,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\steak.png"
+	},
+	
+	"apple_green":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Green Apple",
+	  "Description": "Doesn't fall very far from the apple tree.",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\green_apple.png"
+	},
+	
+	"pepper_green":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Green Pepper",
+	  "Description": "It's already ripe, it's just fashionable that way.",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pepper_green.png"
+	},
+	
+	"potato":{
+	  "$type": "food",
+	  "Satiety": 24,
+	  "Name": "Potato",
+	  "Description": "Why eat meat with it? Eat it with fish, with herring.",
+	  "Price": 21,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\potato.png"
+	},
+	
+	"pepperoni":{
+	  "$type": "food",
+	  "Satiety": 160,
+	  "Name": "Pepperoni",
+	  "Description": "Horns, hooves and tails in an appetising coating of guts.",
+	  "Price": 105,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pepperoni.png"
+	},
+	
+	"candy":{
+	  "$type": "food",
+	  "Satiety": 4,
+	  "Name": "Candy",
+	  "Description": "Small and insignificant",
+	  "Price": 3,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\candy.png"
+	},
+	
+	"apple_red":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "Red Apple",
+	  "Description": "Maybe it's embarrassed.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\red_apple.png"
+	},
+	
+	"pepper_red":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "Red Pepper",
+	  "Description": "Just like green pepper, but cooler.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pepper_red.png"
+	},
+	
+	"pretzel":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "Pretzel",
+	  "Description": "A work of art on the subject of gut gagging.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pretzel.png"
+	},
+	
+	"chicken":{
+	  "$type": "food",
+	  "Satiety": 60,
+	  "Name": "Chicken",
+	  "Description": "She couldn't cross the road.",
+	  "Price": 35,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\chicken.png"
+	},
+	
+	"lemon":{
+	  "$type": "food",
+	  "Satiety": 24,
+	  "Name": "Lemon",
+	  "Description": "A delicacy for a pervet.",
+	  "Price": 21,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\lemon.png"
+	},
+	
+	"onion":{
+	  "$type": "food",
+	  "Satiety": 4,
+	  "Name": "Onion",
+	  "Description": "I'm not crying, it's just tears...",
+	  "Price": 3,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\onion.png"
+	},
+	
+	"honey":{
+	  "$type": "food",
+	  "Satiety": 160,
+	  "Name": "Honey",
+	  "Description": "The life's work of an entire hive.",
+	  "Price": 105,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\honey.png"
+	},
+	
+	"pickle":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "Pickle",
+	  "Description": "He's prickly. Orders to be afraid.",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\pickle.png"
+	},
+	
+	"peach":{
+	  "$type": "food",
+	  "Satiety": 16,
+	  "Name": "Peach",
+	  "Description": "-",
+	  "Price": 14,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\peach.png"
+	},
+	
+	"cookie":{
+	  "$type": "food",
+	  "Satiety": 10,
+	  "Name": "Cookie",
+	  "Description": "Cookie in a suit of cookie.",
+	  "Price": 10,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\cookie.png"
+	},
+	
+	"tomato":{
+	  "$type": "food",
+	  "Satiety": 20,
+	  "Name": "Tomato",
+	  "Description": "Red like...himself?",
+	  "Price": 17,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\tomato.png"
+	},
+	
+	"cheese":{
+	  "$type": "food",
+	  "Satiety": 40,
+	  "Name": "Cheese",
+	  "Description": "Smells moudly. But that doesn't mean that it's dor bleu",
+	  "Price": 28,
+	  "IsPossessed": true,
+	  "Cell": null,
+	  "pathToImage": "Images\\Food\\cheese.png"
+	}
+
+}
