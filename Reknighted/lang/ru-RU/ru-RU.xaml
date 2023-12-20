@@ -110,7 +110,7 @@
     <v:String x:Key="nFood">Еда</v:String>
     <v:String x:Key="nWeapon">Оружие</v:String>
     <v:String x:Key="nArmor">Броня</v:String>
-    <v:String x:Key="nArtefact">Артефакты</v:String>
+    <v:String x:Key="nArtefact">Артефакт</v:String>
     <v:String x:Key="nPotion">Зелья</v:String>
 
     <v:String x:Key="nPeter">Садовод Пётр</v:String>

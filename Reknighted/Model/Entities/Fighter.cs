@@ -8,7 +8,7 @@ namespace Reknighted.Model.Entities
     [JsonDerivedType(typeof(Fighter))]
     public class Fighter : IFightable, IMappable
     {
-        static readonly double Difficulty = 1.75;
+        static readonly double Difficulty = 1.20;
         public Location City { get; set; }
         public string Name { get; init; } = string.Empty;
 

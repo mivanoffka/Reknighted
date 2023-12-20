@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -51,6 +52,9 @@ namespace Reknighted.Controller
                 CultureInfo ci = i.Tag as CultureInfo;
                 i.IsChecked = ci != null && ci.Equals(currLang);
             }
+
+            Process.Start(Process.GetCurrentProcess().MainModule.FileName);
+            Application.Current.Shutdown();
         }
 
         private void ChangeLanguageClick(Object sender, EventArgs e)
